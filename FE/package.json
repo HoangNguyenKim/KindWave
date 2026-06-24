@@ -1,0 +1,60 @@
+{
+  "name": "kindwave-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.1.1",
+    "@tanstack/react-query": "5.62.0",
+    "axios": "1.7.9",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.469.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-hook-form": "7.54.1",
+    "react-router-dom": "6.28.0",
+    "tailwind-merge": "2.5.5",
+    "zod": "3.24.1",
+    "zustand": "5.0.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.17.0",
+    "@types/node": "22.10.2",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.4.20",
+    "eslint": "9.17.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "eslint-plugin-react-refresh": "0.4.16",
+    "globals": "15.13.0",
+    "postcss": "8.4.49",
+    "prettier": "3.4.2",
+    "prettier-plugin-tailwindcss": "0.6.9",
+    "tailwindcss": "3.4.16",
+    "typescript": "5.7.2",
+    "typescript-eslint": "8.18.0",
+    "vite": "6.0.3"
+  },
+  "overrides": {
+    "@radix-ui/*": {
+      "react": "19.0.0",
+      "react-dom": "19.0.0"
+    },
+    "react-hook-form": {
+      "react": "19.0.0"
+    },
+    "lucide-react": {
+      "react": "19.0.0"
+    }
+  }
+}

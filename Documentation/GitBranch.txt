@@ -1,0 +1,56 @@
+PHẦN 4: CHIẾN LƯỢC CHIA NHÁNH GIT (GITFLOW SPECIFICATION)
+Để đảm bảo quy tắc "Một PR không quá 20 files, merge trong 48h", dự án KindWave MVP được băm nhỏ thành đúng 24 nhánh Git Atomic xuất phát từ develop.
+
+EPIC 1: CỐT LÕI & XÁC THỰC (Core & Auth) - 6 Nhánh
+chore/KW-01-init-react-vite-shadcn (Setup base Frontend)
+
+chore/KW-02-init-express-prisma-docker (Setup base Backend + DB migration)
+
+feat/KW-03-auth-register-api (API + UI Đăng ký)
+
+feat/KW-04-auth-login-jwt-api (API + UI Đăng nhập)
+
+feat/KW-05-auth-logout-refresh-token (Xử lý blacklist token)
+
+feat/KW-06-auth-forgot-password-flow (Luồng gửi Email OTP reset pass)
+
+EPIC 2: TÀI KHOẢN & THÔNG BÁO (Profile & Notif) - 3 Nhánh
+feat/KW-07-profile-crud-api (Xem và sửa thông tin User)
+
+feat/KW-08-avatar-upload-cloudinary (Tích hợp Cloudinary up ảnh)
+
+feat/KW-09-notification-socketio-service (Hạ tầng bắn Notif realtime)
+
+EPIC 3: QUẢN LÝ CHIẾN DỊCH (Campaign Domain) - 5 Nhánh
+feat/KW-10-campaign-create-draft-api (Tạo chiến dịch dạng Pending)
+
+feat/KW-11-campaign-search-filter-pagination (Tìm kiếm, lọc, phân trang)
+
+feat/KW-12-campaign-detail-public-view (Màn hình chi tiết public)
+
+feat/KW-13-campaign-owner-edit-softdelete (Chủ xị sửa/xóa mềm)
+
+feat/KW-14-category-list-cache-redis (Load danh mục kèm cache Redis)
+
+EPIC 4: TÀI CHÍNH & SỔ CÁI (Donation & Ledger) - 5 Nhánh [CỰC QUAN TRỌNG]
+feat/KW-15-donation-create-session-api (Tạo PENDING Donation + link VNPay)
+
+feat/KW-16-vnpay-webhook-idempotent-handler (Xử lý Webhook VNPay chống lặp)
+
+feat/KW-17-campaign-ledger-recording-service (Service ghi Sổ cái Credit/Debit)
+
+feat/KW-18-donation-history-user-view (Lịch sử donate của User)
+
+fix/KW-19-atomic-increment-current-amount (Cơ chế DB locking khi cộng tiền)
+
+EPIC 5: NIỀM TIN CỘNG ĐỒNG (Trust Domain) - 2 Nhánh
+feat/KW-20-review-rating-crud (Đánh giá và bình luận chiến dịch)
+
+feat/KW-21-report-campaign-api (Báo cáo vi phạm)
+
+EPIC 6: QUẢN TRỊ VIÊN (Admin Domain) - 3 Nhánh
+feat/KW-22-admin-user-ban-unban (Admin khóa/mở khóa User)
+
+feat/KW-23-admin-campaign-moderate-workflow (Duyệt/Từ chối chiến dịch)
+
+feat/KW-24-admin-disbursement-impact-proof (Luồng giải ngân và up chứng từ)
