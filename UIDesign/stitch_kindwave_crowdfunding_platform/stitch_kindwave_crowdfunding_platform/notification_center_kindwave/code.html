@@ -1,0 +1,332 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Notification Center - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#283044",
+                        "outline-variant": "#bccbb9",
+                        "tertiary-container": "#a9acae",
+                        "outline": "#6d7b6c",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container": "#eaedff",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "secondary": "#505f76",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-tertiary-container": "#3d4042",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-background": "#131b2e",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#4ae176",
+                        "primary-container": "#22c55e",
+                        "on-primary-fixed-variant": "#005321",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "background": "#faf8ff",
+                        "on-primary-container": "#004b1e",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary-container": "#54647a",
+                        "tertiary": "#5c5f61",
+                        "surface-container-highest": "#dae2fd",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-dim": "#d2d9f4",
+                        "primary": "#006e2f",
+                        "inverse-primary": "#4ae176",
+                        "surface-tint": "#006e2f",
+                        "surface-container-low": "#f2f3ff",
+                        "primary-fixed": "#6bff8f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "container-padding": "24px",
+                        "gutter-table": "16px",
+                        "margin-sm": "8px",
+                        "margin-lg": "24px",
+                        "margin-md": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .notification-card:hover { background-color: #f8fafc; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col h-full py-margin-md px-margin-sm z-50">
+<div class="mb-margin-lg px-2 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-headline-sm">waves</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary leading-tight">KindWave</h1>
+<p class="font-label-sm text-label-sm text-secondary opacity-70">Empower Change</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">campaign</span> My Campaigns
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">add_circle</span> Create Campaign
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">history</span> Donation History
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">bookmark</span> Bookmarks
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">favorite</span> Following Campaigns
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">person</span> Profile
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors rounded" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="mt-auto p-2">
+<div class="flex items-center gap-3 p-2 bg-surface-container-low rounded-lg">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a diverse woman in her late 20s with a warm smile, wearing a professional green blazer. The background is a clean, minimal office setting with soft natural lighting, reflecting a corporate and trustworthy brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABw100Of-pvekJTKuXwmHB3DGwWt9a9mLCb_EyYfnH7ptF3Zf4C7t-Xg9-RShCgrsh_eQLlnGHzwFuwgH7H4OUGd3L0UyhmMjuGELWKmdQcX7JOa1ZG70jfXJVT0u5pY-zSSeaQbB19eq6qxN_06-a21dfoaFLJTpTUlBqlTZBm_3OEgCVZfZrDjneVidi09XKGAWuJ85nbTz2hSxEkmBBHfdlOz6BDJXcHB_jakbv24fTZbTZYH2D1rD-tmU2DD7DNfDjIlzfCLQ">
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-on-surface truncate">Alex Rivera</p>
+<p class="font-label-sm text-label-sm text-secondary truncate">Supporter Tier 3</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-sidebar-width min-h-screen flex flex-col">
+<!-- Top Nav Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-container-padding z-40 shadow-sm">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search notifications..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary font-bold border-b-2 border-primary relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<span class="font-label-md text-label-md text-on-surface-variant">Alex Rivera</span>
+<div class="w-8 h-8 rounded-full bg-tertiary-container overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close up of a small, minimalist profile picture icon representing a professional user. The style is clean, modern, and aligned with a corporate dashboard aesthetic with soft gradients and a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCdsrj9YFS0KueC446uUsUOBs302cIUMsqwJB5Wx62YDzuo0au0VDmMRqAQBRrLa3ZAdagfrHecRVhYgrSDaMTk_QJPYreyhM6XqzIN4wXSoDcsvigNqdWuzeVx9zWWgV-mz4VOfZVHyJBPe7LcnZQlVrLVm7j1VRN1q8jvKomuOj-UtIpqmLL-57PvjR-MqSg61yoQYwSEEr7w93NkVSbwT0NGxuX9TZLvRllkMTLLjbdcwPfch4Au8xpcBa-RrzEddUx6WjT3QE">
+</div>
+</div>
+</div>
+</header>
+<!-- Notification Center Content -->
+<section class="mt-16 p-container-padding flex-1 overflow-hidden flex flex-col max-w-5xl mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-margin-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Notification Center</h2>
+<p class="font-body-md text-body-md text-secondary">Stay updated with your campaign progress and community activity.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors rounded-lg font-label-md text-label-md" onclick="markAllRead()">
+<span class="material-symbols-outlined text-[18px]">done_all</span> Mark all as read
+                </button>
+</div>
+<!-- Filters -->
+<div class="flex items-center gap-2 mb-margin-md overflow-x-auto pb-2 custom-scrollbar">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md whitespace-nowrap">All Notifications</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all font-label-md text-label-md whitespace-nowrap">Campaigns</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all font-label-md text-label-md whitespace-nowrap">Security</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all font-label-md text-label-md whitespace-nowrap">Social</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest transition-all font-label-md text-label-md whitespace-nowrap">Platform Updates</button>
+</div>
+<!-- Notification List -->
+<div class="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-3 pb-margin-lg">
+<!-- Notification Card: Campaign -->
+<div class="notification-card p-4 bg-white border border-outline-variant rounded-xl flex gap-4 transition-all group relative cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl"></div>
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate">New Donation Received</h3>
+<span class="font-label-sm text-label-sm text-secondary whitespace-nowrap">2 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 leading-relaxed">Someone just donated <span class="font-bold text-primary">$250.00</span> to your "Clean Water for All" campaign. Your milestone is 85% complete!</p>
+<div class="mt-3 flex items-center gap-4">
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" href="#">View Transaction <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+<button class="font-label-md text-label-md text-secondary hover:text-on-surface">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Notification Card: Security -->
+<div class="notification-card p-4 bg-white border border-outline-variant rounded-xl flex gap-4 transition-all group relative cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-error rounded-l-xl"></div>
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-error-container/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">New Login Detected</h3>
+<span class="font-label-sm text-label-sm text-secondary">45 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">A new login was detected from a Chrome browser on a Windows device in San Francisco, USA. If this wasn't you, secure your account immediately.</p>
+<div class="mt-3 flex items-center gap-4">
+<a class="font-label-md text-label-md text-error hover:underline flex items-center gap-1" href="#">Review Activity <span class="material-symbols-outlined text-[14px]">shield</span></a>
+</div>
+</div>
+</div>
+<!-- Notification Card: Social -->
+<div class="notification-card p-4 bg-white border border-outline-variant rounded-xl flex gap-4 transition-all group relative cursor-pointer">
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">New Supporter Following</h3>
+<span class="font-label-sm text-label-sm text-secondary">3 hours ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Michael Scott started following your campaign updates. They have previously supported 12 environmental causes.</p>
+<div class="mt-3 flex items-center gap-4">
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" href="#">View Profile <span class="material-symbols-outlined text-[14px]">person</span></a>
+</div>
+</div>
+</div>
+<!-- Notification Card: Platform -->
+<div class="notification-card p-4 bg-white border border-outline-variant rounded-xl flex gap-4 transition-all group cursor-pointer opacity-70">
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">update</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">System Maintenance</h3>
+<span class="font-label-sm text-label-sm text-secondary">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">KindWave will be undergoing scheduled maintenance this Sunday from 02:00 to 04:00 UTC. Some features may be temporarily unavailable.</p>
+<div class="mt-3">
+<a class="font-label-md text-label-md text-secondary hover:underline" href="#">Read Release Notes</a>
+</div>
+</div>
+</div>
+<!-- Notification Card: Campaign Milestone -->
+<div class="notification-card p-4 bg-white border border-outline-variant rounded-xl flex gap-4 transition-all group relative cursor-pointer">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-l-xl"></div>
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-start justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Milestone Reached!</h3>
+<span class="font-label-sm text-label-sm text-secondary">Oct 24, 11:20 AM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Congratulations! Your "Education for All" campaign just surpassed its halfway goal of $5,000. Keep up the momentum!</p>
+<div class="mt-3 flex items-center gap-4">
+<a class="font-label-md text-label-md text-primary hover:underline flex items-center gap-1" href="#">Share Achievement <span class="material-symbols-outlined text-[14px]">share</span></a>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="mt-margin-md py-4 border-t border-outline-variant flex items-center justify-between font-label-sm text-label-sm text-secondary">
+<p>Showing 1-5 of 12 notifications</p>
+<div class="flex items-center gap-4">
+<button class="hover:text-primary">Load older notifications</button>
+<span class="w-1 h-1 bg-outline rounded-full"></span>
+<button class="hover:text-primary">Notification Settings</button>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interactions for Mark All Read
+        function markAllRead() {
+            const indicators = document.querySelectorAll('.absolute.left-0.w-1');
+            const unreadCards = document.querySelectorAll('.notification-card');
+            
+            unreadCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0.7';
+                    const indicator = card.querySelector('.absolute.left-0.w-1');
+                    if (indicator) indicator.style.opacity = '0';
+                }, index * 100);
+            });
+
+            const notifyBadge = document.querySelector('.absolute.top-2.right-2');
+            if (notifyBadge) notifyBadge.style.display = 'none';
+        }
+
+        // Add subtle hover tracking
+        document.querySelectorAll('.notification-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Campaign Updates - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#faf8ff",
+                      "secondary-container": "#d0e1fb",
+                      "on-background": "#131b2e",
+                      "tertiary-fixed": "#e0e3e5",
+                      "on-primary-fixed": "#002109",
+                      "on-error": "#ffffff",
+                      "surface-tint": "#006e2f",
+                      "on-surface": "#131b2e",
+                      "inverse-primary": "#4ae176",
+                      "on-primary-fixed-variant": "#005321",
+                      "primary-fixed": "#6bff8f",
+                      "on-primary-container": "#004b1e",
+                      "on-secondary-fixed-variant": "#38485d",
+                      "primary-fixed-dim": "#4ae176",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "inverse-on-surface": "#eef0ff",
+                      "surface-container-high": "#e2e7ff",
+                      "secondary": "#505f76",
+                      "on-tertiary-fixed": "#191c1e",
+                      "on-secondary-fixed": "#0b1c30",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#3d4042",
+                      "secondary-fixed-dim": "#b7c8e1",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f2f3ff",
+                      "primary": "#006e2f",
+                      "surface-dim": "#d2d9f4",
+                      "error-container": "#ffdad6",
+                      "outline": "#6d7b6c",
+                      "background": "#faf8ff",
+                      "outline-variant": "#bccbb9",
+                      "on-secondary-container": "#54647a",
+                      "on-tertiary": "#ffffff",
+                      "surface-bright": "#faf8ff",
+                      "surface-container-highest": "#dae2fd",
+                      "tertiary-container": "#a9acae",
+                      "surface-variant": "#dae2fd",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#22c55e",
+                      "tertiary": "#5c5f61",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#eaedff",
+                      "secondary-fixed": "#d3e4fe",
+                      "inverse-surface": "#283044",
+                      "on-surface-variant": "#3d4a3d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "margin-md": "16px",
+                      "container-padding": "24px",
+                      "unit": "4px",
+                      "margin-sm": "8px",
+                      "margin-lg": "24px",
+                      "gutter-table": "16px"
+              },
+              "fontFamily": {
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-sm": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "14px",
+                                      "fontWeight": "600"
+                              }
+                      }
+              }
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-sidebar-width border-r border-outline-variant bg-surface hidden md:flex flex-col py-margin-md px-margin-sm z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<img alt="KindWave Logo" class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold" data-alt="A clean, minimalist logo for KindWave featuring a subtle wave icon in modern corporate green. High resolution, flat design, light mode aesthetic, isolated on white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk2oAT-pbiRn-ShjNKrD7bquCMIOSNvWKiu82znR8Qw_z5j6nRpPEBq3BEo1QjM2zhaKwQtutywcGDdfOl8DMXntaFJWB_TBCoKSX6g_APpxjyJ7kH3v_l9NP1cs40NoPvujhAe0mB4jSTNTKITItTsMyV50yxmQ1_z9EY-YXV15J_fqA2rElJN25nFPsMWDv8ZUtttXT6Pf0I2VrkJdKABJ5ICIegc_CBYwKwDB_AwlXUsc0219JaxSZW8wxv0qTh3rZ-umaCmlk">
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Empower Change</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-unit">
+<!-- Tabs -->
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT bg-secondary-container text-on-secondary-container border-l-2 border-primary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">campaign</span>
+<span class="font-body-md text-body-md font-medium">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+<span class="font-body-md text-body-md">Create Campaign</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="font-body-md text-body-md">Donation History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+<span class="font-body-md text-body-md">Bookmarks</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="font-body-md text-body-md">Following Campaigns</span>
+</a>
+</div>
+<div class="mt-auto space-y-unit pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-[260px] flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-260px)] h-16 bg-surface-container-lowest border-b border-outline-variant shadow-sm flex justify-between items-center px-container-padding z-40">
+<div class="flex-1 flex items-center gap-4">
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative w-64 hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-DEFAULT font-body-sm text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Search campaigns..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all cursor-pointer active:opacity-70 relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional headshot of a female user, looking friendly and confident, natural lighting, light grey background, high resolution, corporate dashboard style avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLVq-fg6LhD7V8VRR_S0vsDobsFDASOctieCBPaD8QA6QMzE02K-YISq_vIciBTmcBHzGkMXD-s06D9so0mU6zMRURHKh43MXjHopr-yRJKiN3ZIy7WC03nSKezXGt0cZMHFCfwCWtVoQotZ30ez1UQ8OYaN-DQlSfEJ6mrl6BK9oHb1PoOpZ1Yr-Wk62-6aDcvvhxw4w43mpa6RSWiVFR57kbhKPHw1w-NqDcNYk2OQxULGDVxRn3FOqm-ybgwQC1zs63YGzLG18">
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 mt-16 p-container-padding bg-surface-container-low overflow-y-auto">
+<div class="max-w-4xl mx-auto space-y-margin-lg">
+<!-- Campaign Header & Sub-Navigation -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Clean Water Initiative - Kenya</h2>
+<div class="flex border-b border-outline-variant space-x-6">
+<a class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Overview</a>
+<a class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Donations</a>
+<a class="py-3 font-label-md text-label-md text-primary font-bold border-b-2 border-primary" href="#">Updates</a>
+<a class="py-3 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" href="#">Settings</a>
+</div>
+</div>
+<!-- Update Editor (Facebook-style) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1)] p-margin-md">
+<div class="flex gap-4 mb-4">
+<img alt="Author" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a female user, looking friendly and confident, natural lighting, light grey background, high resolution, corporate dashboard style avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY3kbrFTcCl18jqPhyUlYj5qlFjxgaQWnKkuPaWt8vzhNSInmlQG9iDey73XtbZY6Escno47XMVHJG2BoFkOK8JSF01vTu8w6Vb0XaAZXZSbzzf__oSuzZnWkPDaEAhik9P39ftUpvnyh0Df2nx6E7U0WDOcmwgQiLF-IVARpYYwZ7g4a3pGs5KcVMtUKg5D58rNONxDtQd92y7PAuOCAB3b3-BPzceJUKlhud9toMe5a-8Vo7_KSlTGKtOmEnOWZlK9cOm_yUXTU">
+<div class="flex-1">
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-3 font-body-md text-body-md resize-none focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all min-h-[100px]" placeholder="Post an update to your supporters..."></textarea>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-container-high">
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-DEFAULT text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px] text-primary">image</span>
+<span class="font-label-md text-label-md hidden sm:inline">Photo</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-DEFAULT text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px] text-error">smart_display</span>
+<span class="font-label-md text-label-md hidden sm:inline">Video</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-DEFAULT text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px] text-tertiary">attach_file</span>
+<span class="font-label-md text-label-md hidden sm:inline">Document</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-DEFAULT font-label-md text-label-md hover:bg-primary transition-colors">Post Update</button>
+</div>
+</div>
+<!-- Timeline Feed -->
+<div class="space-y-margin-lg">
+<!-- Update Post 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1)] p-margin-md">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-3 items-center">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a female user, looking friendly and confident, natural lighting, light grey background, high resolution, corporate dashboard style avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAquMxCztEdDQu0xYvbCb3NFF64ePSHveR-61FMOur4mATaOHQluGd0dZdAPltoJoLw6c6btkHb_N6REgc9rx4CHtJTTyML-pyKp6UKiwJsZse2apm7eYjQG94Z-P44OAennaj1iJ_8o7rteSm5u7ORSNhG_u_aU8iZnF6Zrq6_Uen_e-ucvqrKTVOe6iuH0OU3ToIgUStpSj5ruVpi0l1AhIR4Qzj3ZryaX1dbIC7VUhvTvFTAdfrclSsIt46mZrRCRptPJWhuS6M">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sarah Jenkins <span class="font-body-sm text-secondary font-normal ml-1">Organizer</span></h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2 hours ago
+                                    </p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container rounded-full p-1 transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="font-body-md text-body-md text-on-surface space-y-3 mb-4">
+<p>We've reached our first milestone! 🎉 Thanks to your incredible support, the first well has been successfully drilled in the Narok region.</p>
+<p>Here's a quick look at the progress. The community is thrilled, and we couldn't have done this without every single one of you.</p>
+</div>
+<!-- Media Attachment -->
+<div class="rounded-lg overflow-hidden border border-outline-variant mb-4">
+<img alt="New well installation" class="w-full h-64 object-cover" data-alt="A clean, inspiring photo of a newly installed water well in a rural African community. Bright sunlight, clear blue sky, local residents smiling around the well, high resolution, documentary style photography suitable for a modern corporate dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIjjue4kje8iHiOguwhB5ewf--4Cta8OeJiaEzii0e-Xe6Voqjk3OcdDZjgAdLxB7MSth0xu0DSz4bL8hMAU9jCBNqhGVlk1Fsy-zYO072JMayeBCn2nbqZ0FtmmcSodtw8BKHRHPipETWkYt6WkzkZMtL00U7wfeoshBNGCB6oAI_UBuTTRcvpECL0lhlo2J988EmBfQAvSCQxAYQs5sv6UIS6qOI_ThOX3QRRWrhkhm672bzqPgZ1offIY7LOKunFCJmWPITA_s">
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-container-high text-secondary">
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
+<span class="font-label-sm text-label-sm">124</span>
+</button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble_outline</span>
+<span class="font-label-sm text-label-sm">18</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">450 Views</span>
+</div>
+</article>
+<!-- Update Post 2 (Text Only with Doc) -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1)] p-margin-md">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-3 items-center">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Professional headshot of a female user, looking friendly and confident, natural lighting, light grey background, high resolution, corporate dashboard style avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcplvXmoVhnsOp5mH3ICE8fk234GFevXjEPAW3M2tocY91w__FY-IeAJdBZg7nOytHtBlUROAPvbWdXBiN5S5Zc_fwp-zX8PVhvevBXP8-3QtX88bU_1YUnDe6jM_GkTA-gC7jdpFE3h3cUaT8th8GWHHireulXbrnUm_dxaaYsmFCoxvaRoBAurDjOnPha3hTHquKUKyGXGiqFhqomluJTDI_8n5bn5M-zNhfzvSwq14bSr8zknmeoj-hbTF3fYizbgNyK7BBuYI">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sarah Jenkins <span class="font-body-sm text-secondary font-normal ml-1">Organizer</span></h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Oct 12, 2023
+                                    </p>
+</div>
+</div>
+</div>
+<div class="font-body-md text-body-md text-on-surface mb-4">
+<p>I've uploaded the preliminary environmental impact report for our upcoming site locations. Please review if you're interested in the technical details of our sustainability planning.</p>
+</div>
+<!-- Document Attachment -->
+<div class="flex items-center gap-3 p-3 rounded-lg border border-outline-variant bg-surface-container-low mb-4 hover:bg-surface-container transition-colors cursor-pointer">
+<div class="p-2 bg-error-container text-on-error-container rounded">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Phase_2_Impact_Report.pdf</p>
+<p class="font-body-sm text-body-sm text-secondary">2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-secondary">download</span>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-surface-container-high text-secondary">
+<div class="flex gap-4">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">thumb_up</span>
+<span class="font-label-sm text-label-sm">45</span>
+</button>
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble_outline</span>
+<span class="font-label-sm text-label-sm">2</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<div class="text-center py-4">
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors">Load More Updates</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

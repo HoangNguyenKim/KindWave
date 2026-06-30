@@ -1,0 +1,315 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave | Campaign Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#004940",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed": "#002109",
+                    "on-background": "#0b1c30",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e5eeff",
+                    "secondary-container": "#99efe5",
+                    "tertiary-fixed-dim": "#3cddc7",
+                    "tertiary-container": "#00c1ad",
+                    "outline": "#6d7b6c",
+                    "on-tertiary-fixed-variant": "#005047",
+                    "outline-variant": "#bccbb9",
+                    "inverse-surface": "#213145",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "secondary-fixed": "#9cf2e8",
+                    "on-secondary-fixed": "#00201d",
+                    "secondary": "#006a63",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#00201c",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#006b5f",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-high": "#dce9ff",
+                    "on-secondary-container": "#006f67",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "primary-fixed": "#6bff8f",
+                    "surface-container-low": "#eff4ff",
+                    "surface-tint": "#006e2f",
+                    "primary": "#006e2f",
+                    "inverse-primary": "#4ae176",
+                    "tertiary-fixed": "#62fae3",
+                    "surface-dim": "#cbdbf5",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#d3e4fe",
+                    "on-primary": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "on-surface-variant": "#3d4a3d",
+                    "primary-container": "#22c55e",
+                    "on-primary-fixed-variant": "#005321",
+                    "primary-fixed-dim": "#4ae176",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "background": "#f8f9ff",
+                    "on-surface": "#0b1c30"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "1.5rem",
+                    "sm": "0.5rem",
+                    "gutter": "1.5rem",
+                    "md": "1rem",
+                    "xs": "0.25rem",
+                    "margin-mobile": "1rem",
+                    "base": "4px",
+                    "xl": "2rem",
+                    "margin-desktop": "2.5rem",
+                    "2xl": "3rem"
+            },
+            "fontFamily": {
+                    "display": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .soft-shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        .active-nav-indicator {
+            position: relative;
+        }
+        .active-nav-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 99px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top Navigation Bar -->
+<header class="bg-surface sticky top-0 z-40 border-b border-outline-variant shadow-sm h-16 flex items-center px-4">
+<div class="flex justify-between items-center w-full max-w-[1280px] mx-auto">
+<span class="font-headline-md text-headline-md font-bold text-primary">KindWave</span>
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a smiling user against a soft, blurred office background. The lighting is warm and natural, following a bright modern corporate aesthetic. High resolution, shallow depth of field, minimalist professional vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJb3O-Kr7fPCPQ9AgFGu51QMU0ne1OMFMuVszLGGnUgAFOZTTl6tMH38W82ssODOyCNsb6Bj4ckXMlwAup5lCA6RuYhoM3QAfWLWMyoAUhhOSJLBxwvtl4skuOkiFen3w7CyZmo93vtHghcoWTQcre6OK4QzntB7i0hWE3d_x5vBMCsz15LtdFAkkTUFG1LBLDvlWBJdcFWajsv6MrQjbf3ZJKDPYOEBVgKJZiRbTrkR6hsnWDhrHwWqvfBaQ3S9V6ApOmKtk5BqM">
+</div>
+</div>
+</div>
+</header>
+<main class="px-4 py-6 max-w-md mx-auto">
+<!-- Header & Search -->
+<div class="mb-8">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">My Campaigns</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">Manage and track your active fundraising momentum.</p>
+<!-- Search Bar -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Search campaigns..." type="text">
+</div>
+</div>
+<!-- Filter Chips (Bonus for Utility) -->
+<div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4 mb-2">
+<button class="px-4 py-1.5 rounded-full bg-primary text-on-primary font-label-md whitespace-nowrap active:scale-95 transition-transform">All</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap active:scale-95 transition-transform">Active</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap active:scale-95 transition-transform">Drafts</button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap active:scale-95 transition-transform">Completed</button>
+</div>
+<!-- Campaign Cards List -->
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-surface rounded-lg border border-outline-variant soft-shadow p-4 flex flex-col gap-4 active:bg-surface-container-low transition-colors duration-200">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A clean, vibrant digital illustration of clean water droplets falling into a clear pool, representing a global water initiative. Bright sunlight creates sparkling reflections. The style is modern, optimistic, and corporate-clean with a palette of teals and blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjHeUqaJnpL9DCHNZsos0hoQn4njaga938ntiDjqmTr5FnI0j0NibaeHDnMS7qZKPXofKG5Xj1Mh5KYN37gV7_PuW_NjER4qC2YbHt6CvSbNSFCy94tcGuox74vigpZX2iw3Nfx2MHkGRoyF5hA7ICoqt3A0j9C4S1DkU16gme9UA9isWaQ-njuydUsBbrVmh21oxkcwl0CE9NkOwMkgn_lLd7M7KabsH7OpR_uHmYLtkyhOKdKxGtFsp6A266e6emHKzyFlgun3g">
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Clean Water for Nairobi</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider mt-1">Active</span>
+</div>
+</div>
+<button class="p-1 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Raised <span class="text-on-surface font-semibold">$12,450</span></span>
+<span class="font-label-sm text-label-sm text-primary">82%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-lg border border-outline-variant soft-shadow p-4 flex flex-col gap-4 active:bg-surface-container-low transition-colors duration-200">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Modern geometric art representing education, featuring stylized open books and glowing lightbulbs in a flat, vector style. The color palette uses KindWave Green and soft neutral tones. Minimalist, professional, and evocative of progress and learning." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxpKgG0ugr5o8xKgQdahanxljXy-TTwbYg4v0XO1YEiIly74x0jIUZMO5x9lvI_AXU8szwGjoR-gEzTUtabQCcKFGnxkioEZrGk5j0MOq8PZr12ckvIqjVVKgL4Lg88o_2G0wx2258Tu_4Bdr_89QPPpdKls4HWxt7_D9Vq1mEqGE1Ni-JzDbJEnZGOOY1UIUhgx3SgCNrMCUddG2vUAxJsOSlFvnGBO8KRc7ut--__7hVnuUN8ezuq61YASVtjL_c6Z2Lct-RXyo">
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">STEM Kits for Rural Schools</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase tracking-wider mt-1">Draft</span>
+</div>
+</div>
+<button class="p-1 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Raised <span class="text-on-surface font-semibold">$0</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">0%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-lg border border-outline-variant soft-shadow p-4 flex flex-col gap-4 active:bg-surface-container-low transition-colors duration-200">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A lush, high-detail macro shot of a young green sapling emerging from rich dark soil. Soft morning sunlight filters through leaves, creating a hopeful and growth-oriented mood. Professional nature photography style with a bright, clean light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx3A0d6286SfR4Aa4OFYoBFuD8rw6NnHShiPLkECgGBOuIeih6EEO6a8C3qN1o2aoBVV88R8cBHaxED8gDDrVaGWjAzEiueY5KFvA_SX_hhX4Z2kuAd9RkOTJsFfVQ4t3szfvE5V0LbuGQQPfgKnELuG4-RAKlWpq6CYcIAUy4Sz6Bc6tXeoMwqJwDDezF5EiocMPUGEZ1mX5PHNrHtX5rcA-YO5hXJ_fxXpLhL-Xhyr-kkkBgK6m-x0TFmVuTcdLX0JkSjgpereQ">
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Amazon Reforestation Q3</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container text-[10px] font-bold uppercase tracking-wider mt-1">Completed</span>
+</div>
+</div>
+<button class="p-1 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Raised <span class="text-on-surface font-semibold">$54,200</span></span>
+<span class="font-label-sm text-label-sm text-tertiary">108%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface rounded-lg border border-outline-variant soft-shadow p-4 flex flex-col gap-4 active:bg-surface-container-low transition-colors duration-200">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Sleek digital rendering of an medical heart monitor with a clean, pulsating line, signifying healthcare innovation. The style is high-tech corporate with a focus on precision and safety. A palette of white, light grey, and KindWave Green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqCXIIu59sLAtBxCcVPBRxgenjJj8TIpKTNeHZXjyd0kp44E_4OLJ1nX8coKrInWd4_kkqKhuEysTwmkyp0BytnKMZcYRrkYTOloHGqNOSj5AYCtmWiLH-tJoWHAbcOlwqYtfY9VHzJtBqgCzHetoDuOOIGraSuy9c0r0LogNMMPWDVwr7X2uP9DmBAkDOGW152kdRQCJhQ6RsmjP9-i2fERgzNvKw8cjbth5R0F80fHzfvcKC3IEMZfmG0h3s5WzU_mTC7TlId_0">
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Community Heart Screenings</h3>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider mt-1">Active</span>
+</div>
+</div>
+<button class="p-1 text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Raised <span class="text-on-surface font-semibold">$8,900</span></span>
+<span class="font-label-sm text-label-sm text-primary">45%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center transition-transform active:scale-90 z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] rounded-t-xl px-4 py-2 pb-safe h-20 flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm mt-1">Search</span>
+</a>
+<!-- Active Tab: Impact (Mapping to Campaign Management) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all duration-100" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-label-sm text-label-sm mt-1">My Campaigns</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple touch interaction for cards
+        document.querySelectorAll('.bg-surface.rounded-lg').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('bg-surface-container-low');
+            });
+            card.addEventListener('touchend', () => {
+                card.classList.remove('bg-surface-container-low');
+            });
+        });
+    </script>
+</body></html>

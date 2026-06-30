@@ -1,0 +1,355 @@
+<!DOCTYPE html><html class="light" lang="en" style="width: 1280px; height: 1629px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#006b5f",
+                        "surface-dim": "#cbdbf5",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006e2f",
+                        "tertiary-fixed": "#62fae3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-background": "#0b1c30",
+                        "on-secondary-container": "#006f67",
+                        "on-primary-container": "#004b1e",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#4ae176",
+                        "secondary": "#006a63",
+                        "on-tertiary-fixed": "#00201c",
+                        "tertiary-container": "#00c1ad",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "secondary-container": "#99efe5",
+                        "primary": "#006e2f",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container": "#e5eeff",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#4ae176",
+                        "tertiary-fixed-dim": "#3cddc7",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "surface-variant": "#d3e4fe",
+                        "error": "#ba1a1a",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#9cf2e8",
+                        "inverse-surface": "#213145",
+                        "on-secondary-fixed": "#00201d",
+                        "on-primary-fixed-variant": "#005321",
+                        "primary-fixed": "#6bff8f",
+                        "primary-container": "#22c55e",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-container": "#004940",
+                        "outline-variant": "#bccbb9",
+                        "outline": "#6d7b6c",
+                        "on-surface-variant": "#3d4a3d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "2rem",
+                        "gutter": "1.5rem",
+                        "lg": "1.5rem",
+                        "margin-desktop": "2.5rem",
+                        "md": "1rem",
+                        "2xl": "3rem",
+                        "base": "4px",
+                        "xs": "0.25rem",
+                        "margin-mobile": "1rem",
+                        "sm": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .stripe-shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1); }
+        .inner-glow { box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.2); }
+        .focus-ring:focus { outline: none; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); border-color: #22c55e; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none docked full-width top-0 z-40">
+<div class="flex justify-between items-center w-full px-gutter max-w-[1280px] mx-auto h-16">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">KindWave</span>
+<nav class="hidden md:flex gap-sm">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed font-body-md text-body-md hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors active:scale-95 duration-150 px-3 py-2 rounded" href="#">Explore</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed font-body-md text-body-md hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors active:scale-95 duration-150 px-3 py-2 rounded" href="#">How it Works</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 font-body-md text-body-md hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors active:scale-95 duration-150 px-3 py-2" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg inner-glow stripe-shadow hover:bg-[#005c27] transition-colors">Start Campaign</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 max-w-[1280px] mx-auto w-full px-gutter py-xl gap-xl">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col bg-surface-container-low dark:bg-inverse-surface w-64 h-[calc(100vh-4rem)] sticky top-16 border-r border-outline-variant dark:border-outline p-md space-y-sm">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">KindWave Admin</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Campaign Manager</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg inner-glow stripe-shadow hover:bg-[#005c27] transition-colors mb-sm flex items-center justify-center gap-2 w-full">
+<span class="material-symbols-outlined text-[18px]">add</span> New Project
+            </button>
+<nav class="flex flex-col gap-1">
+<a class="bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-lg font-label-md text-label-md flex items-center gap-3 px-3 py-2 transition-all duration-200 ease-in-out hover:bg-surface-container-high dark:hover:bg-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-3 px-3 py-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">rocket_launch</span> My Campaigns
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-3 px-3 py-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span> Contributions
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-3 px-3 py-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">favorite</span> Favorites
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-variant rounded-lg font-label-md text-label-md flex items-center gap-3 px-3 py-2 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 w-full space-y-2xl pb-24 lg:pb-0">
+<div>
+<h1 class="font-display text-display mb-sm">Component Library</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A comprehensive guide to KindWave's UI components, built for momentum and clarity.</p>
+</div>
+<!-- 1. Buttons -->
+<section class="space-y-lg">
+<h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-xs">1. Buttons</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Primary -->
+<div class="bg-surface-container-lowest p-lg rounded-lg stripe-shadow border border-outline-variant/30 flex flex-col gap-md items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant">Primary</h3>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-3 py-1.5 rounded-lg inner-glow stripe-shadow hover:bg-[#005c27] transition-colors flex items-center gap-2">
+                            Small <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg inner-glow stripe-shadow hover:bg-[#005c27] transition-colors flex items-center gap-2">
+                            Medium <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="bg-primary text-on-primary font-body-lg text-body-lg px-6 py-3 rounded-lg inner-glow stripe-shadow hover:bg-[#005c27] transition-colors flex items-center gap-2">
+                            Large <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- Secondary -->
+<div class="bg-surface-container-lowest p-lg rounded-lg stripe-shadow border border-outline-variant/30 flex flex-col gap-md items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant">Secondary</h3>
+<button class="bg-surface text-on-surface font-label-sm text-label-sm px-3 py-1.5 rounded-lg stripe-shadow border border-outline-variant hover:bg-surface-variant transition-colors flex items-center gap-2">
+                            Small <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+<button class="bg-surface text-on-surface font-label-md text-label-md px-4 py-2 rounded-lg stripe-shadow border border-outline-variant hover:bg-surface-variant transition-colors flex items-center gap-2">
+                            Medium <span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+<button class="bg-surface text-on-surface font-body-lg text-body-lg px-6 py-3 rounded-lg stripe-shadow border border-outline-variant hover:bg-surface-variant transition-colors flex items-center gap-2">
+                            Large <span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+<!-- Outline -->
+<div class="bg-surface-container-lowest p-lg rounded-lg stripe-shadow border border-outline-variant/30 flex flex-col gap-md items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant">Outline</h3>
+<button class="bg-transparent text-primary font-label-sm text-label-sm px-3 py-1.5 rounded-lg border-2 border-primary hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center gap-2">
+                            Small <span class="material-symbols-outlined text-[16px]">favorite_border</span>
+</button>
+<button class="bg-transparent text-primary font-label-md text-label-md px-4 py-2 rounded-lg border-2 border-primary hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center gap-2">
+                            Medium <span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+<button class="bg-transparent text-primary font-body-lg text-body-lg px-6 py-3 rounded-lg border-2 border-primary hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center gap-2">
+                            Large <span class="material-symbols-outlined text-[20px]">favorite_border</span>
+</button>
+</div>
+<!-- Ghost -->
+<div class="bg-surface-container-lowest p-lg rounded-lg stripe-shadow border border-outline-variant/30 flex flex-col gap-md items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant">Ghost</h3>
+<button class="bg-transparent text-on-surface-variant font-label-sm text-label-sm px-3 py-1.5 rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-2">
+                            Small <span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+<button class="bg-transparent text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-2">
+                            Medium <span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+<button class="bg-transparent text-on-surface-variant font-body-lg text-body-lg px-6 py-3 rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-2">
+                            Large <span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 2. Forms -->
+<section class="space-y-lg">
+<h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-xs">2. Forms</h2>
+<div class="bg-surface-container-lowest p-xl rounded-lg stripe-shadow border border-outline-variant/30 grid grid-cols-1 lg:grid-cols-2 gap-xl">
+<div class="space-y-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Standard Input</label>
+<input class="w-full h-[44px] rounded-lg border border-outline-variant bg-surface px-4 py-2 font-body-md text-body-md text-on-surface focus-ring placeholder:text-on-surface-variant/50" placeholder="Enter campaign name" type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Small Input</label>
+<input class="w-full h-[36px] rounded-lg border border-outline-variant bg-surface px-3 py-1 font-body-sm text-body-sm text-on-surface focus-ring placeholder:text-on-surface-variant/50" placeholder="Search..." type="text">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Select Menu</label>
+<select class="w-full h-[44px] rounded-lg border border-outline-variant bg-surface px-4 py-2 font-body-md text-body-md text-on-surface focus-ring">
+<option>Select a category</option>
+<option>Technology</option>
+<option>Community</option>
+</select>
+</div>
+</div>
+<div class="space-y-md flex flex-col justify-center">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary focus:ring-opacity-20 cursor-pointer" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface">Accept Terms &amp; Conditions</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary focus:ring-opacity-20 cursor-pointer" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface">Subscribe to newsletter</span>
+</label>
+<div class="flex items-center justify-between p-md border border-outline-variant rounded-lg mt-sm">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Public Profile</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Allow others to see your contributions</span>
+</div>
+<!-- Toggle switch mockup -->
+<div class="w-11 h-6 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full stripe-shadow"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Cards -->
+<section class="space-y-lg">
+<h2 class="font-headline-lg text-headline-lg border-b border-outline-variant pb-xs">5. Cards</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg items-start">
+<!-- Campaign Card -->
+<div class="bg-surface-container-lowest rounded-lg stripe-shadow border border-outline-variant/30 overflow-hidden flex flex-col">
+<div class="bg-cover bg-center w-full h-48" data-alt="A clean, bright photograph of a modern community garden project in an urban setting, lush greenery against a concrete backdrop, sunny light-mode aesthetic, optimistic mood, professional high-quality composition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZQ8CfG7uB-TYRk0Qc_xkeXS17bsLUaeojmCbtVfsADnH7rRaA1kFjJWQXe_zrIBG-uN1PjT7T03HOOV4CRKGPXU7-ShTdoDVXBb9Sq2_xZ-xPv6IYCYqoaaGnoKWHU08VgR0DilRVccUK_If6JzoDzTYHAOAhuTXNadePVXbFh-uzSxUZlPtNNzNahmh35CXupIt_o9ix67J6b2WfScsnszsUGtrjj1gc8_TRtUdKPEm00t7PoZqoSORhitFgzZLHwlnbBQtDqQc')"></div>
+<div class="p-lg flex flex-col flex-1 gap-md">
+<div class="flex justify-between items-start">
+<span class="bg-primary-container/20 text-primary font-label-sm text-label-sm px-2 py-1 rounded">Community</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">bookmark_border</span></button>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Urban Oasis Garden</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Transforming empty lots into sustainable green spaces for local neighborhoods.</p>
+</div>
+<div class="mt-auto pt-sm space-y-xs">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-primary font-bold">$12,450 raised</span>
+<span class="text-on-surface-variant">75%</span>
+</div>
+<div class="w-full bg-[#F1F5F9] rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Statistic Card Bento Style -->
+<div class="grid grid-cols-2 gap-sm">
+<div class="col-span-2 bg-primary text-on-primary rounded-lg p-lg stripe-shadow inner-glow flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md opacity-80 block mb-xs">Total Impact</span>
+<span class="font-display text-display block">$2.4M</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">trending_up</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md stripe-shadow">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Active Projects</span>
+<span class="font-headline-md text-headline-md text-on-surface block">142</span>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-md stripe-shadow">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">New Backers</span>
+<span class="font-headline-md text-headline-md text-on-surface block text-primary">+840</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface dark:bg-inverse-surface border-t border-outline-variant dark:border-outline shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] docked full-width bottom-0 rounded-t-xl z-50 fixed left-0 w-full flex justify-around items-center px-4 py-2 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant scale-90 duration-100 active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant scale-90 duration-100 active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant scale-90 duration-100 active:bg-surface-container-highest rounded-lg p-1" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-sm text-label-sm">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full px-4 py-1 scale-90 duration-100 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline full-width mt-auto">
+<div class="w-full py-xl px-gutter max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">KindWave</span>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-surface-bright font-body-sm text-body-sm hover:underline transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-surface-bright font-body-sm text-body-sm hover:underline transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-surface-bright font-body-sm text-body-sm hover:underline transition-all opacity-80 hover:opacity-100" href="#">Cookie Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-surface-bright font-body-sm text-body-sm hover:underline transition-all opacity-80 hover:opacity-100" href="#">Contact Us</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-on-surface dark:hover:text-surface-bright font-body-sm text-body-sm hover:underline transition-all opacity-80 hover:opacity-100" href="#">Help Center</a>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 KindWave Crowdfunding. Empowering momentum.</span>
+</div>
+</footer>
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

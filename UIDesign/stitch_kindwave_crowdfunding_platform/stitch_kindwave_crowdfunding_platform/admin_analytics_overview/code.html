@@ -1,0 +1,410 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#22c55e",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary": "#006e2f",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "secondary": "#505f76",
+                        "outline-variant": "#bccbb9",
+                        "on-primary-fixed": "#002109",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary-container": "#004b1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "inverse-surface": "#283044",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#3d4042",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#a9acae",
+                        "on-background": "#131b2e",
+                        "inverse-on-surface": "#eef0ff",
+                        "tertiary": "#5c5f61",
+                        "inverse-primary": "#4ae176",
+                        "surface-bright": "#faf8ff",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "surface-variant": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface-tint": "#006e2f",
+                        "on-primary-fixed-variant": "#005321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-width": "260px",
+                        "margin-lg": "24px",
+                        "container-padding": "24px",
+                        "gutter-table": "16px",
+                        "margin-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline fixed left-0 top-0 h-screen w-sidebar-width flex flex-col h-full py-margin-md px-margin-sm z-50">
+<div class="mb-margin-lg px-margin-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm">K</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-secondary dark:text-secondary-fixed-dim">Empower Change</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-unit">
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined icon-fill text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">campaign</span>
+<span>My Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>Create Campaign</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+<span>Donation History</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span>Bookmarks</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+<span>Following Campaigns</span>
+</a>
+</li>
+</ul>
+<ul class="space-y-unit mt-margin-lg pt-margin-sm border-t border-outline-variant">
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span>Profile</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-[260px] flex flex-col min-h-screen bg-surface-container-lowest">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm fixed top-0 right-0 w-[calc(100%-260px)] h-16 flex justify-between items-center px-container-padding z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded text-body-sm font-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors" placeholder="Search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70 p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up, professional headshot of a person in a corporate setting, soft lighting, sharp focus, neutral background, suitable for a user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4jtXe-L0u5OFfrNPuQFZx3mMRd-J4iZOyMbvUS2LyKUPNj0qHGdjalkGmEuJGopNqwDdmld1MpO37e4MAaQV9nctg_lpvW35JIydkv-KKtA5LuP2-L8zPXmuLJwZf8D9mrz8ecW4MJ64cfpB6WBuZ-8Jz0eWXueQ3hcDm7tiUYXrYX6oC-zz7DhuJXPJlO83AUEVh6WrgePgrYGxxcCkTRJ_mSyb4Rdtfo6uGKcsFq0TkoIMCHzxnicwGxct4zd4Gxvxgm8LFYlM">
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<main class="flex-1 mt-16 p-container-padding overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-background">Platform Overview</h2>
+<p class="font-body-sm text-body-sm text-secondary mt-1">High-level metrics and performance trends.</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md flex items-center gap-2 hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Report
+                    </button>
+</div>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-md shadow-sm hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-md text-label-md text-secondary">Total Users</p>
+<span class="material-symbols-outlined text-primary text-[20px] bg-secondary-container p-1 rounded">group</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-background">24,592</h3>
+<div class="mt-2 flex items-center gap-1 font-body-sm text-body-sm">
+<span class="text-primary-container flex items-center"><span class="material-symbols-outlined text-[16px]">trending_up</span> 12.5%</span>
+<span class="text-tertiary">vs last month</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-md shadow-sm hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-md text-label-md text-secondary">Total Campaigns</p>
+<span class="material-symbols-outlined text-primary text-[20px] bg-secondary-container p-1 rounded">campaign</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-background">1,204</h3>
+<div class="mt-2 flex items-center gap-1 font-body-sm text-body-sm">
+<span class="text-primary-container flex items-center"><span class="material-symbols-outlined text-[16px]">trending_up</span> 8.2%</span>
+<span class="text-tertiary">vs last month</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-md shadow-sm hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-md text-label-md text-secondary">Total Donations</p>
+<span class="material-symbols-outlined text-primary text-[20px] bg-secondary-container p-1 rounded">payments</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-background">$845.2K</h3>
+<div class="mt-2 flex items-center gap-1 font-body-sm text-body-sm">
+<span class="text-primary-container flex items-center"><span class="material-symbols-outlined text-[16px]">trending_up</span> 24.1%</span>
+<span class="text-tertiary">vs last month</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-md shadow-sm hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-md text-label-md text-secondary">Active Campaigns</p>
+<span class="material-symbols-outlined text-primary text-[20px] bg-secondary-container p-1 rounded">bolt</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-background">342</h3>
+<div class="mt-2 flex items-center gap-1 font-body-sm text-body-sm">
+<span class="text-error flex items-center"><span class="material-symbols-outlined text-[16px]">trending_down</span> -2.4%</span>
+<span class="text-tertiary">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Chart: Donation Trends -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-margin-md flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Donation Trends</h3>
+<select class="bg-surface border border-outline-variant rounded text-body-sm font-body-sm px-2 py-1 outline-none">
+<option>Last 6 Months</option>
+<option>This Year</option>
+</select>
+</div>
+<div class="flex-1 relative min-h-[300px]">
+<canvas id="donationChart"></canvas>
+</div>
+</div>
+<!-- Side Chart: Category Distribution -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-margin-md flex flex-col">
+<div class="mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Campaign Categories</h3>
+</div>
+<div class="flex-1 relative min-h-[250px] flex items-center justify-center">
+<canvas id="categoryChart"></canvas>
+</div>
+</div>
+<!-- Bottom Chart: User Growth -->
+<div class="lg:col-span-3 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm p-margin-md flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-background">User Growth</h3>
+</div>
+<div class="flex-1 relative min-h-[250px]">
+<canvas id="userGrowthChart"></canvas>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Chart Configuration
+
+        // Global defaults for styling
+        Chart.defaults.font.family = 'Inter, sans-serif';
+        Chart.defaults.color = '#505f76'; // secondary
+        Chart.defaults.scale.grid.color = '#eaedff'; // surface-container
+
+        // 1. Donation Trends (Bar Chart)
+        const ctxDonation = document.getElementById('donationChart').getContext('2d');
+        new Chart(ctxDonation, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Donations ($)',
+                    data: [65000, 59000, 80000, 81000, 56000, 95000],
+                    backgroundColor: '#006e2f', // primary
+                    borderRadius: 4,
+                    barThickness: 32
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        border: { display: false }
+                    },
+                    x: {
+                        grid: { display: false },
+                        border: { display: false }
+                    }
+                }
+            }
+        });
+
+        // 2. Category Distribution (Doughnut Chart)
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: ['Education', 'Environment', 'Health', 'Community'],
+                datasets: [{
+                    data: [35, 25, 20, 20],
+                    backgroundColor: [
+                        '#006e2f', // primary
+                        '#22c55e', // primary-container
+                        '#d0e1fb', // secondary-container
+                        '#505f76'  // secondary
+                    ],
+                    borderWidth: 0,
+                    cutout: '75%'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. User Growth (Line Chart)
+        const ctxUserGrowth = document.getElementById('userGrowthChart').getContext('2d');
+        new Chart(ctxUserGrowth, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [1200, 1900, 1500, 2200, 2800, 3100],
+                    borderColor: '#22c55e', // primary-container
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#ffffff',
+                    pointBorderColor: '#22c55e',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        border: { display: false }
+                    },
+                    x: {
+                        grid: { display: false },
+                        border: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+</body></html>

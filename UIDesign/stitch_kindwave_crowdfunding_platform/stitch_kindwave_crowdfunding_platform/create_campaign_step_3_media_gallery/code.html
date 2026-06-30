@@ -1,0 +1,320 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave - Create Campaign (Media &amp; Gallery)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#22C55E",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#DCFCE7",
+                        "on-primary-container": "#14532D",
+                        secondary: "#1E293B",
+                        "on-secondary": "#FFFFFF",
+                        "secondary-container": "#F1F5F9",
+                        "on-secondary-container": "#0F172A",
+                        surface: "#FFFFFF",
+                        "on-surface": "#0F172A",
+                        "surface-container-low": "#F8FAFC",
+                        "surface-container-high": "#F1F5F9",
+                        "surface-container-highest": "#E2E8F0",
+                        "on-surface-variant": "#64748B",
+                        outline: "#CBD5E1",
+                        "outline-variant": "#E2E8F0",
+                        inverse: {
+                            surface: "#0F172A",
+                            "on-surface": "#F8FAFC"
+                        }
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"]
+                    },
+                    spacing: {
+                        gutter: "1.5rem",
+                        md: "1rem",
+                        sm: "0.5rem",
+                        xl: "3rem"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #22C55E; font-weight: 700; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface min-h-screen flex">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="hidden md:flex flex-col p-md space-y-sm bg-surface-container-low border-r border-outline-variant h-screen w-64 fixed left-0 top-0 z-40 transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-3 px-2 py-4 mb-4">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">waves</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary">KindWave</h2>
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Campaign Manager</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<!-- Active State: My Campaigns -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span class="font-label-md font-bold">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md">Contributions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<button class="mt-auto flex items-center justify-center gap-2 bg-primary text-white py-3 px-4 rounded-xl font-bold hover:bg-opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+<span>New Project</span>
+</button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Execution from JSON context) -->
+<header class="flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-30 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined md:hidden">menu</span>
+<h1 class="text-on-surface font-bold text-lg">Create Campaign</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-surface-container-high rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search resources..." type="text">
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<img class="w-full h-full rounded-full object-cover" data-alt="A professional headshot of a friendly user with a warm smile, wearing a casual business outfit. The background is a clean, modern workspace with soft lighting and a blurred bookshelf, matching the green and slate KindWave brand palette. The photo is high-resolution with a shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6s4Wi0mxj1lCHl8NQui8phzb0I1RxZLTK_aBUE_-lPB8qxUCh72nMONESkCr-O0jMqhSAWtBBuwGngoAbLap42YRGndpApSMKGS6L1QyQswd0fr4uX3D1rdaYVDyjMMw1PtLl20dptRNQanh4zTOZ1Ehkwxyu3hR_tXCNWH2UQnI8ffEKvCbGJylPc41Tk97fRapemN9nrObC4N5fDzMkMsd1WjLLubrshtTzbof8_RSMky0mC2Vmq-xjtxSksqYUd8c35I5e1Yc">
+</div>
+</div>
+</header>
+<!-- Progress Indicator -->
+<section class="max-w-5xl w-full mx-auto px-6 py-8">
+<div class="relative mb-12">
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-outline-variant -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex justify-between items-center">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-surface">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-xs font-bold text-primary">Basics</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-surface">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-xs font-bold text-primary">Funding</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-primary-container shadow-lg shadow-primary/20">
+                            3
+                        </div>
+<span class="text-xs font-extrabold text-primary">Media &amp; Gallery</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-surface">
+                            4
+                        </div>
+<span class="text-xs font-medium text-on-surface-variant">Review</span>
+</div>
+</div>
+</div>
+<!-- Content Area: Bento-ish Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Upload Areas -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Main Thumbnail Section -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-lg font-bold text-on-surface">Campaign Thumbnail</h3>
+<p class="text-sm text-on-surface-variant">This image will be the first thing supporters see.</p>
+</div>
+<span class="text-[10px] font-bold px-2 py-1 bg-primary-container text-on-primary-container rounded uppercase">Required</span>
+</div>
+<div class="relative group cursor-pointer border-2 border-dashed border-outline-variant hover:border-primary rounded-2xl transition-all duration-300">
+<input class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer" type="file">
+<div class="flex flex-col items-center justify-center py-12 px-6">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">image</span>
+</div>
+<p class="text-on-surface font-semibold">Drop your main image here</p>
+<p class="text-on-surface-variant text-sm mt-1">Recommended size: 1200 x 675px (16:9)</p>
+<button class="mt-4 px-6 py-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-full text-sm font-bold transition-colors" type="button">
+                                    Browse Files
+                                </button>
+</div>
+</div>
+</div>
+<!-- Gallery Section -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant">
+<div class="mb-4">
+<h3 class="text-lg font-bold text-on-surface">Campaign Gallery</h3>
+<p class="text-sm text-on-surface-variant">Add up to 5 additional photos to tell your story visually.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+<!-- Existing Uploads (Simulated) -->
+<div class="aspect-square rounded-xl overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A heart-warming documentary style photograph of a community kitchen project, featuring vibrant fresh vegetables on a wooden table with soft morning light streaming through a window. The aesthetic is clean, professional, and empathetic, utilizing KindWave's green tones in the produce and overall color grade." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcsY1aBjF5W-sx3rsJN0lWaXJF79We2XVIbM9Ho6ICzNhYk005c0wczhLxBxhjhSmiBRiRJ3Rt_6cVQ_mCNQlXq8GFqD57gXjAMImdRJb2NNzy0xse0URrm0pYP7bJDJoPVJVbbecpNwi7D8yRJBXWzEv7oRSw_bwkHDfguP1UJ1hoi33qvZNyHgwEs7OuVytnepcCowA6PxD6tTfER76d0uiJX-b17J6-oHpybm0x985Cj0G0U8iiFF9hTyce1VejUhbh9EOa5RQ">
+<button class="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-xs">close</span>
+</button>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A cinematic outdoor shot of solar panels being installed on a small community center in a rural area. The lighting is golden hour, casting long, warm shadows. The image captures the impact of clean energy with a focus on technological hope and community progress, adhering to a modern professional photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh5RWH6cTapNfCSp-I0dWgrdFZnJjIhCCVKgG55xHrvggRzdKoYAPB1qEt-1de-7q5uu1XwCi9DOhkjIvBgtAKGzudW1tIo8jfU4VtTv4A_Mlp9y_hGIJnPsdq4JIWoV0QD1vbOL2IC2a9jh9Cx_AUs_e9UMdlihhlu-e6kr0bgsIbEsToOJXRbgKoS6IzA2Q_BUTE9J3I2xzUhi2S_h_ALpG7C7K0Y5Fn8kNmMYeeitrSr9tAUhqUlbNE79opSDUqK0PtqpqOtOE">
+<button class="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-xs">close</span>
+</button>
+</div>
+<!-- Upload Trigger -->
+<button class="aspect-square rounded-xl border-2 border-dashed border-outline-variant hover:border-primary hover:bg-primary-container/30 flex flex-col items-center justify-center transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">add_a_photo</span>
+<span class="text-[10px] mt-2 font-bold text-on-surface-variant group-hover:text-primary uppercase">Add Photo</span>
+</button>
+</div>
+</div>
+<!-- Video Link Section -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">play_circle</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-on-surface">Video Pitch</h3>
+<p class="text-sm text-on-surface-variant">Campaigns with videos raise 105% more funds.</p>
+</div>
+</div>
+<div class="relative">
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border border-outline rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="https://www.youtube.com/watch?v=..." type="text">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">link</span>
+</div>
+</div>
+</div>
+<!-- Right: Guidelines & Preview Sidebar -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-secondary p-6 rounded-2xl text-white shadow-xl">
+<h4 class="font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">lightbulb</span>
+                            Quick Tips
+                        </h4>
+<ul class="space-y-4 text-sm text-slate-300">
+<li class="flex gap-3">
+<span class="text-primary font-bold">1.</span>
+<span>High-resolution photos build trust instantly. Avoid blurry or pixelated images.</span>
+</li>
+<li class="flex gap-3">
+<span class="text-primary font-bold">2.</span>
+<span>Humanize your story. Photos of people being helped resonate better than objects.</span>
+</li>
+<li class="flex gap-3">
+<span class="text-primary font-bold">3.</span>
+<span>Videos should be short (1-3 mins) and get straight to the point of your mission.</span>
+</li>
+</ul>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-outline-variant">
+<h4 class="font-bold text-on-surface mb-4">Mobile Preview</h4>
+<div class="w-full aspect-[9/16] bg-surface-container-high rounded-xl border border-outline-variant p-2 overflow-hidden relative">
+<!-- Inner "Phone" UI -->
+<div class="w-full h-full bg-white rounded-lg overflow-y-auto no-scrollbar">
+<div class="w-full aspect-video bg-surface-container-highest relative">
+<div class="absolute inset-0 flex items-center justify-center text-on-surface-variant text-[10px] text-center px-4">
+                                        Thumbnail preview will appear here
+                                    </div>
+</div>
+<div class="p-3">
+<div class="h-4 w-3/4 bg-surface-container-highest rounded-full mb-2"></div>
+<div class="h-3 w-full bg-surface-container-low rounded-full mb-1"></div>
+<div class="h-3 w-full bg-surface-container-low rounded-full mb-1"></div>
+<div class="h-3 w-1/2 bg-surface-container-low rounded-full mb-4"></div>
+<div class="flex gap-2">
+<div class="w-12 h-12 rounded bg-surface-container-high"></div>
+<div class="w-12 h-12 rounded bg-surface-container-high"></div>
+<div class="w-12 h-12 rounded bg-surface-container-high"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Navigation Bar -->
+<div class="fixed bottom-0 left-0 md:left-64 right-0 p-4 bg-white/80 backdrop-blur-md border-t border-outline-variant z-40">
+<div class="max-w-5xl mx-auto flex justify-between items-center">
+<button class="flex items-center gap-2 px-6 py-2.5 text-on-surface-variant font-bold hover:text-on-surface transition-colors active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<button class="flex items-center gap-2 px-8 py-2.5 bg-primary text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all active:scale-95">
+                        Continue to Review
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Spacer for sticky footer -->
+<div class="h-24"></div>
+</section>
+</main>
+<script>
+        // Micro-interactions and simple behaviors
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                // In a real app, logic for file preview would go here
+                console.log("File selected:", e.target.files[0].name);
+            });
+        });
+
+        // Search bar interaction
+        const searchInput = document.querySelector('input[placeholder="Search resources..."]');
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-primary', 'border-transparent');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-primary', 'border-transparent');
+            });
+        }
+    </script>
+</body></html>

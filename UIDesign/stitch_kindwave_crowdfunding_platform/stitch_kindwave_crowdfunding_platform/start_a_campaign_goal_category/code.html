@@ -1,0 +1,319 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Start a Campaign - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "error": "#ba1a1a",
+                            "on-primary": "#ffffff",
+                            "primary-fixed-dim": "#4ae176",
+                            "tertiary-fixed-dim": "#ffb690",
+                            "secondary-fixed-dim": "#adc6ff",
+                            "primary-fixed": "#6bff8f",
+                            "outline-variant": "#bccbb9",
+                            "primary-container": "#22c55e",
+                            "surface-bright": "#f8f9ff",
+                            "surface-container-lowest": "#ffffff",
+                            "error-container": "#ffdad6",
+                            "inverse-on-surface": "#eaf1ff",
+                            "surface-container": "#e5eeff",
+                            "on-primary-fixed-variant": "#005321",
+                            "surface-variant": "#d3e4fe",
+                            "tertiary-fixed": "#ffdbca",
+                            "on-primary-container": "#004b1e",
+                            "on-secondary": "#ffffff",
+                            "on-tertiary-fixed": "#341100",
+                            "surface-container-low": "#eff4ff",
+                            "inverse-primary": "#4ae176",
+                            "on-secondary-fixed": "#001a42",
+                            "on-error": "#ffffff",
+                            "surface": "#f8f9ff",
+                            "surface-container-highest": "#d3e4fe",
+                            "surface-tint": "#006e2f",
+                            "inverse-surface": "#213145",
+                            "on-background": "#0b1c30",
+                            "on-tertiary-fixed-variant": "#783200",
+                            "on-primary-fixed": "#002109",
+                            "on-error-container": "#93000a",
+                            "primary": "#006e2f",
+                            "background": "#f8f9ff",
+                            "secondary": "#0058be",
+                            "surface-container-high": "#dce9ff",
+                            "secondary-container": "#2170e4",
+                            "on-secondary-container": "#fefcff",
+                            "on-surface": "#0b1c30",
+                            "secondary-fixed": "#d8e2ff",
+                            "surface-dim": "#cbdbf5",
+                            "on-surface-variant": "#3d4a3d",
+                            "tertiary-container": "#ff8e4d",
+                            "on-tertiary": "#ffffff",
+                            "outline": "#6d7b6c",
+                            "on-tertiary-container": "#6d2d00",
+                            "on-secondary-fixed-variant": "#004395",
+                            "tertiary": "#9d4300"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "gutter": "24px",
+                            "xl": "80px",
+                            "max-width": "1280px",
+                            "base": "8px",
+                            "margin-mobile": "16px",
+                            "md": "24px",
+                            "lg": "48px",
+                            "margin-desktop": "32px",
+                            "sm": "12px",
+                            "xs": "4px"
+                    },
+                    "fontFamily": {
+                            "display-lg": ["Inter"],
+                            "display-lg-mobile": ["Inter"],
+                            "headline-md": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "body-md": ["Inter"],
+                            "label-sm": ["Inter"],
+                            "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar (Suppressed for Transactional Flow, but using a simplified version for context) -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl fixed top-0 w-full h-[72px] shadow-sm z-50 flex items-center px-gutter">
+<div class="max-w-max-width mx-auto w-full flex justify-between items-center">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+                KindWave
+            </div>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+                Save &amp; Exit
+            </button>
+</div>
+</header>
+<main class="flex-grow pt-[104px] pb-xl px-margin-mobile md:px-margin-desktop">
+<div class="max-w-max-width mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 space-y-lg">
+<!-- Progress Indicator -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center font-label-sm text-label-sm text-on-surface-variant">
+<span>Step 1 of 4</span>
+<span>Goal &amp; Category</span>
+</div>
+<div class="h-3 bg-surface-container-high rounded-full overflow-hidden w-full">
+<div class="h-full bg-primary-container rounded-full w-1/4 relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/30 blur-[2px]"></div>
+</div>
+</div>
+</div>
+<!-- Header -->
+<div class="space-y-sm">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background">
+                        Let's start with the basics
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        Set a realistic goal and choose a category that best fits your campaign's mission. You can always change these later.
+                    </p>
+</div>
+<!-- Form Section -->
+<form class="space-y-lg bg-surface-container-lowest p-md md:p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-outline-variant/30 relative">
+<!-- Goal Input -->
+<div class="space-y-md">
+<label class="block font-headline-md text-headline-md text-on-background" for="goal-amount">
+                            How much are you trying to raise?
+                        </label>
+<div class="relative">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 font-display-lg text-display-lg text-on-surface-variant select-none">$</span>
+<input class="w-full bg-surface py-6 pl-16 pr-6 rounded-[16px] border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 font-display-lg text-display-lg text-on-background transition-all outline-none" id="goal-amount" min="100" placeholder="5,000" step="100" type="number">
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                            Most successful campaigns start with a goal between $1,000 and $5,000.
+                        </p>
+</div>
+<hr class="border-t border-outline-variant/30">
+<!-- Category Grid -->
+<div class="space-y-md">
+<label class="block font-headline-md text-headline-md text-on-background">
+                            What best describes your campaign?
+                        </label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-md">
+<!-- Category Item 1 (Selected) -->
+<label class="cursor-pointer group relative">
+<input checked="" class="peer sr-only" name="category" type="radio" value="medical">
+<div class="h-full bg-surface border-2 border-primary rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">medical_services</span>
+</div>
+<span class="font-label-md text-label-md text-on-background font-semibold">Medical</span>
+</div>
+<div class="absolute top-3 right-3 text-primary opacity-100 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</label>
+<!-- Category Item 2 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="category" type="radio" value="education">
+<div class="h-full bg-surface border border-outline-variant rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all hover:border-primary/50 peer-checked:border-2 peer-checked:border-primary peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant group-hover:bg-primary-container/10 group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">school</span>
+</div>
+<span class="font-label-md text-label-md text-on-background">Education</span>
+</div>
+</label>
+<!-- Category Item 3 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="category" type="radio" value="emergency">
+<div class="h-full bg-surface border border-outline-variant rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all hover:border-primary/50 peer-checked:border-2 peer-checked:border-primary peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant group-hover:bg-primary-container/10 group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">warning</span>
+</div>
+<span class="font-label-md text-label-md text-on-background">Emergency</span>
+</div>
+</label>
+<!-- Category Item 4 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="category" type="radio" value="community">
+<div class="h-full bg-surface border border-outline-variant rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all hover:border-primary/50 peer-checked:border-2 peer-checked:border-primary peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant group-hover:bg-primary-container/10 group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">diversity_3</span>
+</div>
+<span class="font-label-md text-label-md text-on-background">Community</span>
+</div>
+</label>
+<!-- Category Item 5 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="category" type="radio" value="animals">
+<div class="h-full bg-surface border border-outline-variant rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all hover:border-primary/50 peer-checked:border-2 peer-checked:border-primary peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant group-hover:bg-primary-container/10 group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">pets</span>
+</div>
+<span class="font-label-md text-label-md text-on-background">Animals</span>
+</div>
+</label>
+<!-- Category Item 6 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="category" type="radio" value="other">
+<div class="h-full bg-surface border border-outline-variant rounded-[16px] p-md flex flex-col items-center justify-center gap-sm text-center transition-all hover:border-primary/50 peer-checked:border-2 peer-checked:border-primary peer-checked:bg-surface-container-lowest peer-checked:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant group-hover:bg-primary-container/10 group-hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 28px;">category</span>
+</div>
+<span class="font-label-md text-label-md text-on-background">Other</span>
+</div>
+</label>
+</div>
+</div>
+</form>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-md">
+<button class="px-lg py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-variant transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="px-lg py-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-sm hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:bg-primary transition-all flex items-center gap-sm" type="button">
+                        Continue to Story
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Sidebar (Trust & Safety) -->
+<div class="lg:col-span-4 space-y-md hidden md:block">
+<div class="sticky top-[104px]">
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/20">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-8 h-8 rounded-full bg-surface-tint/10 flex items-center justify-center text-surface-tint">
+<span class="material-symbols-outlined" style="font-size: 20px; font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background">Trust &amp; Safety</h3>
+</div>
+<ul class="space-y-md">
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-primary mt-1" style="font-size: 20px;">lock</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-background font-semibold">Secure Donations</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">All funds are held securely until you are ready to withdraw them.</p>
+</div>
+</li>
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-primary mt-1" style="font-size: 20px;">verified</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-background font-semibold">Verified Process</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">We verify organizers to ensure a safe environment for everyone.</p>
+</div>
+</li>
+<li class="flex gap-sm">
+<span class="material-symbols-outlined text-primary mt-1" style="font-size: 20px;">support_agent</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-background font-semibold">24/7 Support</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">Our trust and safety team is here to help you every step of the way.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Simplified for Transactional Flow) -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-lg mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md px-gutter max-w-max-width mx-auto">
+<div class="col-span-1 md:col-span-4 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">© 2024 KindWave. All rights reserved.</span>
+</div>
+</div>
+</footer>
+<script>
+        // Simple script to handle radio button visual selection state for the grid
+        document.querySelectorAll('input[name="category"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove check icon from all
+                document.querySelectorAll('input[name="category"]').forEach(r => {
+                    const label = r.closest('label');
+                    const iconContainer = label.querySelector('.absolute.top-3.right-3');
+                    if (iconContainer) {
+                        iconContainer.remove();
+                    }
+                });
+
+                // Add check icon to selected
+                if(this.checked) {
+                    const label = this.closest('label');
+                    const iconHTML = `
+                        <div class="absolute top-3 right-3 text-primary opacity-100 transition-opacity">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        </div>
+                    `;
+                    label.insertAdjacentHTML('beforeend', iconHTML);
+                }
+            });
+        });
+    </script>
+</body></html>

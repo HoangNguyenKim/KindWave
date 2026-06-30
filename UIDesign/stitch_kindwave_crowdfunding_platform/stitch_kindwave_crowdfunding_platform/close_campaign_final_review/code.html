@@ -1,0 +1,177 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Close Campaign - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "secondary-container": "#d0e1fb",
+                        "on-background": "#131b2e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-primary-fixed": "#002109",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#006e2f",
+                        "on-surface": "#131b2e",
+                        "inverse-primary": "#4ae176",
+                        "on-primary-fixed-variant": "#005321",
+                        "primary-fixed": "#6bff8f",
+                        "on-primary-container": "#004b1e",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "primary-fixed-dim": "#4ae176",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-high": "#e2e7ff",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#3d4042",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f3ff",
+                        "primary": "#006e2f",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "outline": "#6d7b6c",
+                        "background": "#faf8ff",
+                        "outline-variant": "#bccbb9",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-highest": "#dae2fd",
+                        "tertiary-container": "#a9acae",
+                        "surface-variant": "#dae2fd",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#22c55e",
+                        "tertiary": "#5c5f61",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eaedff",
+                        "secondary-fixed": "#d3e4fe",
+                        "inverse-surface": "#283044",
+                        "on-surface-variant": "#3d4a3d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "margin-md": "16px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "margin-sm": "8px",
+                        "margin-lg": "24px",
+                        "gutter-table": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen antialiased flex flex-col justify-center items-center p-container-padding">
+<div class="w-full max-w-2xl bg-surface-container-lowest rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.1)] border border-outline-variant overflow-hidden">
+<!-- Header -->
+<div class="p-margin-lg border-b border-outline-variant bg-surface-container-low flex items-center gap-margin-md">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="warning" data-weight="fill" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Close Campaign</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-unit">You are about to close "Clean Water Initiative - Region A". This action cannot be undone.</p>
+</div>
+</div>
+<!-- Content -->
+<div class="p-margin-lg space-y-margin-lg">
+<!-- Summary Card -->
+<div class="bg-surface-container p-margin-md rounded-lg border border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-margin-sm">Campaign Summary</h2>
+<div class="flex flex-col md:flex-row gap-margin-md justify-between items-start md:items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Total Raised</p>
+<p class="font-headline-md text-headline-md text-primary-container">$45,250 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">of $50,000 goal</span></p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Total Donors</p>
+<p class="font-headline-md text-headline-md text-on-surface">342</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Status</p>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#22c55e]/10 text-[#166534]">Active</span>
+</div>
+</div>
+</div>
+<!-- Form -->
+<form class="space-y-margin-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit" for="reason">Reason for Closing</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container" id="reason" name="reason">
+<option disabled="" selected="" value="">Select a reason...</option>
+<option value="goal_met">Goal Met Early</option>
+<option value="project_complete">Project Completed</option>
+<option value="emergency">Emergency Closure</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-unit" for="message">Final Message to Donors</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2 font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container resize-none" id="message" name="message" placeholder="Thank your donors and provide a final update..." rows="4"></textarea>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-unit text-xs">This message will be emailed to all 342 donors and posted on the campaign page.</p>
+</div>
+<!-- Acknowledgment -->
+<div class="flex items-start gap-unit">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 text-primary-container bg-surface-container-lowest border-outline-variant rounded focus:ring-primary-container focus:ring-2" id="acknowledge" name="acknowledge" type="checkbox">
+</div>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="acknowledge">
+                        I understand that closing this campaign will stop all future donations and cannot be reversed. Remaining funds will be processed according to the terms of service.
+                    </label>
+</div>
+</form>
+</div>
+<!-- Footer Actions -->
+<div class="p-margin-lg bg-surface-container-low border-t border-outline-variant flex flex-col sm:flex-row justify-end gap-margin-sm">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-secondary" type="button">
+                Cancel
+            </button>
+<button class="px-4 py-2 bg-error text-on-error rounded-lg font-label-md text-label-md hover:bg-error/90 transition-colors focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-surface flex items-center justify-center gap-unit" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+                Close Campaign
+            </button>
+</div>
+</div>
+</body></html>

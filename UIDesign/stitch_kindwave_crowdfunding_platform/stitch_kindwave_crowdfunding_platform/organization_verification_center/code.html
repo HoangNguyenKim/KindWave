@@ -1,0 +1,441 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave | Verification Center</title>
+<!-- Google Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-dim": "#d2d9f4",
+                "surface": "#faf8ff",
+                "on-surface-variant": "#3d4a3d",
+                "on-surface": "#131b2e",
+                "error-container": "#ffdad6",
+                "on-secondary": "#ffffff",
+                "primary-container": "#22c55e",
+                "on-error-container": "#93000a",
+                "on-primary": "#ffffff",
+                "background": "#faf8ff",
+                "on-background": "#131b2e",
+                "error": "#ba1a1a",
+                "outline-variant": "#bccbb9",
+                "secondary-fixed-dim": "#b7c8e1",
+                "inverse-on-surface": "#eef0ff",
+                "on-secondary-fixed-variant": "#38485d",
+                "secondary": "#505f76",
+                "primary-fixed-dim": "#4ae176",
+                "on-primary-fixed": "#002109",
+                "surface-container-high": "#e2e7ff",
+                "on-tertiary-fixed-variant": "#444749",
+                "outline": "#6d7b6c",
+                "on-tertiary-fixed": "#191c1e",
+                "on-tertiary-container": "#3d4042",
+                "tertiary-container": "#a9acae",
+                "surface-tint": "#006e2f",
+                "on-secondary-container": "#54647a",
+                "on-tertiary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed": "#e0e3e5",
+                "surface-container-low": "#f2f3ff",
+                "surface-container": "#eaedff",
+                "on-secondary-fixed": "#0b1c30",
+                "inverse-primary": "#4ae176",
+                "surface-bright": "#faf8ff",
+                "on-primary-fixed-variant": "#005321",
+                "primary": "#006e2f",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#dae2fd",
+                "primary-fixed": "#6bff8f",
+                "surface-variant": "#dae2fd",
+                "secondary-container": "#d0e1fb",
+                "inverse-surface": "#283044",
+                "secondary-fixed": "#d3e4fe",
+                "on-primary-container": "#004b1e",
+                "tertiary-fixed-dim": "#c4c7c9",
+                "tertiary": "#5c5f61"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "gutter-table": "16px",
+                "margin-sm": "8px",
+                "margin-lg": "24px",
+                "container-padding": "24px",
+                "unit": "4px",
+                "sidebar-width": "260px",
+                "margin-md": "16px"
+            },
+            "fontFamily": {
+                "headline-md": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-sm": ["Inter"],
+                "label-md": ["Inter"],
+                "label-sm": ["Inter"],
+                "body-md": ["Inter"],
+                "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+        }
+        .drag-over {
+            border-color: #22c55e !important;
+            background-color: rgba(34, 197, 94, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface border-r border-outline-variant flex flex-col h-full py-margin-md px-margin-sm z-50">
+<div class="mb-8 px-4">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">KindWave</h1>
+<p class="text-label-sm text-secondary uppercase tracking-widest">Empower Change</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-body-md">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-body-md">Create Campaign</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md">Donation History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-body-md">Bookmarks</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-body-md">Following Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container border-l-2 border-primary rounded-lg" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container-high transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed">account_circle</span>
+</div>
+<div class="overflow-hidden">
+<p class="font-label-md text-on-surface truncate">Global Charity Inc.</p>
+<p class="text-label-sm text-secondary truncate">admin@globalcharity.org</p>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface-container-lowest shadow-sm flex justify-between items-center px-container-padding z-40">
+<div class="flex items-center w-1/3">
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search campaign verification..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<span class="font-label-md text-on-surface group-hover:text-primary transition-colors">Verification Help</span>
+<span class="material-symbols-outlined text-secondary">help</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] pt-16 min-h-screen px-margin-lg pb-margin-lg">
+<div class="max-w-6xl mx-auto py-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Organization Verification</h2>
+<p class="text-body-md text-secondary mt-1">Complete your profile to build trust and unlock global donation features.</p>
+</div>
+<div class="bg-primary-container px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-on-primary">verified_user</span>
+<span class="text-label-md text-on-primary font-bold">Secure Processing</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Upload & Status -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Verification Timeline -->
+<section class="bg-surface-container-lowest p-margin-lg rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+                            Current Verification Status
+                        </h3>
+<div class="relative flex items-center justify-between">
+<!-- Timeline Line -->
+<div class="absolute top-5 left-8 right-8 h-[2px] bg-outline-variant -z-0"></div>
+<div class="absolute top-5 left-8 w-1/2 h-[2px] bg-primary -z-0"></div>
+<!-- Steps -->
+<div class="relative z-10 flex flex-col items-center gap-2 w-24">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Submitted</span>
+<span class="text-[10px] text-secondary">Oct 12, 2023</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 w-24">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary border-4 border-white shadow-lg ring-2 ring-primary ring-offset-4 ring-offset-transparent animate-pulse">
+<span class="material-symbols-outlined">search</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Under Review</span>
+<span class="text-[10px] text-primary italic">In Progress</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 w-24 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<span class="text-label-md font-bold text-on-surface">Verified</span>
+<span class="text-[10px] text-secondary">Estimated 2 days</span>
+</div>
+</div>
+</section>
+<!-- Document Upload Area -->
+<section class="bg-surface-container-lowest p-margin-lg rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">upload_file</span>
+                                Document Center
+                            </h3>
+<span class="text-label-sm text-secondary bg-surface-container-low px-3 py-1 rounded-full">PDF, JPG, PNG (Max 10MB)</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<!-- Type 1 -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center text-center hover:border-primary transition-all cursor-pointer group" id="dropzone-id">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<p class="font-headline-sm text-on-surface mb-1">Government ID</p>
+<p class="text-body-sm text-secondary">Passport, Driver's License or National ID</p>
+</div>
+<!-- Type 2 -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-6 flex flex-col items-center text-center hover:border-primary transition-all cursor-pointer group" id="dropzone-charity">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4 group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">corporate_fare</span>
+</div>
+<p class="font-headline-sm text-on-surface mb-1">Charity Registration</p>
+<p class="text-body-sm text-secondary">Official NGO or Non-profit certificate</p>
+</div>
+</div>
+<!-- Active Uploads -->
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary">description</span>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between mb-1">
+<span class="text-body-sm font-bold truncate">registration_cert_2023.pdf</span>
+<span class="text-label-sm text-primary">100%</span>
+</div>
+<div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+<button class="text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-lg border border-outline-variant border-opacity-50">
+<span class="material-symbols-outlined text-secondary">photo</span>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between mb-1">
+<span class="text-body-sm font-bold truncate">passport_main_page.jpg</span>
+<span class="text-label-sm text-secondary">4.2 MB</span>
+</div>
+<div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<button class="text-secondary hover:text-error transition-colors">
+<span class="material-symbols-outlined">cancel</span>
+</button>
+</div>
+</div>
+<div class="mt-8 flex justify-end gap-4">
+<button class="px-6 py-2 border border-outline-variant rounded-lg text-on-surface font-label-md hover:bg-surface-container transition-colors">Save for Later</button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg font-label-md hover:opacity-90 transition-opacity flex items-center gap-2">
+                                Submit for Review
+                                <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Right Column: Info & Visual -->
+<div class="space-y-8">
+<!-- Info Card -->
+<section class="bg-inverse-surface text-inverse-on-surface p-margin-lg rounded-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-sm text-headline-sm mb-4">Why Verify?</h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-fixed">verified</span>
+<span class="text-body-sm">Verified Badge appears on your campaign pages.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-fixed">payments</span>
+<span class="text-body-sm">Immediate withdrawal of funds to bank accounts.</span>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary-fixed">public</span>
+<span class="text-body-sm">Increased trust results in 45% higher donation rates.</span>
+</li>
+</ul>
+</div>
+<!-- Abstract Visual Pattern -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]">shield</span>
+</div>
+</section>
+<!-- Aesthetic Feature Image -->
+<div class="rounded-xl overflow-hidden h-64 shadow-md relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 to-transparent z-10"></div>
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A macro close-up of a secure, futuristic digital identification chip with glowing emerald green circuitry lines. The lighting is low-key and dramatic, emphasizing the metallic textures and high-tech security atmosphere. The background is a soft-focus bokeh of blue and green organizational data patterns, creating a professional and trustworthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSQN4zxqtA2NKQWT_SNLCkjut19nWv-8ewRRQHovV4znVP5oCU1IrU96FzCYMvDaGULLF9l2tBLjKJ0RX0i8wCIEIKmgmhIFPAWGyuKAgvwxOt0Ia6tvsvo5Nzl4V9LNOQSX9zfyrL7o7TByD-pJXI61asQyKet2kbgl8lUKf_3hG2F7VLs_JWY4e-l7gk8UJpWMVJ0NOvNgRQ1yDrAncZcCA9rsFs8FPjlwmE1uBpkcf-hdwvMD-BBZBd9OX1hXKX8KD0U9yaKBo">
+<div class="absolute bottom-4 left-4 z-20">
+<span class="text-white font-headline-sm">Advanced Security</span>
+<p class="text-white/70 text-label-sm">Your data is encrypted end-to-end.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- History Table -->
+<section class="mt-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-margin-lg border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">history</span>
+                        Verification History
+                    </h3>
+<button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                        Download Report
+                        <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-label-md text-secondary uppercase tracking-wider border-b border-outline-variant">
+<th class="py-4 px-6 font-semibold">Reference ID</th>
+<th class="py-4 px-6 font-semibold">Date Submitted</th>
+<th class="py-4 px-6 font-semibold">Document Types</th>
+<th class="py-4 px-6 font-semibold">Result</th>
+<th class="py-4 px-6 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-body-md font-bold">#KW-88219</td>
+<td class="py-4 px-6 text-body-sm">Oct 12, 2023</td>
+<td class="py-4 px-6 text-body-sm">Tax ID, Incorporation Cert</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full bg-[rgba(245,158,11,0.1)] text-[#92400E] text-label-sm font-bold border border-[rgba(245,158,11,0.2)]">PENDING</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-body-md font-bold">#KW-77102</td>
+<td class="py-4 px-6 text-body-sm">Jun 04, 2023</td>
+<td class="py-4 px-6 text-body-sm">Bank Statement</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] text-[#1E40AF] text-label-sm font-bold border border-[rgba(59,130,246,0.2)]">COMPLETED</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">visibility</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-body-md font-bold">#KW-66512</td>
+<td class="py-4 px-6 text-body-sm">Jan 15, 2023</td>
+<td class="py-4 px-6 text-body-sm">Charity License</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container text-label-sm font-bold border border-error/20">REJECTED</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">error_outline</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low/50 flex justify-center">
+<button class="text-body-sm text-secondary hover:text-on-surface transition-colors">View All History (12)</button>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Simple drag & drop visual feedback
+        const dropzones = [document.getElementById('dropzone-id'), document.getElementById('dropzone-charity')];
+        
+        dropzones.forEach(dz => {
+            if (!dz) return;
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dz.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dz.classList.add('drag-over');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dz.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dz.classList.remove('drag-over');
+                }, false);
+            });
+        });
+
+        // Simulating some interactivity
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

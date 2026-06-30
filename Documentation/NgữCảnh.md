@@ -1,240 +1,210 @@
-# TÀI LIỆU ĐẶC TẢ NGỮ CẢNH & TỔNG QUAN HỆ THỐNG (PRD & SRS)
-**DỰ ÁN: KINDWAVE – NỀN TẢNG QUYÊN GÓP TỪ THIỆN NGANG HÀNG**  
-*Phiên bản: 2.0.0 (Bản chốt kiến trúc - Cấm sửa đổi Scope)*
+# 1. Project Overview
 
----
+- **Project name:** KindWave
+- **Project purpose:** Nền tảng quyên góp từ thiện ngang hàng phi lợi nhuận (P2P Crowdfunding for Charity). Slogan: "Spreading kindness through connection."
+- **Main business goals:** Đem lại sự minh bạch tuyệt đối về dòng tiền từ thiện từ đầu vào đến đầu ra bằng công nghệ, loại bỏ rủi ro gian lận và xóa bỏ sự nghi ngờ từ cộng đồng mạng.
+- **Problems being solved:** 
+  - Khủng hoảng niềm tin trong từ thiện: Donor không biết tiền của mình thực tế đi đâu.
+  - Creator (cá nhân/nhóm nhỏ) khó kêu gọi và dễ bị mang tiếng "ăn chặn".
+  - Sập hệ thống khi có sự kiện nóng (ví dụ bão lũ), lỗi đối soát tiền với ngân hàng.
+- **Current scope:** Tập trung vào cốt lõi gây quỹ, tích hợp cổng VNPay webhook tự động, giải ngân theo tiến độ có xác nhận bằng hóa đơn/chứng từ thực tế (Impact Proof). KHÔNG làm ví nội bộ, KHÔNG crypto, KHÔNG chat trực tiếp.
 
-## PHẦN 1: TỔNG QUAN & BỐI CẢNH DỰ ÁN (PROJECT OVERVIEW)
+=================================================
 
-### 1.1 Tuyên ngôn dự án
-* **Tên thương mại:** KindWave
-* **Slogan:** *"Spreading kindness through connection."*
-* **Mô hình kinh doanh (Business Model):** P2P Crowdfunding for Charity (Quyên góp cộng đồng ngang hàng phi lợi nhuận).
+# 2. Project Vision
 
-### 1.2 Bối cảnh thị trường & Bài toán cần giải (The Problem)
-Thị trường từ thiện hiện tại đang khủng hoảng về **"Niềm tin"**:
-1. **Về phía người đi quyên góp (Donors):** Họ ngần ngại xuống tiền vì không biết tiền của mình thực tế đi về đâu. Các nền tảng cũ chỉ hiện con số "Đã quyên góp: 100 triệu" nhưng không chứng minh được 100 triệu đó đã biến thành bao nhiêu ký gạo, bao nhiêu viên thuốc.
-2. **Về phía người cần giúp đỡ (Creators):** Các cá nhân/cộng đồng nhỏ khó tiếp cận các quỹ từ thiện lớn. Họ tự đứng ra kêu gọi thì dễ bị cộng đồng mạng nghi ngờ là "lừa đảo, ngâm tiền, ăn chặn".
-3. **Về mặt kỹ thuật:** Các app từ thiện hiện tại thường dính "phốt" sập web khi có một sự kiện nóng (ví dụ: bão lũ) khiến hàng chục ngàn người vào donate cùng lúc, hoặc dính lỗi "trừ tiền ngân hàng nhưng trên web không ghi nhận".
+- **Long-term vision:** Trở thành "ống dẫn minh bạch" đáng tin cậy nhất Việt Nam nối liền nhà hảo tâm và người cần giúp đỡ, nơi mọi đồng tiền đều có dấu vết tác động rõ ràng trên Sổ cái (Ledger).
+- **Expected outcome:** Một hệ thống ổn định, chịu tải cao, tuyệt đối không thể làm giả số liệu, tự động hóa quy trình đối soát với ngân hàng 100%.
+- **User value:** Mang lại sự an tâm tuyệt đối cho người cho đi (Donor) và bảo vệ danh dự, tạo uy tín cho người đứng ra kêu gọi (Creator).
 
-### 1.3 Giải pháp của KindWave (The Solution)
-KindWave không định vị mình là một "ví tiền", mà định vị là một **"Ống dẫn minh bạch"**. Chúng tôi giải quyết 3 bài toán trên bằng 3 trụ cột kỹ thuật:
-* **Minh bạch đầu vào:** Tiền donate được đối soát tự động qua Webhook ngân hàng và ghi vào **Sổ cái hệ thống (Campaign Ledger)**.
-* **Minh bạch đầu ra:** Áp dụng cơ chế **"Giải ngân theo tiến độ" (Milestone Disbursement)**. Chủ chiến dịch không được cầm 100% tiền một lần. Họ xài tiền đợt 1, phải chụp ảnh hóa đơn đỏ/hình ảnh thực tế up lên mục `Impact Proof` (Minh bạch tác động), Admin duyệt xong mới được giải ngân đợt 2.
-* **Bảo vệ danh tính:** Người dùng có quyền ẩn danh với xã hội (public), nhưng danh tính của họ luôn được lưu khóa cứng trong Database để phục vụ cơ quan điều tra khi xảy ra sự cố pháp lý.
+=================================================
 
----
+# 3. Actors
 
-## PHẦN 2: PHẠM VI HỆ THỐNG & ĐỊNH NGHĨA VAI TRÒ (SYSTEM SCOPE)
+**Name:** USER (Người dùng tiêu chuẩn)
+- **Responsibilities:** Đóng cả 2 vai trò: Người quyên góp (Donor) và Người kêu gọi (Creator).
+- **Allowed actions:** 
+  - (Với tư cách Donor): Tìm kiếm chiến dịch, Quyên góp tiền (chọn công khai hoặc ẩn danh), Xem "Sao kê tác động", Để lại đánh giá (chỉ khi đã quyên góp).
+  - (Với tư cách Creator): Tạo chiến dịch gây quỹ, Chỉnh sửa/Xóa (khi chưa có ai quyên góp), Viết bài cập nhật tác động sau khi nhận giải ngân.
 
-Hệ thống tuân thủ nghiêm ngặt **Quy tắc 2 Nửa thế giới**. Mọi tài khoản truy cập vào KindWave chỉ thuộc 1 trong 2 nhóm sau:
+**Name:** ADMIN (Quản trị viên hệ thống)
+- **Responsibilities:** Nhân sự vận hành và kiểm soát rủi ro của nền tảng.
+- **Allowed actions:** 
+  - (Moderator): Duyệt/Từ chối chiến dịch, Ẩn/Xóa bình luận rác, Khóa tài khoản lừa đảo.
+  - (Treasurer): Xem tổng tiền chiến dịch, Thực hiện chuyển khoản giải ngân ngoài đời thực, Nhập Ủy nhiệm chi (Banking Proof) vào hệ thống để ghi nhận đã giải ngân.
 
-### 2.1 Đối tượng 1: USER (Người dùng tiêu chuẩn)
-*Không có sự phân biệt giữa "Tài khoản cá nhân" và "Tài khoản tổ chức". Một User sở hữu cả 2 năng lực:*
+=================================================
 
-1. **Năng lực đi cho (Donor Role):**
-   * Tìm kiếm, xem chi tiết chiến dịch.
-   * Quyên góp tiền (chọn công khai hoặc ẩn danh).
-   * Xem "Sao kê tác động" của chiến dịch mình đã gửi tiền.
-   * Để lại đánh giá (Rating/Review) – *Lưu ý: Chỉ được review nếu user_id đó đã thực sự donate thành công vào chiến dịch.*
-2. **Năng lực kêu gọi (Creator Role):**
-   * Tạo chiến dịch gây quỹ (bị gắn trạng thái `Pending`).
-   * Chỉnh sửa thông tin chiến dịch (chỉ được sửa khi cam đang ở `Pending` hoặc `Rejected`).
-   * Xóa chiến dịch của mình (chỉ được xóa khi chưa có ai donate đồng nào).
-   * Viết bài cập nhật tác động (Impact Updates) sau khi nhận tiền giải ngân.
+# 4. Technology Stack
 
-### 2.2 Đối tượng 2: ADMIN (Quản trị viên hệ thống)
-*Là nhân sự nội bộ của nền tảng, nắm quyền vận hành:*
+- **Frontend:** React, Vite, TailwindCSS (Shadcn UI).
+- **Backend:** Node.js, Express, TypeScript.
+- **Database:** MySQL, Prisma ORM.
+- **Cache:** Redis.
+- **Authentication:** JWT (Stateless - Access Token & Refresh Token trong HttpOnly Cookie).
+- **Validation:** Zod.
+- **State Management:** TanStack Query (Server State), Zustand / Redux Toolkit (Client State).
+- **DevOps:** Docker (Dockerfile & docker-compose.yml).
 
-1. **Kiểm duyệt (Moderator):** Duyệt hoặc Từ chối chiến dịch mới; Xóa/Ẩn bình luận rác; Khóa tài khoản User lừa đảo.
-2. **Thủ quỹ (Treasurer):** Xem tổng tiền gom được của một chiến dịch; Thực hiện chuyển khoản ngoài đời thực cho Creator; Nhập Ủy nhiệm chi ngân hàng vào hệ thống để ghi nhận đã "Giải ngân".
+=================================================
 
-### 2.3 Ranh giới cấm (OUT-OF-SCOPE - Cấm triển khai trong MVP)
-* **KHÔNG** làm tính năng Ví nội bộ (User không nạp tiền vào KindWave để "để dành", tiền đi thẳng từ tài khoản ngân hàng của User qua cổng thanh toán VNPay vào tài khoản ngân hàng của KindWave).
-* **KHÔNG** làm tính năng Đăng ký làm Tình nguyện viên (Volunteer).
-* **KHÔNG** làm tính năng Chat trực tiếp giữa Donor và Creator.
-* **KHÔNG** tích hợp thanh toán bằng Crypto (Bitcoin/USDT).
+# 5. Architecture Decisions (DO NOT CHANGE)
 
----
+- **Soft delete only:** Tuyệt đối KHÔNG dùng `.delete()` trong Prisma. Bắt buộc cập nhật `deleted_at = new Date()`.
+  *Why:* Bảo vệ toàn vẹn lịch sử dòng tiền và dữ liệu kế toán, không làm mất vết các ràng buộc khóa ngoại (Foreign Keys).
+- **Feature-based architecture (Colocation) ở Frontend:** Component phải gom chung file `index.tsx`, `.styles.ts`, `.types.ts` trong cùng thư mục tính năng.
+  *Why:* Giúp code dễ đọc, dễ bảo trì, module hóa tốt khi dự án scale lớn.
+- **No direct DB access inside Controller/UI:** Controller chỉ xử lý req/res. Tương tác DB phải được ủy quyền cho Service layer.
+  *Why:* Tách biệt rành mạch logic nghiệp vụ (Separation of Concerns).
+- **Atomic Updates for Money:** Cập nhật tiền bắt buộc dùng `{ increment: amount }`. Cấm lấy giá trị hiện tại rồi tự cộng vào bằng code JS.
+  *Why:* Tránh Race Condition, sai số tiền tệ khi có hàng nghìn lượt quyên góp cùng lúc.
+- **Idempotency Key for Payments:** Mọi Webhook và thao tác liên quan dòng tiền bắt buộc gửi kèm `X-Idempotency-Key` để kiểm tra qua Redis.
+  *Why:* Ngăn chặn cộng trùng tiền nếu VNPay gửi 1 giao dịch nhiều lần (mất mạng, retry webhook).
+- **Sanitize HTML strings:** Bắt buộc dùng `DOMPurify` trên Backend/Frontend trước khi lưu hoặc render văn bản từ Rich Text.
+  *Why:* Chống tấn công XSS.
 
-## PHẦN 3: TỪ ĐIỂN NGÔN NGỮ HỆ THỐNG (UBIQUITOUS GLOSSARY)
+=================================================
 
-*Để dev Frontend, dev Backend và QC không cãi nhau về từ vựng, toàn bộ team phải thống nhất dùng các danh từ tiếng Anh sau trong code:*
+# 6. Current Folder Architecture
 
-| Danh từ chuẩn | Ý nghĩa trong nghiệp vụ | Ví dụ sai cần tránh |
-| :--- | :--- | :--- |
-| **Donation** | Một *Lệnh quyên góp* do user tạo ra (có thể thành công hoặc bị hủy). | `Payment`, `Order` |
-| **Transaction** | Một *Giao dịch ngân hàng* thực tế do VNPay trả về mang theo mã giao dịch. | `BankingRecord` |
-| **Ledger** | *Sổ cái* - Nơi duy nhất định đoạt một chiến dịch đang có bao nhiêu tiền. | `MoneyTable` |
-| **Disbursement** | *Giải ngân* - Hành động Admin chuyển tiền từ quỹ KindWave cho Creator. | `Payout`, `Transfer` |
-| **Impact Proof** | *Bằng chứng tác động* - Hóa đơn mua hàng, ảnh chụp trao quà của Creator. | `ResultImage` |
+```text
+KindWave/
+├── BE/                   (Backend Node.js/Express)
+│   ├── prisma/           (Prisma schema & migrations)
+│   └── src/
+│       ├── config/       (Database, Redis, etc.)
+│       ├── errors/       (Custom error classes)
+│       ├── middlewares/  (Global error, auth, validation)
+│       ├── utils/        (Helper functions)
+│       ├── app.ts        (Express app setup)
+│       └── server.ts     (Server entry point)
+├── FE/                   (Frontend React/Vite)
+│   └── src/
+│       ├── components/   (Shared UI/Shadcn)
+│       ├── config/       (Env, Constants)
+│       ├── features/     (Feature-based modules)
+│       ├── lib/          (Axios, Utils)
+│       ├── routes/       (React Router setup)
+│       ├── App.tsx
+│       └── main.tsx
+└── Documentation/
+```
 
----
+=================================================
 
-## PHẦN 4: KIẾN TRÚC DỮ LIỆU CHUẨN HÓA (CORE ENTITIES v2.0)
+# 7. Database Status
 
-* **`Donations`**: `id | user_id | campaign_id | amount | is_anonymous | status: ['PENDING', 'SUCCESS', 'FAILED'] | created_at`
-* **`Transactions`**: `id | donation_id | transaction_code | payment_method | amount | status | created_at`
-* **`Campaign_Ledgers`**: `id | campaign_id | amount | type: ['CREDIT', 'DEBIT'] | reference_id | created_at`
-* **`Disbursements`**: `id | campaign_id | scheduled_date | total_amount | banking_proof_url | status: ['PENDING', 'TRANSFERRED', 'REJECTED']`
-* **`Campaign_Impacts`**: `id | campaign_id | title | content | proof_images (JSON) | spent_amount | created_at`
+**Current entities:**
+- `Users`
+- `Donations` (id, user_id, campaign_id, amount, status, is_anonymous...)
+- `Transactions` (id, donation_id, transaction_code, payment_method, amount, status...)
+- `Campaign_Ledgers` (id, campaign_id, amount, type, reference_id...)
+- `Disbursements` (id, campaign_id, scheduled_date, total_amount, banking_proof_url, status...)
+- `Campaign_Impacts` (id, campaign_id, title, content, proof_images, spent_amount...)
 
----
+**Relationships:**
+- User 1:N Campaign (Creator)
+- User 1:N Donations (Donor)
+- Campaign 1:N Donations
+- Donation 1:1 Transaction
+- Campaign 1:N Campaign_Ledgers
+- Campaign 1:N Disbursements
+- Campaign 1:N Campaign_Impacts
 
-## PHẦN 5: CHIẾN LƯỢC CHIA NHÁNH GIT (24 ATOMIC BRANCHES)
+**Special rules:**
+- Bảng `Campaign_Ledgers` (Sổ cái) là nguồn sự thật duy nhất xác định số dư hiện tại của chiến dịch.
+- **Soft delete strategy:** Bắt buộc áp dụng cho Users, Campaigns và các Comment/Reviews. Cấm dùng câu lệnh xóa vật lý trong database.
 
-*Quy tắc: Xuất phát từ nhánh `develop`. 1 Pull Request không được vượt quá 20 files, bắt buộc merge trong 48 giờ.*
+=================================================
 
-### Epic 1: Core & Auth (6 nhánh)
-* `chore/KW-01-init-react-vite-shadcn`
-* `chore/KW-02-init-express-prisma-docker`
-* `feat/KW-03-auth-register-api`
-* `feat/KW-04-auth-login-jwt-api`
-* `feat/KW-05-auth-logout-refresh-token`
-* `feat/KW-06-auth-forgot-password-flow`
+# 8. Current Completed Progress
 
-### Epic 2: Profile & Notif (3 nhánh)
-* `feat/KW-07-profile-crud-api`
-* `feat/KW-08-avatar-upload-cloudinary`
-* `feat/KW-09-notification-socketio-service`
+Completed:
 
-### Epic 3: Campaign Hub (5 nhánh)
-* `feat/KW-10-campaign-create-draft-api`
-* `feat/KW-11-campaign-search-filter-pagination`
-* `feat/KW-12-campaign-detail-public-view`
-* `feat/KW-13-campaign-owner-edit-softdelete`
-* `feat/KW-14-category-list-cache-redis`
+✓ Frontend React/Vite initialization with base architecture folders (chore/KW-01)
 
-### Epic 4: Donation & Ledger (5 nhánh - Cốt lõi dòng tiền)
-* `feat/KW-15-donation-create-session-api`
-* `feat/KW-16-vnpay-webhook-idempotent-handler`
-* `feat/KW-17-campaign-ledger-recording-service`
-* `feat/KW-18-donation-history-user-view`
-* `fix/KW-19-atomic-increment-current-amount`
+✓ Backend Express boilerplate setup (chore/KW-02)
 
-### Epic 5: Trust Domain (2 nhánh)
-* `feat/KW-20-review-rating-crud`
-* `feat/KW-21-report-campaign-api`
+✓ Docker & docker-compose environment setup
 
-### Epic 6: Admin Domain (3 nhánh)
-* `feat/KW-22-admin-user-ban-unban`
-* `feat/KW-23-admin-campaign-moderate-workflow`
-* `feat/KW-24-admin-disbursement-impact-proof`
+✓ Custom Error Handlers & Global Middlewares skeleton
 
----
+=================================================
 
-## PHẦN 6: BIỂU ĐỒ USE-CASE VÀ VÒNG ĐỜI NGHIỆP VỤ
+# 9. Current In Progress
 
-### 6.1 Biểu đồ Use-Case Tổng quan (Mermaid)
+In Progress:
 
-~~~mermaid
-flowchart LR
-    U[/ USER /]:::actorStyle
-    A[/ ADMIN /]:::actorStyle
+- Cấu trúc Models Prisma (User, Campaign, Ledger)
+- Khung cấu trúc Authentication API
+- Cài đặt và tích hợp thư viện Prisma Client / Zod validation
 
-    subgraph User_Subsystem [USER DOMAIN]
-        direction TB
-        U1([1. Auth: Register / Login / Logout / Reset])
-        U2([2. Profile: View / Update / View History])
-        U3([3. Campaign: Search & Filter / View Detail])
-        U4([4. Campaign: Create / Edit / Soft-Delete])
-        U5([5. Donation: Donate Money / Donate Anonymously])
-        U6([6. Impact: Track Campaign Progress & Proofs])
-        U7([7. Community: Rate / Review / Report])
-    end
+=================================================
 
-    subgraph Admin_Subsystem [ADMIN DOMAIN]
-        direction TB
-        A1([8. User Mgmt: View All / Suspend / Ban])
-        A2([9. Moderate Campaign: Approve / Reject])
-        A3([10. Financial Mgmt: Execute Disbursement])
-        A4([11. Report Mgmt: View / Resolve / Delete Content])
-        A5([12. System Mgmt: Categories / Stats / Ledger Ops])
-    end
+# 10. Pending Tasks
 
-    U --> U1 & U2 & U3 & U4 & U5 & U6 & U7
-    A --> A1 & A2 & A3 & A4 & A5
+Priority 1: Khai báo đầy đủ Prisma Schema Models & Thực thi Migration (Users, Campaigns, Donations, Ledgers, etc.)
 
-    classDef actorStyle fill:#2563eb,stroke:#fff,stroke-width:2px,color:#fff,font-weight:bold;
-    style User_Subsystem fill:#f8fafc,stroke:#cbd5e1,stroke-width:2px;
-    style Admin_Subsystem fill:#fef2f2,stroke:#fca5a5,stroke-width:2px;
-~~~
+Priority 2: `feat/KW-03-auth-register-api` (Xây dựng luồng Đăng ký tài khoản - Hash password Bcrypt, Zod Schema)
 
-### 6.2 Vòng đời của một Chiến dịch (Campaign State Machine)
+Priority 3: `feat/KW-04-auth-login-jwt-api` (Xây dựng luồng Đăng nhập, cấp phát JWT Tokens)
 
-~~~text
-[PENDING] ---> (Admin Approve) ---> [ACTIVE] ---> (Target Reached / Expired) ---> [COMPLETED] ---> (Start Payout) ---> [DISBURSING] ---> (Proofs Verified) ---> [CLOSED]
-   |
-   +---> (Admin Reject) ---> [REJECTED]
-~~~
+=================================================
 
-### 6.3 Luồng Dòng Tiền & Sổ Cái (Ledger Money Flow)
+# 11. Known Problems / Risks
 
-~~~text
-User A (Donate 500k) 
-  │
-  ▼ [Tạo record: Donations (status: PENDING)]
-  │
-  ▼ (Chuyển hướng sang VNPay QR)
-  │
-  ▼ VNPay gọi Webhook báo THÀNH CÔNG về Backend
-  │
-  ▼ [Kiểm tra Idempotency: Giao dịch VNP_9999 đã tồn tại chưa?]
-       ├── CÓ RỒI  ──► Dừng & Trả 200 OK (Chống lặp tiền do rớt mạng)
-       └── CHƯA CÓ ──► Mở DB Transaction:
-                         1. Insert bảng Transactions (status: SUCCESS)
-                         2. Update Donations.status = SUCCESS
-                         3. Insert bảng Campaign_Ledgers (+500k, CREDIT)
-                         4. DB Locking: UPDATE campaigns SET current_amount = current_amount + 500000
-~~~
+- **Existing limitations:** Toàn bộ DB Schema ở Backend chưa được cụ thể hóa vào file `prisma/schema.prisma` một cách hoàn chỉnh.
+- **Technical debt:** Frontend chưa hoàn tất tích hợp Shadcn UI. Thiếu các thư viện core như Axios instance, React Query QueryClient.
+- **Performance concerns:** Việc truy vấn danh mục chiến dịch (Campaign Categories) cần đảm bảo hit Redis cache thay vì gọi DB ở các giai đoạn sau.
+- **Security concerns:** Rủi ro sai lệch dữ liệu tài chính tại luồng VNPay Webhook; cần bám sát yêu cầu thiết lập Idempotency và DB Locking / Atomic increment.
 
----
+=================================================
 
-## PHẦN 7: ĐẶC TẢ CHỨC NĂNG CHI TIẾT (FUNCTIONAL SPECIFICATION)
+# 12. Development Rules
 
-### 7.1 Module Xác thực (Authentication)
-* **Đăng ký:** Phải validate định dạng Email; Mật khẩu bắt buộc $\ge$ 8 ký tự, chứa ít nhất 1 chữ hoa, 1 chữ thường và 1 số. Mật khẩu lưu vào DB băm bằng `Bcrypt` (Salt rounds = 10).
-* **Đăng nhập:** Luồng **JWT Token (Stateless)**. Trả về `access_token` (sống 15 phút) và `refresh_token` (sống 7 ngày, lưu trong `HttpOnly Cookie`).
-* **Đăng xuất:** Khi user bấm logout, Backend ném `refresh_token` vào Blacklist lưu trên Redis kèm TTL, đồng thời clear Cookie.
+**Coding standards:** TypeScript thuần túy, Error handling chuẩn xác không dùng catch bọc rác.
 
-### 7.2 Module Quản lý Chiến dịch (Campaign Hub)
-* **Logic Soft-Delete:** Khi Creator bấm xóa chiến dịch `Pending`, Backend chạy `UPDATE campaigns SET deleted_at = NOW() WHERE id = ?`. Trình bày trên danh sách giao diện luôn kẹp điều kiện `WHERE deleted_at IS NULL`.
-* **Bộ lọc (Filter):** Frontend gửi request dạng `GET /api/v1/campaigns?category=medical&sort=most_donated&status=active&page=1&limit=12`. Backend query phân trang qua Prisma.
+**Folder rules:** Tuân thủ chặt chẽ kiến trúc Feature-based Colocation ở Frontend. Tách lớp Controller, Service, Repository ở Backend.
 
-### 7.3 Module Đánh giá & Bình luận (Verified Review)
-* **Luật "Chỉ người mua được đánh giá":** Khi User gửi Review cho Campaign `X`, Backend bắt buộc query:
-  ~~~sql
-  SELECT id FROM donations WHERE user_id = ? AND campaign_id = ? AND status = 'SUCCESS' LIMIT 1;
-  ~~~
-  Nếu trả về `NULL` $\rightarrow$ Trả lỗi `403 Forbidden: Bạn phải quyên góp cho chiến dịch này mới có quyền đánh giá`.
+**Import rules:** Khuyến khích dùng alias path (`@/...`) nếu đã được setup.
 
----
+**Naming conventions:** 
+- Git Branch: `<type>/KW-<ticket_id>-<kebab-case-desc>`
+- Commits: `<type>(<scope>): <message>`
 
-## PHẦN 8: RÀNG BUỘC PHI CHỨC NĂNG (NON-FUNCTIONAL REQUIREMENTS)
+**Forbidden patterns:**
 
-1. **Hiệu năng (Performance):** 
-   * API lấy danh sách chiến dịch (`GET /campaigns`) trả về dưới **250ms**. 
-   * Dữ liệu danh sách Category bắt buộc Cache trên **Redis** (TTL = 24h), không hit vào MySQL.
-2. **An toàn Dữ liệu Đồng thời (Concurrency Control):**
-   Khi xử lý cộng tiền tại Webhook, Backend bắt buộc dùng Update nguyên tử của Prisma:
-   ~~~typescript
-   await prisma.campaign.update({
-     where: { id: campaignId },
-     data: { current_amount: { increment: amount } }
-   });
-   ~~~
-3. **Bảo mật (Security):**
-   * Toàn bộ input từ Rich Text Editor phải được sanitize qua **`DOMPurify`** ở Backend để chống **XSS**.
-   * Thiết lập **Rate Limiting** trên Express: Mỗi IP chỉ được gọi `POST /auth/login` tối đa 5 lần/phút. Quá 5 lần, block IP trong 15 phút.
+Forbidden:
+- Khai báo kiểu `any` trong TypeScript.
+- Dùng `prisma.xxx.delete()` hoặc thực thi câu lệnh SQL xóa thực.
+- Hardcode Secrets, JWT keys, Database passwords vào source code.
+- Xử lý Business Logic ngay bên trong UI Components hoặc Route Handlers.
+- Tin tưởng hoàn toàn vào dữ liệu Client gửi lên mà không chạy qua Zod validator.
 
----
+=================================================
 
-## PHẦN 9: TIÊU CHUẨN NGHIỆM THU (DEFINITION OF DONE - DoD)
+# 13. Next Immediate Action
 
-1. **No Any `any`:** Code TypeScript không xuất hiện keyword `any`. Chạy `npm run tsc` không có warning.
-2. **Zero `DELETE`:** Trong file Repository/Service của Backend, cấm gõ hàm `prisma.xxx.delete()`. Chỉ dùng `.update()` gán `deleted_at`.
-3. **Pass Webhook Test:** Dùng Postman bắn Webhook VNPay 3 lần liên tiếp cùng một `transaction_code`. Database chỉ ghi nhận tiền 1 lần.
-4. **Pass Audit Ledger:** Viết test SQL tự động: 
-   $$\text{SUM}(\text{Donations}_{\text{SUCCESS}}) - \text{SUM}(\text{Disbursements}_{\text{SUCCESS}}) \equiv \text{Campaign}_{\text{current\_amount}}$$
-   Độ lệch phải bằng `0`.
-5. **Code Coverage:** Unit Test viết bằng `Vitest` cho các file tính tiền đạt Coverage $\ge 85\%$.
+"What should be implemented next"
+- **Task:** Viết schema cấu trúc Database (`schema.prisma`) và code luồng Đăng ký người dùng (`feat/KW-03-auth-register-api`).
+
+**Files to create:**
+- `BE/prisma/schema.prisma` (Cập nhật Models)
+- `BE/src/controllers/auth.controller.ts`
+- `BE/src/services/auth.service.ts`
+- `BE/src/routes/auth.routes.ts`
+
+**Dependencies needed:** `bcrypt` (hoặc `bcryptjs`), `jsonwebtoken`, `zod`.
+
+**Expected outcome:** Backend có thể chạy `npx prisma db push` / `migrate dev` thành công để tạo bảng. Gọi API POST `/auth/register` mã hóa được password và tạo mới User hợp lệ trong Database.
+
+=================================================
+
+# 14. AI Instructions
+
+- Read architecture first
+- Do not change existing decisions
+- Preserve folder structure
+- Preserve typing
+- Avoid circular dependencies
+- Maintain project consistency

@@ -1,0 +1,341 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Campaign Management - Managers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface": "#faf8ff",
+                            "secondary-container": "#d0e1fb",
+                            "on-background": "#131b2e",
+                            "tertiary-fixed": "#e0e3e5",
+                            "on-primary-fixed": "#002109",
+                            "on-error": "#ffffff",
+                            "surface-tint": "#006e2f",
+                            "on-surface": "#131b2e",
+                            "inverse-primary": "#4ae176",
+                            "on-primary-fixed-variant": "#005321",
+                            "primary-fixed": "#6bff8f",
+                            "on-primary-container": "#004b1e",
+                            "on-secondary-fixed-variant": "#38485d",
+                            "primary-fixed-dim": "#4ae176",
+                            "on-tertiary-fixed-variant": "#444749",
+                            "inverse-on-surface": "#eef0ff",
+                            "surface-container-high": "#e2e7ff",
+                            "secondary": "#505f76",
+                            "on-tertiary-fixed": "#191c1e",
+                            "on-secondary-fixed": "#0b1c30",
+                            "tertiary-fixed-dim": "#c4c7c9",
+                            "on-secondary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "on-tertiary-container": "#3d4042",
+                            "secondary-fixed-dim": "#b7c8e1",
+                            "error": "#ba1a1a",
+                            "surface-container-low": "#f2f3ff",
+                            "primary": "#006e2f",
+                            "surface-dim": "#d2d9f4",
+                            "error-container": "#ffdad6",
+                            "outline": "#6d7b6c",
+                            "background": "#faf8ff",
+                            "outline-variant": "#bccbb9",
+                            "on-secondary-container": "#54647a",
+                            "on-tertiary": "#ffffff",
+                            "surface-bright": "#faf8ff",
+                            "surface-container-highest": "#dae2fd",
+                            "tertiary-container": "#a9acae",
+                            "surface-variant": "#dae2fd",
+                            "on-primary": "#ffffff",
+                            "primary-container": "#22c55e",
+                            "tertiary": "#5c5f61",
+                            "surface-container-lowest": "#ffffff",
+                            "surface-container": "#eaedff",
+                            "secondary-fixed": "#d3e4fe",
+                            "inverse-surface": "#283044",
+                            "on-surface-variant": "#3d4a3d"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "sidebar-width": "260px",
+                            "margin-md": "16px",
+                            "container-padding": "24px",
+                            "unit": "4px",
+                            "margin-sm": "8px",
+                            "margin-lg": "24px",
+                            "gutter-table": "16px"
+                    },
+                    "fontFamily": {
+                            "headline-sm": ["Inter"],
+                            "body-sm": ["Inter"],
+                            "headline-md": ["Inter"],
+                            "body-md": ["Inter"],
+                            "label-md": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                            "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                            "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                            "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+    </style>
+</head>
+<body class="flex min-h-screen font-body-md text-body-md bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col py-margin-md px-margin-sm z-50">
+<div class="px-4 mb-8">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-secondary">Empower Change</p>
+</div>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">campaign</span>
+                    My Campaigns
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+                    Create Campaign
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                    Donation History
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+                    Bookmarks
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    Following Campaigns
+                </a>
+</li>
+<li class="mt-auto">
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+                    Profile
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-sidebar-width flex-1 flex flex-col bg-surface min-h-screen w-full relative">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-container-padding z-40">
+<div class="flex items-center">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container font-body-sm text-body-sm transition-all text-on-surface" placeholder="Search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, circular profile picture of a professional looking individual smiling warmly against a bright, well-lit background. The style is modern, clear, and perfectly suited for a dashboard interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7fQp3JupAlCCso7mY8rghF_MuzxsfoNtaAYmGhWfWvS_ImNrJf7EorS2iBlEqvm9fRwBKC5D0Q_e9V8eWUTDf72imse8hsG9tiLRPlFvNG6rYrbCfqL_yVkgpQcgcFcmmodUNuLk1z0StX4Lv30XVI0GSjt8SGUDi2mAZuszkm0DSwLdUna2Rk8KkGxJFUsu-UfNIZfN_19KzXm_kLIprlSypkRObnD2Jl1tLRkOzVf4fPmwzlsRpHb_1mHTn2AtQAYUxcWy9fxI">
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 pt-24 px-container-padding pb-container-padding max-w-7xl mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="mb-8">
+<div class="flex items-center gap-2 font-label-md text-label-md text-secondary mb-2 uppercase">
+<a class="hover:text-primary transition-colors" href="#">My Campaigns</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Urban Oasis Community Garden</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Managers</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Manage team access and roles for this campaign.</p>
+</div>
+<button class="bg-primary-container text-white px-4 py-2 rounded font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Invite Manager
+                    </button>
+</div>
+</div>
+<!-- Campaign Navigation Tabs (Contextual) -->
+<div class="border-b border-outline-variant mb-6 flex gap-8">
+<a class="pb-3 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" href="#">Overview</a>
+<a class="pb-3 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" href="#">Donations</a>
+<a class="pb-3 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" href="#">Updates</a>
+<a class="pb-3 font-label-md text-label-md text-primary font-bold border-b-2 border-primary" href="#">Managers</a>
+<a class="pb-3 font-label-md text-label-md text-secondary hover:text-on-surface transition-colors" href="#">Settings</a>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#F8FAFC] border-b border-outline-variant">
+<tr>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-secondary uppercase tracking-wider">Name</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-secondary uppercase tracking-wider">Role</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-secondary uppercase tracking-wider text-right">Date Joined</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-secondary uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-container-high">
+<!-- Row 1 (Owner) -->
+<tr class="hover:bg-[#F8FAFC] transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a confident woman with curly hair, smiling, looking directly at the camera, well lit, professional setting, ideal for a user avatar in a modern web application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUI1GEL4mUmkI32AazhjcsjYrY1rem2F--dmCaBrBtwsHwNDJ0zOnok9XyOm7gThjcCWxD6b2JUmSkBja-Ijd1fIWE_DB5J3fYh_-bshvuHIQweQwigHVp5K4-_NJr-tIG96Vn6QaRJHkags9z2wjg4hrxxs-i6TWsFCmvtet3T7kZ3kIRxnjJNQadO7KvERZnf1a9rym_WSGrAKQ9vUpN8efr97PnUy_ndoEKMEe6dKFiS_zaYagf_GyV1EAgH9ktczDbsRNI2wg">
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Sarah Jenkins</div>
+<div class="font-body-sm text-body-sm text-secondary">sarah.j@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[rgba(59,130,246,0.1)] text-[#1E40AF] font-label-sm text-label-sm uppercase tracking-wide">
+                                    Owner
+                                </span>
+</td>
+<td class="py-3 px-gutter-table text-right text-secondary">
+                                Oct 12, 2023
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-on-surface transition-colors p-1" title="Settings restricted for Owner">
+<span class="material-symbols-outlined text-[20px] opacity-50 cursor-not-allowed">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#F8FAFC] transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container flex items-center justify-center text-primary-container font-headline-sm">
+                                        MR
+                                    </div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">Marcus Reed</div>
+<div class="font-body-sm text-body-sm text-secondary">marcus.r@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[rgba(34,197,94,0.1)] text-[#166534] font-label-sm text-label-sm uppercase tracking-wide">
+                                    Co-manager
+                                </span>
+</td>
+<td class="py-3 px-gutter-table text-right text-secondary">
+                                Nov 05, 2023
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-on-surface transition-colors p-1 rounded hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#F8FAFC] transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A friendly looking man with glasses and a beard, wearing a casual shirt, slightly blurred background, suitable for a professional dashboard avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm2SXBmFT4JhhSzAGy13h2eaZk8l2B9iwn3ESpU2dC564LQwahFN44wX_gmdf8sREmq2L2vLj3ucDjkzPaipbYqOu3OE9uR1gjBhKvOTihdSjHyWr59m-B2qIVUB30Bvo1ZWrntBJduQfBevJDEcQ3zrwJQ4SjQfoi0gIwRkGXDTHLZXFbqKNLVPAiuWXITI-cO8hT_GCXUOQsrcrR_L4Sl46hGXaBAY9M3Bur3pW18sAkB_K6SaVBDyodCEYGuSMgZit56J-YVco">
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface">David Chen</div>
+<div class="font-body-sm text-body-sm text-secondary">david.chen@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[rgba(34,197,94,0.1)] text-[#166534] font-label-sm text-label-sm uppercase tracking-wide">
+                                    Co-manager
+                                </span>
+</td>
+<td class="py-3 px-gutter-table text-right text-secondary">
+                                Jan 18, 2024
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-on-surface transition-colors p-1 rounded hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 (Pending) -->
+<tr class="hover:bg-[#F8FAFC] transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-dashed border-outline-variant flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-surface opacity-70">Elena Rodriguez</div>
+<div class="font-body-sm text-body-sm text-secondary">elena.r@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded bg-[rgba(245,158,11,0.1)] text-[#92400E] font-label-sm text-label-sm uppercase tracking-wide gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                                    Pending Invite
+                                </span>
+</td>
+<td class="py-3 px-gutter-table text-right text-secondary">
+                                --
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-on-surface transition-colors p-1 rounded hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Footer (Optional for small lists, included for completeness) -->
+<div class="mt-4 flex items-center justify-between text-secondary font-body-sm text-body-sm">
+<span>Showing 4 of 4 managers</span>
+</div>
+</main>
+</div>
+</body></html>

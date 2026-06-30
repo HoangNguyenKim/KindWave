@@ -1,0 +1,304 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave - Create Campaign (Step 2)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#22C55E",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#DCFCE7",
+                        "on-primary-container": "#14532D",
+                        secondary: "#4B5563",
+                        "on-secondary": "#FFFFFF",
+                        "secondary-container": "#F3F4F6",
+                        "on-secondary-container": "#1F2937",
+                        surface: "#FFFFFF",
+                        "on-surface": "#111827",
+                        "surface-container-low": "#F9FAFB",
+                        "surface-container-high": "#F3F4F6",
+                        "surface-container-highest": "#E5E7EB",
+                        "on-surface-variant": "#4B5563",
+                        outline: "#D1D5DB",
+                        "outline-variant": "#E5E7EB",
+                        "inverse-surface": "#1F2937"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #22C55E; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        input:focus, select:focus {
+            ring: 2px;
+            ring-color: #22C55E;
+            border-color: #22C55E;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low text-on-surface antialiased min-h-screen flex">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="hidden md:flex flex-col p-4 space-y-4 bg-surface-container-low border-r border-outline-variant w-64 h-screen sticky top-0">
+<div class="flex flex-col px-2 mb-8">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">tsunami</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-lg font-bold text-primary">KindWave Admin</h1>
+<p class="text-xs text-on-surface-variant">Campaign Manager</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active State Logic: Dashboard/Campaign Creation contextual mapping -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-label-md">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md">Contributions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="pt-4 mt-4 border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary font-bold py-3 rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-h-screen overflow-y-auto">
+<!-- TopNavBar (Execution from JSON) -->
+<header class="bg-surface shadow-sm sticky top-0 z-30">
+<div class="flex justify-between items-center w-full px-6 max-w-[1280px] mx-auto h-16">
+<div class="flex items-center gap-8">
+<span class="md:hidden font-headline-md text-xl font-bold text-primary">KindWave</span>
+<nav class="hidden md:flex items-center gap-6 font-body-md text-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">How it Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-bold text-sm hover:bg-primary hover:text-on-primary transition-all active:scale-95 duration-150">
+                        Start Campaign
+                    </button>
+<img class="w-8 h-8 rounded-full border border-outline" data-alt="A professional studio portrait of a young entrepreneur smiling confidently, soft high-key lighting, clean white background, modern corporate style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC63scCh65IlvzZXEKLgw4MgJ-eex0hcjUEgIdedLCr1npFVOz7rDqdnE39IqsdqgLomQOkJUcYAkIqtX8RNYgSvUfuvaxrIZ6xpvgWyzBIpFpH_smps7i_LS0mnqSrALovGlYMjLtdP66zqbmZFfTcIOHGUMIRGQXiUlVS81CvouzjTqNIDRLYs8kmBl061u-0mXLC2uc6KTli5_C9Jvq65XaAjXEUbVUHIdsZSBE8_9exypxTJlGQOuR7MEhzIWLMbI_Zdda-iYQ">
+</div>
+</div>
+</header>
+<!-- Creation Wizard Content -->
+<div class="flex-1 w-full max-w-4xl mx-auto px-6 py-12">
+<!-- Progress Indicator -->
+<div class="mb-12">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-2xl font-bold text-on-surface">Create New Campaign</h2>
+<span class="text-on-surface-variant text-sm font-medium">Step 2 of 4</span>
+</div>
+<div class="flex items-center w-full gap-2">
+<div class="h-2 flex-1 rounded-full bg-primary"></div>
+<div class="h-2 flex-1 rounded-full bg-primary relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary uppercase tracking-wider">Active</div>
+</div>
+<div class="h-2 flex-1 rounded-full bg-surface-container-highest"></div>
+<div class="h-2 flex-1 rounded-full bg-surface-container-highest"></div>
+</div>
+<div class="flex justify-between mt-2 text-[11px] font-bold text-on-surface-variant uppercase tracking-tighter">
+<div class="text-primary">Basics</div>
+<div class="text-primary">Goal &amp; Location</div>
+<div class="">Rewards</div>
+<div class="">Review</div>
+</div>
+</div>
+<!-- Wizard Form -->
+<div class="glass-card rounded-2xl p-8 shadow-sm">
+<div class="mb-8">
+<h3 class="text-xl font-bold text-on-surface mb-1">Goal &amp; Location</h3>
+<p class="text-on-surface-variant text-sm">Define how much you need to raise and where your impact will take place.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Goal Section -->
+<div class="space-y-6">
+<div class="p-5 bg-primary-container/30 rounded-xl border border-primary/10">
+<label class="block text-xs font-bold text-on-primary-container uppercase tracking-widest mb-3">Goal Amount (USD)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">$</span>
+<input class="w-full pl-8 pr-4 py-4 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all text-lg font-bold" placeholder="0.00" required="" type="number">
+</div>
+<p class="mt-2 text-[11px] text-on-surface-variant">Recommended: Most successful campaigns in your category raise $5,000 - $15,000.</p>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Campaign End Date</label>
+<div class="relative">
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant pointer-events-none">calendar_today</span>
+<input class="w-full px-4 py-3 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all" required="" type="date">
+</div>
+<p class="mt-2 text-[11px] text-on-surface-variant italic">Note: Campaigns typically run for 30 to 60 days.</p>
+</div>
+</div>
+<!-- Location Section -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+<span class="text-sm font-bold text-on-surface">Impact Location</span>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Country</label>
+<select class="w-full px-4 py-3 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all bg-white">
+<option>United States</option>
+<option>Canada</option>
+<option>United Kingdom</option>
+<option>Germany</option>
+<option>Australia</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Province / State</label>
+<input class="w-full px-4 py-3 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all" placeholder="e.g. California" type="text">
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">District / City</label>
+<input class="w-full px-4 py-3 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all" placeholder="e.g. San Francisco" type="text">
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Street Address</label>
+<input class="w-full px-4 py-3 rounded-xl border-outline focus:border-primary focus:ring-primary transition-all" placeholder="123 Kindness Way" type="text">
+</div>
+<!-- Mini Map Preview -->
+<div class="mt-4 rounded-xl overflow-hidden border border-outline-variant h-32 relative">
+<div class="absolute inset-0 bg-surface-container-high animate-pulse"></div>
+<div class="w-full h-full bg-cover bg-center grayscale opacity-80 transition-all hover:grayscale-0" data-location="San Francisco" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBYXtN5sN0HHUBGCc2HhsZsJT7KZSWcg27XEnTmtN9_f06D48h5RS77i_q2uVVK1kr7Z7ocsx4HbeshMprbIhE2NvJtm3O_Cc-tRmrwduOG-3czaJU6ie72gEFgfY5nfR6iNkXADroxmOS1wCT0a7sHuS2fYpiCwLB2ry7SYAfdH9B6IEYcjiOepO-4tG95oYx7WfonbdSngS8DiF6GOaUMm4JbE3-LaIuQvnlKGyQ5FhOJUVVPk7f0gj5UL_T7m8MnKFyJsWxVTDM&quot;);"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm border border-outline/50 flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Location Preview</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-12 pt-8 border-t border-outline-variant flex justify-between items-center">
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl text-on-surface-variant font-bold hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<button class="flex items-center gap-2 px-10 py-3 rounded-xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all active:scale-95">
+                        Continue
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Info Alert -->
+<div class="mt-8 flex gap-4 p-4 rounded-xl bg-surface-container-high border border-outline-variant">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+<strong>Transparency Tip:</strong> Donors are more likely to support campaigns with a clear breakdown of how the goal amount will be used. You can add a detailed budget in the final step.
+                </p>
+</div>
+</div>
+<!-- Footer (Execution from JSON) -->
+<footer class="mt-auto bg-surface-container-lowest border-t border-outline-variant">
+<div class="w-full py-12 px-6 max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-sm text-lg font-bold text-primary">KindWave</span>
+<p class="font-body-sm text-xs text-on-surface-variant mt-1">© 2024 KindWave Crowdfunding. Empowering momentum.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-body-sm text-xs text-on-surface-variant">
+<a class="hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-all" href="#">Cookie Policy</a>
+<a class="hover:text-primary transition-all" href="#">Contact Us</a>
+<a class="hover:text-primary transition-all" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Execution from JSON for Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">rocket_launch</span>
+<span class="font-label-sm text-[10px]">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-label-sm text-[10px]">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for form focus
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.closest('.glass-card')?.classList.add('shadow-md');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.closest('.glass-card')?.classList.remove('shadow-md');
+            });
+        });
+
+        // Simple validation visualization
+        document.querySelector('button.bg-primary').addEventListener('click', () => {
+            const amountInput = document.querySelector('input[type="number"]');
+            if (amountInput.value <= 0) {
+                amountInput.classList.add('border-red-500');
+                setTimeout(() => amountInput.classList.remove('border-red-500'), 2000);
+            }
+        });
+    </script>
+
+
+</body></html>
