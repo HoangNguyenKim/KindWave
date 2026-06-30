@@ -40,75 +40,95 @@ enum TransactionStatus {
   FAILED
 }
 
-model User {
-  id           BigInt     @id @default(autoincrement())
-  email        String     @unique @db.VarChar(255)
-  passwordHash String     @db.VarChar(255)
-  fullName     String     @db.VarChar(255)
-  role         Role       @default(USER)
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+enum ReportStatus {
+  PENDING
+  RESOLVED
+  REJECTED
+}
 
-  campaigns    Campaign[]
-  donations    Donation[]
+model User {
+  id           BigInt    @id @default(autoincrement())
+  email        String    @unique @db.VarChar(255)
+  passwordHash String    @db.VarChar(255)
+  fullName     String    @db.VarChar(255)
+  role         Role      @default(USER)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  campaigns Campaign[]
+  donations Donation[]
+  reviews   Review[]
+  reports   Report[]
+
+  @@index([deletedAt])
 }
 
 model Campaign {
-  id             BigInt          @id @default(autoincrement())
-  organizerId    BigInt
-  title          String          @db.VarChar(255)
-  description    String          @db.Text
-  goalAmount     Decimal         @db.Decimal(19, 4)
-  raisedAmount   Decimal         @default(0) @db.Decimal(19, 4)
-  status         CampaignStatus  @default(DRAFT)
-  startDate      DateTime
-  endDate        DateTime?
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id           BigInt         @id @default(autoincrement())
+  organizerId  BigInt
+  categoryId   BigInt?
+  title        String         @db.VarChar(255)
+  description  String         @db.Text
+  goalAmount   Decimal        @db.Decimal(19, 4)
+  raisedAmount Decimal        @default(0) @db.Decimal(19, 4)
+  status       CampaignStatus @default(DRAFT)
+  startDate    DateTime
+  endDate      DateTime?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  deletedAt    DateTime?
 
-  organizer      User            @relation(fields: [organizerId], references: [id], onDelete: Restrict)
-  donations      Donation[]
-  ledgers        Campaign_Ledger[]
-  disbursements  Disbursement[]
-  impact         Campaign_Impact?
+  organizer     User              @relation(fields: [organizerId], references: [id], onDelete: Restrict)
+  category      Category?         @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  donations     Donation[]
+  ledgers       Campaign_Ledger[]
+  disbursements Disbursement[]
+  impact        Campaign_Impact?
+  reviews       Review[]
+  reports       Report[]
 
   @@index([organizerId])
+  @@index([categoryId])
   @@index([status])
+  @@index([deletedAt])
 }
 
 model Donation {
-  id             BigInt          @id @default(autoincrement())
-  campaignId     BigInt
-  userId         BigInt?
-  amount         Decimal         @db.Decimal(19, 4)
-  status         DonationStatus  @default(PENDING)
-  message        String?         @db.VarChar(500)
-  isAnonymous    Boolean         @default(false)
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id          BigInt         @id @default(autoincrement())
+  campaignId  BigInt
+  userId      BigInt?
+  amount      Decimal        @db.Decimal(19, 4)
+  status      DonationStatus @default(PENDING)
+  message     String?        @db.VarChar(500)
+  isAnonymous Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  deletedAt   DateTime?
 
-  campaign       Campaign        @relation(fields: [campaignId], references: [id], onDelete: Restrict)
-  user           User?           @relation(fields: [userId], references: [id], onDelete: SetNull)
-  transactions   Transaction[]
+  campaign     Campaign      @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  user         User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  transactions Transaction[]
 
   @@index([campaignId])
   @@index([userId])
   @@index([status])
+  @@index([deletedAt])
 }
 
 model Transaction {
-  id             BigInt            @id @default(autoincrement())
-  donationId     BigInt?
-  type           TransactionType
-  status         TransactionStatus @default(PENDING)
-  amount         Decimal           @db.Decimal(19, 4)
-  currency       String            @default("VND") @db.VarChar(3)
-  gatewayTxId    String?           @unique @db.VarChar(255)
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  id          BigInt            @id @default(autoincrement())
+  donationId  BigInt?
+  type        TransactionType
+  status      TransactionStatus @default(PENDING)
+  amount      Decimal           @db.Decimal(19, 4)
+  currency    String            @default("VND") @db.VarChar(3)
+  gatewayTxId String?           @unique @db.VarChar(255)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 
-  donation       Donation?         @relation(fields: [donationId], references: [id], onDelete: Restrict)
-  ledgers        Campaign_Ledger[]
+  donation Donation?         @relation(fields: [donationId], references: [id], onDelete: Restrict)
+  ledgers  Campaign_Ledger[]
 
   @@index([donationId])
   @@index([status])
@@ -116,46 +136,95 @@ model Transaction {
 }
 
 model Campaign_Ledger {
-  id             BigInt          @id @default(autoincrement())
-  campaignId     BigInt
-  transactionId  BigInt
-  creditAmount   Decimal         @default(0) @db.Decimal(19, 4)
-  debitAmount    Decimal         @default(0) @db.Decimal(19, 4)
-  balanceAfter   Decimal         @db.Decimal(19, 4)
-  createdAt      DateTime        @default(now())
+  id            BigInt   @id @default(autoincrement())
+  campaignId    BigInt
+  transactionId BigInt
+  creditAmount  Decimal  @default(0) @db.Decimal(19, 4)
+  debitAmount   Decimal  @default(0) @db.Decimal(19, 4)
+  balanceAfter  Decimal  @db.Decimal(19, 4)
+  createdAt     DateTime @default(now())
 
-  campaign       Campaign        @relation(fields: [campaignId], references: [id], onDelete: Restrict)
-  transaction    Transaction     @relation(fields: [transactionId], references: [id], onDelete: Restrict)
+  campaign    Campaign    @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Restrict)
 
   @@index([campaignId])
   @@index([transactionId])
 }
 
 model Disbursement {
-  id             BigInt            @id @default(autoincrement())
-  campaignId     BigInt
-  amount         Decimal           @db.Decimal(19, 4)
-  bankAccount    String            @db.VarChar(255)
-  bankName       String            @db.VarChar(255)
-  status         TransactionStatus @default(PENDING)
-  processedAt    DateTime?
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  id          BigInt            @id @default(autoincrement())
+  campaignId  BigInt
+  amount      Decimal           @db.Decimal(19, 4)
+  bankAccount String            @db.VarChar(255)
+  bankName    String            @db.VarChar(255)
+  status      TransactionStatus @default(PENDING)
+  processedAt DateTime?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 
-  campaign       Campaign          @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Restrict)
 
   @@index([campaignId])
   @@index([status])
 }
 
 model Campaign_Impact {
-  id             BigInt          @id @default(autoincrement())
-  campaignId     BigInt          @unique
-  metrics        Json
-  reportText     String          @db.Text
-  publishedAt    DateTime?
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  id          BigInt    @id @default(autoincrement())
+  campaignId  BigInt    @unique
+  metrics     Json
+  reportText  String    @db.Text
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
-  campaign       Campaign        @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+}
+
+model Category {
+  id          BigInt   @id @default(autoincrement())
+  name        String   @unique @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?  @db.VarChar(500)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  campaigns Campaign[]
+}
+
+model Review {
+  id         BigInt    @id @default(autoincrement())
+  campaignId BigInt
+  userId     BigInt
+  rating     Int       @db.TinyInt
+  comment    String?   @db.VarChar(1000)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@unique([campaignId, userId])
+  @@index([campaignId])
+  @@index([userId])
+  @@index([deletedAt])
+}
+
+model Report {
+  id         BigInt       @id @default(autoincrement())
+  campaignId BigInt
+  reporterId BigInt
+  reason     String       @db.VarChar(1000)
+  status     ReportStatus @default(PENDING)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  deletedAt  DateTime?
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Restrict)
+  reporter User     @relation(fields: [reporterId], references: [id], onDelete: Restrict)
+
+  @@index([campaignId])
+  @@index([reporterId])
+  @@index([status])
+  @@index([deletedAt])
 }
