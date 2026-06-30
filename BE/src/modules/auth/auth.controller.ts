@@ -1,6 +1,20 @@
 import type { Request, Response, NextFunction } from "express";
-import { registerUser } from "@/modules/auth/auth.service";
-import type { RegisterInput } from "@/modules/auth/auth.schema";
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshTokens,
+  requestPasswordReset,
+  resetPassword,
+} from "@/modules/auth/auth.service";
+import type {
+  RegisterInput,
+  LoginInput,
+  LogoutInput,
+  RefreshInput,
+  ForgotPasswordInput,
+  ResetPasswordInput,
+} from "@/modules/auth/auth.schema";
 
 export const register = async (
   req: Request,
@@ -13,6 +27,91 @@ export const register = async (
       success: true,
       data: user,
       message: "Đăng ký tài khoản thành công",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { user, accessToken, refreshToken } = await loginUser(req.body as LoginInput);
+    res.status(200).json({
+      success: true,
+      data: { user, accessToken, refreshToken },
+      message: "Đăng nhập thành công",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await logoutUser(req.body as LogoutInput);
+    res.status(200).json({
+      success: true,
+      data: null,
+      message: "Đăng xuất thành công",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const refresh = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { accessToken, refreshToken } = await refreshTokens(req.body as RefreshInput);
+    res.status(200).json({
+      success: true,
+      data: { accessToken, refreshToken },
+      message: "Làm mới token thành công",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await requestPasswordReset(req.body as ForgotPasswordInput);
+    res.status(200).json({
+      success: true,
+      data: null,
+      message: "Nếu email tồn tại, mã OTP đã được gửi",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPasswordController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await resetPassword(req.body as ResetPasswordInput);
+    res.status(200).json({
+      success: true,
+      data: null,
+      message: "Đặt lại mật khẩu thành công",
     });
   } catch (error) {
     next(error);
