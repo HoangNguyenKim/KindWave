@@ -5,7 +5,7 @@ import { tokenStorage } from "@/lib/token-storage";
 interface User {
   id: string;
   email: string;
-  role: "User" | "Admin";
+  role: "USER" | "ADMIN";
 }
 
 interface AuthState {
