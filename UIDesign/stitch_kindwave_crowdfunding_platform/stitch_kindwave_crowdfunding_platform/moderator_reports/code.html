@@ -1,0 +1,401 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Moderator - Reports | KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#22c55e",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary": "#006e2f",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "secondary": "#505f76",
+                        "outline-variant": "#bccbb9",
+                        "on-primary-fixed": "#002109",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary-container": "#004b1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "inverse-surface": "#283044",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#3d4042",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#a9acae",
+                        "on-background": "#131b2e",
+                        "inverse-on-surface": "#eef0ff",
+                        "tertiary": "#5c5f61",
+                        "inverse-primary": "#4ae176",
+                        "surface-bright": "#faf8ff",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "surface-variant": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface-tint": "#006e2f",
+                        "on-primary-fixed-variant": "#005321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-width": "260px",
+                        "margin-lg": "24px",
+                        "container-padding": "24px",
+                        "gutter-table": "16px",
+                        "margin-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base styles from style guidance */
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+        }
+        
+        /* Table Styles */
+        .table-header {
+            background-color: #F8FAFC;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .table-row {
+            background-color: #ffffff;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .table-row:hover {
+            background-color: #F8FAFC;
+        }
+        
+        /* Badges */
+        .badge-high-risk {
+            background-color: rgba(186, 26, 26, 0.1);
+            color: #93000a;
+        }
+        .badge-medium-risk {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #92400E;
+        }
+        .badge-low-risk {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #166534;
+        }
+
+        /* Buttons */
+        .btn-outline {
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            color: #0F172A;
+        }
+        .btn-outline:hover {
+            background-color: #F8FAFC;
+        }
+        .btn-danger {
+            background-color: #ffffff;
+            border: 1px solid #ffdad6;
+            color: #ba1a1a;
+        }
+        .btn-danger:hover {
+            background-color: #ffdad6;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background dark:bg-inverse-surface antialiased">
+<!-- Side Navigation Shell -->
+<nav class="hidden md:flex flex-col h-full py-margin-md px-margin-sm fixed left-0 top-0 h-screen w-sidebar-width border-r border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold">K</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-secondary">Empower Change</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<!-- Simulated Nav Items - Suppressed mostly since this is a specific Moderator view, but providing context -->
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                Dashboard
+            </a>
+<div class="pt-4 pb-2 px-4">
+<p class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Moderation</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary transition-colors scale-95 duration-150 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flag</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">gavel</span>
+                Appeals
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-[260px] h-screen overflow-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-padding w-full h-16 z-40 bg-surface-container-lowest dark:bg-surface-dim shadow-sm border-b border-outline-variant dark:border-outline shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Content Reports</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-9 pr-4 py-1.5 bg-surface-container-low border border-outline-variant rounded-full font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container w-64" placeholder="Search reports..." type="text">
+</div>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors relative text-on-surface-variant cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a mature woman with short silver hair wearing a dark blazer in a bright modern office setting. The lighting is crisp and the mood is authoritative." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbz2WaVULNWV2YYjrx-D8XR8N3UdzLM4Gimv9h6PxGk7dYSWLz4pYfa3IJF6jmbJza8GH4nj3-BOuJllhxCSjNYmf-R0lyHvy5wLyvprYvV-9wSrQ8C2vu9Kbx2pej2lF49fphmPhDwyxcl2F7YBztvYCl8fsfTOCOwBTkFO71B2oM0IJJx4F0BHh1BYuuQjRhjafhwBosX6KClOEEJdAiUzx7jtHLE2Jug_cySYvBr0gMdTVBcS0koYz_YDyFZq1-Dyx9z6Bf2mQ">
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 overflow-y-auto p-container-padding bg-surface">
+<!-- Quick Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Pending Reports</span>
+<span class="material-symbols-outlined text-outline">pending_actions</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">142</div>
+<div class="font-body-sm text-body-sm text-error flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12% this week
+                    </div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">High Risk</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-error">28</div>
+<div class="font-body-sm text-body-sm text-secondary mt-1">Requires immediate action</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Resolved Today</span>
+<span class="material-symbols-outlined text-primary-container">check_circle</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">56</div>
+<div class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +5% vs avg
+                    </div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Avg Resolution</span>
+<span class="material-symbols-outlined text-outline">timer</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">2.4h</div>
+<div class="font-body-sm text-body-sm text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> Faster by 30m
+                    </div>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<!-- Table Toolbar -->
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter
+                        </button>
+<div class="h-4 w-px bg-outline-variant mx-2"></div>
+<span class="font-body-sm text-body-sm text-secondary">Showing 1-10 of 142</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="p-1.5 rounded hover:bg-surface-container text-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="table-header font-label-md text-label-md text-secondary tracking-wider uppercase">
+<th class="py-3 px-4 font-medium w-12 text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</th>
+<th class="py-3 px-4 font-medium">Risk / Type</th>
+<th class="py-3 px-4 font-medium">Campaign</th>
+<th class="py-3 px-4 font-medium">Reporter</th>
+<th class="py-3 px-4 font-medium">Date</th>
+<th class="py-3 px-4 font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<!-- Row 1: High Risk -->
+<tr class="table-row group">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm badge-high-risk">Fraud</span>
+<span class="w-2 h-2 rounded-full bg-error" title="High Risk"></span>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="font-medium text-on-surface">Emergency Med Fund...</div>
+<div class="font-body-sm text-body-sm text-secondary mt-0.5">ID: CMP-8921</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-medium text-secondary">JD</div>
+<span>jdoe@example.com</span>
+</div>
+</td>
+<td class="py-3 px-4 text-secondary">
+                                    10 mins ago
+                                </td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="btn-outline px-3 py-1 rounded font-label-sm text-label-sm shadow-sm" title="Issue Warning">Warn</button>
+<button class="btn-danger px-3 py-1 rounded font-label-sm text-label-sm shadow-sm flex items-center gap-1" title="Suspend Campaign">
+<span class="material-symbols-outlined text-[14px]">block</span> Suspend
+                                        </button>
+<button class="p-1 rounded text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Medium Risk -->
+<tr class="table-row group">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm badge-medium-risk">Misleading</span>
+<span class="w-2 h-2 rounded-full bg-[#F59E0B]" title="Medium Risk"></span>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="font-medium text-on-surface">Clean Water Initiative</div>
+<div class="font-body-sm text-body-sm text-secondary mt-0.5">ID: CMP-8845</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-medium text-secondary">AS</div>
+<span>a.smith@domain.co</span>
+</div>
+</td>
+<td class="py-3 px-4 text-secondary">
+                                    2 hours ago
+                                </td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="btn-outline px-3 py-1 rounded font-label-sm text-label-sm shadow-sm">Warn</button>
+<button class="btn-danger px-3 py-1 rounded font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">block</span> Suspend
+                                        </button>
+<button class="p-1 rounded text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Low Risk -->
+<tr class="table-row group">
+<td class="py-3 px-4 text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm badge-low-risk">Spam</span>
+<span class="w-2 h-2 rounded-full bg-primary-container" title="Low Risk"></span>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="font-medium text-on-surface">Local Tech Workshop...</div>
+<div class="font-body-sm text-body-sm text-secondary mt-0.5">ID: CMP-8102</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center text-xs font-medium text-secondary">MB</div>
+<span>mbrown@mail.com</span>
+</div>
+</td>
+<td class="py-3 px-4 text-secondary">
+                                    5 hours ago
+                                </td>
+<td class="py-3 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="btn-outline px-3 py-1 rounded font-label-sm text-label-sm shadow-sm text-primary">Dismiss</button>
+<button class="p-1 rounded text-secondary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>

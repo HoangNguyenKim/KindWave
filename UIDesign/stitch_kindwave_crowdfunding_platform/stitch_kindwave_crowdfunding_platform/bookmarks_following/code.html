@@ -1,0 +1,302 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Bookmarks &amp; Following - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-tint": "#006e2f",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#505f76",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#283044",
+                        "primary-container": "#22c55e",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "primary": "#006e2f",
+                        "surface-container-high": "#e2e7ff",
+                        "on-primary-fixed": "#002109",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary-container": "#3d4042",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-surface": "#131b2e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-dim": "#d2d9f4",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dae2fd",
+                        "on-primary-container": "#004b1e",
+                        "outline-variant": "#bccbb9",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "outline": "#6d7b6c",
+                        "tertiary-container": "#a9acae",
+                        "on-background": "#131b2e",
+                        "inverse-primary": "#4ae176",
+                        "surface-container": "#eaedff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#4ae176",
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-variant": "#dae2fd",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "tertiary": "#5c5f61",
+                        "background": "#faf8ff",
+                        "primary-fixed": "#6bff8f",
+                        "on-surface-variant": "#3d4a3d",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f2f3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter-table": "16px",
+                        "margin-md": "16px",
+                        "sidebar-width": "260px",
+                        "margin-lg": "24px",
+                        "container-padding": "24px",
+                        "margin-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface fixed left-0 top-0 h-screen w-sidebar-width border-r border-outline-variant dark:border-outline flex flex-col h-full py-margin-md px-margin-sm z-50">
+<div class="mb-margin-lg px-margin-sm">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Empower Change</p>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">campaign</span>
+                    My Campaigns
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+                    Create Campaign
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                    Donation History
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+                    Bookmarks
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+                    Following Campaigns
+                </a>
+</li>
+</ul>
+<ul class="mt-auto space-y-2 border-t border-outline-variant dark:border-outline pt-margin-md">
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+                    Profile
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-margin-sm py-2 rounded font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="ml-sidebar-width w-full flex flex-col h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-dim fixed top-0 right-0 w-[calc(100%-260px)] h-16 border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center px-container-padding z-40">
+<div class="flex items-center gap-4">
+<!-- Search bar placeholder if needed, based on "search_bar": "on_left" -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-10 pr-4 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-64" placeholder="Search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70 p-2 rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden cursor-pointer border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a smiling user in a bright, modern corporate setting. Clean lighting, minimalist background, high-resolution portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdW4aTjhTCc5ssdhUoHf-ASd8o-0q_sKYe16cEiqey7_zuUblmwbyV5-uIyVIgMTudpvPOfbatHl0xheKsZaUIzLvv5HQY0FDzQul3d_RrNWwJwdgDy7KizGINhmTV26KYN87uKPSgCMVBJvqC9AD0MlUadx2BNqWumly-lgHN7_vwOZ270rk0Wq7zhf0UaSRZWACxJkBB1Vld5OtcMBtC9gTkFLClhd_8FE1QeGRS2OrtrdMXcNkrOLzjXja9PjM7EAwXsp0bifw">
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 mt-16 p-container-padding overflow-y-auto bg-background">
+<div class="max-w-6xl mx-auto">
+<!-- Header & Tabs -->
+<div class="mb-margin-lg flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Saved &amp; Following</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage the campaigns you are tracking and supporting.</p>
+</div>
+<div class="flex bg-surface-container-low rounded-lg p-1 border border-outline-variant w-fit">
+<button class="px-4 py-2 rounded bg-surface-container-lowest shadow-sm font-label-md text-label-md text-primary font-bold border border-outline-variant transition-all">
+                            Bookmarks
+                        </button>
+<button class="px-4 py-2 rounded hover:bg-surface-container-lowest/50 font-label-md text-label-md text-on-surface-variant transition-all">
+                            Following
+                        </button>
+</div>
+</div>
+<!-- Bento Grid of Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden hover:shadow-sm transition-shadow group flex flex-col h-full">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A vibrant community garden project with people planting vegetables in raised beds. Sunny day, modern eco-friendly aesthetic, high-quality documentary style photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_re3i6j_YLiOill55r1EXtj9s1RCca6bHUwMReLjFMqyCQ0RLp1vkyunz03t4KJ56pVl7Aca4409ZF8i8OSSj-U9J_arj22bTwqgYwNojVvK9Yc8BypT_CBBjBa-zfUrjUERQJn-KFOUOZ2rwRwtscnMrkNls50rrVmAU5ElNtAB_TqQocDYRD4UIdZFRs0P3U9fwFOqOUb1nrpqQmlwBJSJk10AMpBaShaByjO1_koQkZa2Ad5NK_XXIPzjkjtGRXffW1gCb088">
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur text-primary hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+<span class="absolute top-3 left-3 px-2 py-1 bg-surface-container-lowest/90 backdrop-blur rounded text-[10px] font-semibold text-primary uppercase tracking-wider">Environment</span>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 line-clamp-2">Urban Oasis Community Garden</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 line-clamp-2 flex-1">Creating accessible green spaces in downtown areas for sustainable food production and community gathering.</p>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">$12,400 raised</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">62%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden hover:shadow-sm transition-shadow group flex flex-col h-full">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Students using modern laptops in a bright, clean classroom. Focus on digital literacy and education technology. Professional lighting, modern educational setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAojW99-6PbA2mBVumCOzBx6pCRzUQWTPVGAbURvhtN6Zkt0Ql3MUViIJ5acCmRDvvwSpWuhn4slGVFg5ymxbJG8K2VE-aSIo74yDzPMwGAGptzKA58cTEzTBJDp-gEQrO2ibiJ1PKj-j5ga-7Mw5qFsp5ZCHQuQoaX0WdeyNH4_wmsw8Jb8X78wMmR33Gcb_Qa3drqJNmCVnceNjxIqtiEQovt_4tSprW1kN-kxeuxLpNAgRZLCZfvJu2j4gB1_ztqHxim59BVFh0">
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur text-primary hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+<span class="absolute top-3 left-3 px-2 py-1 bg-surface-container-lowest/90 backdrop-blur rounded text-[10px] font-semibold text-blue-600 uppercase tracking-wider">Education</span>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 line-clamp-2">Tech Access for Rural Schools</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 line-clamp-2 flex-1">Providing laptops and internet access to underserved educational districts to bridge the digital divide.</p>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">$45,000 raised</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">90%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden hover:shadow-sm transition-shadow group flex flex-col h-full">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Clean water initiative in a developing region. A modern well pump with clear water flowing. Documentary style, hopeful mood, bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO82E2WaD53CK3CWJucJJztO8AhHA0sBNm1JDxHaZwklrefnLUGRaVQ5NAv00-hcxio2BBzgsY2-eJtaQjG5Ff3jrC-ypKmMiKQLCd61A0y-w9gPJXqzoEZ2-Tv80NoE_EhU0orjt6mB4dXQfsaZ5KM_1hZhxpgZ1NV9OghAbhEdgymbfJhIopHXApzuBOpeawwhixPDajR_vQF1UJx7IPeOqewyKPTBnmAiSFQjVCZiR1S5Lejc55cgmDaNgq53cgplDjZguAhH8">
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur text-primary hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+<span class="absolute top-3 left-3 px-2 py-1 bg-surface-container-lowest/90 backdrop-blur rounded text-[10px] font-semibold text-teal-600 uppercase tracking-wider">Health</span>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 line-clamp-2">Clean Water Initiative 2024</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 line-clamp-2 flex-1">Building sustainable water filtration systems for remote villages requiring immediate infrastructure support.</p>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">$8,200 raised</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">32%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 32%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden hover:shadow-sm transition-shadow group flex flex-col h-full">
+<div class="h-40 w-full relative overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A modern animal shelter facility with clean glass enclosures and happy rescue dogs. High key lighting, clinical but warm aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATInxqRz46-gYjm65EuHZDi4K378-D8SZD4bPC-jzumRew4UrCpzM8VnanfcosTJFLP_Uf823PbRwQtAueCM7OlZNX91pTfj7sypv4QmjA6iQJx2NCbmiTYDq8jf0gW6_RLsRO9zRXb2o-couTVLLvTJAqZzzegPJ2zEgyLvKZxdKv_skH3DkKb2XpZKmwB_2-I8kpwAVIsLW6IB27SgxYkY4SzInbOImVitM9vriKtrLrvDqAsoCPYAMe1_0IEV4va1B5vFCe3Jc">
+<button class="absolute top-3 right-3 p-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur text-primary hover:bg-surface-container-lowest transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+<span class="absolute top-3 left-3 px-2 py-1 bg-surface-container-lowest/90 backdrop-blur rounded text-[10px] font-semibold text-orange-600 uppercase tracking-wider">Animals</span>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 line-clamp-2">Regional Rescue Shelter Renovation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 line-clamp-2 flex-1">Upgrading medical facilities and expanding capacity for the county's primary animal welfare center.</p>
+<div class="mt-auto">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-sm text-label-sm text-primary">$150,000 raised</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">100%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

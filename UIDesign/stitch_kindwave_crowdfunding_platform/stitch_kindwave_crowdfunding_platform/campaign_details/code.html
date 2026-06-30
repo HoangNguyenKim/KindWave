@@ -1,0 +1,283 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Campaign Details - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#4ae176",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "primary-fixed": "#6bff8f",
+                        "outline-variant": "#bccbb9",
+                        "primary-container": "#22c55e",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container": "#e5eeff",
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary-fixed": "#ffdbca",
+                        "on-primary-container": "#004b1e",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#4ae176",
+                        "on-secondary-fixed": "#001a42",
+                        "on-error": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-tint": "#006e2f",
+                        "inverse-surface": "#213145",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "on-primary-fixed": "#002109",
+                        "on-error-container": "#93000a",
+                        "primary": "#006e2f",
+                        "background": "#f8f9ff",
+                        "secondary": "#0058be",
+                        "surface-container-high": "#dce9ff",
+                        "secondary-container": "#2170e4",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface-variant": "#3d4a3d",
+                        "tertiary-container": "#ff8e4d",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "on-tertiary-container": "#6d2d00",
+                        "on-secondary-fixed-variant": "#004395",
+                        "tertiary": "#9d4300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xl": "80px",
+                        "max-width": "1280px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "margin-desktop": "32px",
+                        "sm": "12px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .progress-bar-glow { box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar from JSON -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl fixed top-0 w-full h-[72px] shadow-sm z-50">
+<div class="flex justify-between items-center h-[72px] px-gutter max-w-max-width mx-auto">
+<div class="flex items-center gap-md">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">KindWave</a>
+<div class="hidden md:flex gap-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed-dim font-semibold border-b-2 border-primary hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Campaigns</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Categories</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<!-- Search Icon placeholder since 'search_bar: on_right' is in JSON but no explicit HTML structure provided -->
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hidden md:block px-4 py-2 text-primary font-label-md text-label-md hover:bg-surface-variant/50 rounded-lg transition-colors">Login</button>
+<button class="px-4 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity shadow-sm">Start a Campaign</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[104px] pb-xl px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left Column: Primary Content (8 cols on desktop) -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-lg">
+<!-- Campaign Title & Organizer Header -->
+<div class="flex flex-col gap-md">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background">Provide Clean Drinking Water to Rural Villages</h1>
+<div class="flex items-center gap-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A detailed headshot portrait of a smiling young woman wearing a casual green shirt outdoors. The background is softly blurred showing nature. Bright, optimistic lighting, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEqj3nCN71HG0kfiTYszQoGJMc-B5QyUb8c6vATxUgDNwdBOKVcUfmVYsTi9DTO2wpx9yDAPz4l0IEd9tvkcB1OCiFjtWbVFAU6TpsBwR-Wpyb8hUJ3HEUiGdGZ5mL8SUMK4we5wenTUUWPzY1jmpG1e0Wk6R_SCo-1EtCjruwwBKCkzM06Bymt8c8kJ5-4VE1K-ioHM3Vq9G0qgB-x7ZenyJHbJCWSbGo2o2C6KPRKuUKQmxEn3xDiqL6kNHww14gXgkmZWxzgbA">
+<div class="flex items-center">
+<span class="font-label-md text-label-md text-on-background">Organized by Sarah Jenkins</span>
+<span class="material-symbols-outlined text-[16px] text-secondary ml-1" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+</div>
+<!-- Hero Image/Video -->
+<div class="w-full rounded-xl overflow-hidden shadow-sm border border-outline-variant/30 aspect-video relative group">
+<img class="w-full h-full object-cover" data-alt="A high-quality, emotionally resonant wide-angle photograph of children smiling and gathering around a newly installed water pump in a rural village. The lighting is golden hour, casting long soft shadows and emphasizing themes of hope, collective action, and optimistic reliability. Corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEc9e4oTWmiXQyn4sO-F2Ow0dBzHdT3v7Eny0ZkR0vsPsn49tWxDN-StQMwLrycAbufnNBYbyUMwx9076VhyfITspodbp3N_slW7epM5LIDsnzDoNqKo9t0wpmQpYeGJ2ScXx7j25F_9-y9U-2uB-_rpOZck4jN3uxmn7xwroWBavy1WESspjlwruKFUKLf9TfxiuB_OK0w07GqLRihfofGCEpAYKILSElrwlrmUVOOnoRj7MUCqZvhG4e9bnlQR14uI6J-S0t-H8">
+<!-- Play button overlay for video implication -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors cursor-pointer">
+<div class="w-16 h-16 bg-surface/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Campaign Story -->
+<section class="bg-surface-container-lowest p-md md:p-lg rounded-xl border border-outline-variant/30 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-shadow">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-md">The Story</h2>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-md">
+<p>Access to clean water is a fundamental human right, yet thousands in the rural district of Manya still walk miles every day to collect water from unsafe sources. This campaign aims to change that.</p>
+<p>We are raising funds to drill 5 new solar-powered boreholes. These sustainable water systems will provide clean, reliable drinking water to over 2,500 residents, drastically reducing waterborne illnesses and freeing up hours previously spent walking for water, allowing children to attend school regularly.</p>
+<p>Every dollar donated goes directly toward the drilling equipment, materials, and community training to ensure the long-term maintenance of the pumps. Together, we can create a ripple effect of health and opportunity.</p>
+</div>
+</section>
+<!-- Facebook-style Comments Section -->
+<section class="bg-surface-container-lowest p-md md:p-lg rounded-xl border border-outline-variant/30 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+<h3 class="font-headline-md text-headline-md text-on-background mb-md">Words of Support (12)</h3>
+<!-- Comment Input -->
+<div class="flex gap-sm mb-lg">
+<img class="w-8 h-8 rounded-full border border-outline-variant/30 flex-shrink-0" data-alt="A generic user profile avatar showing a silhouette placeholder icon in light grey on a white background. Minimalist corporate modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOAMZvVszBhdtKn3D3OcoJjHhj2_JD2KZx96Wtun0vROM_2A_eoFVShyw9NSnfwbeLOBSkoPc7kGjGTSO4Afml5dmLB2UAZaorMgtG0tThrieV1MCT-RtiX7qUzKESourQ-W5nnQPZOu_m8bt8yaRsvgeM8FGmoWnoBkfbqMGGjZ3tAvSbwyde4CU_MnIvpWicxDPvJOO6bC7cb8ALXlqR-UsvmbgNC50SobDnCHAn2ofnZJiuaMMq_VfCBs5onZW_F_0q9Ub42TI">
+<div class="flex-grow">
+<textarea class="w-full bg-[#F1F5F9] border-none rounded-lg p-sm font-body-md text-body-md text-on-background focus:ring-2 focus:ring-primary/50 resize-none" placeholder="Leave a comment of support..." rows="2"></textarea>
+<div class="flex justify-end mt-xs">
+<button class="px-4 py-2 bg-secondary text-on-secondary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity">Post Comment</button>
+</div>
+</div>
+</div>
+<!-- Comment Thread -->
+<div class="space-y-md">
+<!-- Comment 1 -->
+<div class="flex gap-sm">
+<img class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-1" data-alt="A detailed headshot portrait of a middle-aged man with glasses smiling, indoors. Optimistic lighting, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc9CLAg0QoapcL5p534qJ2YG8kEmkBBjGrOrSPIe30aLMvyi_4oV1fcxB6mok1bF3coZqkIriCeZGzJtmaJIEHfJQ2yPM1WskCIAfbqBcmbqEiJkTB_erU9wrCS2IpPEXHiY2FNpiFifRlIrw57LzQjRcBjqYVkaxqA8k8YBH6UVAueUC00DtEcs5AvBsW4NzOHOmHb3Xd8iwqeAo-j_kA3sDjq8WGnTce_0_ibytK_zEVCo1M2_W47X5u5LlNnXpjK9y5bEEj4bo">
+<div>
+<div class="bg-[#F1F5F9] p-sm rounded-2xl rounded-tl-none inline-block max-w-[90%]">
+<div class="font-label-md text-label-md text-on-background font-bold mb-xs">David Miller <span class="text-on-surface-variant font-normal text-[12px] ml-2">2 hours ago</span></div>
+<div class="font-body-md text-body-md text-on-surface-variant">Such an important cause! Proud to support this initiative. Keep up the great work, Sarah.</div>
+</div>
+<div class="flex gap-sm mt-xs ml-2">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">Like</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">Reply</button>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="flex gap-sm">
+<img class="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-1" data-alt="A detailed headshot portrait of a young woman with short hair, outdoors. Optimistic lighting, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3IffUIecY9LDad6RFqdeg7GGk4aChd2gV1P7DsqJaKYpEue7B0cYenOS5xmlktQQeWOnZOrNcYJLbbm6NnofYzLYArN-IoHgOE7FwajkLbeTCkqI7kCSyMlVL-hQHOt5UFJVHeI4WtBcz8VXAWl5uTrelYE-vaGQOuQ9UbHj-i1B3afZiMz_aPuT-_M5GStJuKchD5EBiMFxIoJuXUpuD2A-vj3JNxHRLh7rCDJlM4RtFcsNXAxwxCly6UcCQT09eosThXlciAx4">
+<div>
+<div class="bg-[#F1F5F9] p-sm rounded-2xl rounded-tl-none inline-block max-w-[90%]">
+<div class="font-label-md text-label-md text-on-background font-bold mb-xs">Emily Chen <span class="text-on-surface-variant font-normal text-[12px] ml-2">5 hours ago</span></div>
+<div class="font-body-md text-body-md text-on-surface-variant">Shared with my network. Hope you reach the goal soon!</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Sidebar (4 cols on desktop) -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-lg">
+<!-- Sticky Donation Card -->
+<div class="sticky top-[104px] bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/30 shadow-[0_4px_20px_rgba(0,0,0,0.04)] flex flex-col gap-md">
+<!-- Raised Amount & Goal -->
+<div>
+<div class="font-headline-lg text-headline-lg text-on-background font-bold">$12,450 <span class="font-body-md text-body-md font-normal text-on-surface-variant">raised of $20,000 goal</span></div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-[#F1F5F9] h-[12px] rounded-full overflow-hidden relative">
+<div class="bg-primary-container h-full rounded-full w-[62%] relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/30 progress-bar-glow rounded-r-full"></div>
+</div>
+</div>
+<!-- Donor Stats -->
+<div class="font-label-md text-label-md text-on-surface-variant">
+                    342 donors <span class="mx-2">•</span> 15 days left
+                </div>
+<!-- Actions -->
+<div class="flex flex-col gap-sm mt-sm">
+<button class="w-full py-3 bg-tertiary-container text-on-tertiary-container font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity shadow-sm font-bold text-center flex justify-center items-center gap-2">
+                        Donate Now
+                    </button>
+<button class="w-full py-3 bg-surface text-on-surface border border-outline-variant/50 font-label-md text-label-md rounded-lg hover:bg-surface-variant/30 transition-colors font-bold text-center flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span> Share
+                    </button>
+</div>
+<!-- Recent Donors List in Sidebar -->
+<div class="mt-md border-t border-outline-variant/20 pt-md">
+<h3 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-sm">Recent Donors</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-sm">JS</div>
+<div class="flex-grow">
+<div class="font-label-md text-label-md text-on-background">John Smith</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Recent</div>
+</div>
+<div class="font-label-md text-label-md text-on-background font-bold">$100</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-sm">A</div>
+<div class="flex-grow">
+<div class="font-label-md text-label-md text-on-background">Anonymous</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">2 hrs ago</div>
+</div>
+<div class="font-label-md text-label-md text-on-background font-bold">$50</div>
+</div>
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A detailed headshot of a smiling older woman. Optimistic lighting, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHk65U2MM-EU4HjkOsaHrlxuOYZWcqjA7jLj8sSCVYqeoC8PAtw16GJ_qPctI6QPPHenx6VvKLW4ksgOJzEMAvNUucC-KCAEJi6-smOWzmzQNipCIZl1q9X7qG-tHqTMMBUzkQvCWmXsYUGizH9rKRHJjxrxeZ53dB9voGs_v29KBo0bitzJkJrhUEN89CK6SyoubItrMS5yOMCMwun-gpIMFdr5WmwG_qhmsXxGmEdJ4AAcl70ljHRCQFeCu73EO0Ac0VMP_G7kE">
+<div class="flex-grow">
+<div class="font-label-md text-label-md text-on-background">Mary Johnson</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">5 hrs ago</div>
+</div>
+<div class="font-label-md text-label-md text-on-background font-bold">$250</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer from JSON -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low w-full py-lg border-t border-outline-variant mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md px-gutter max-w-max-width mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim mb-sm">KindWave</div>
+<div class="font-label-md text-label-md text-on-surface-variant">© 2024 KindWave. All rights reserved.</div>
+</div>
+<div class="col-span-1 md:col-span-2 flex flex-col md:flex-row gap-md md:gap-lg md:justify-end">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Privacy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave - Spread Kindness, Build Hope</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#4ae176",
+                      "tertiary-fixed-dim": "#ffb690",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "primary-fixed": "#6bff8f",
+                      "outline-variant": "#bccbb9",
+                      "primary-container": "#22c55e",
+                      "surface-bright": "#f8f9ff",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container": "#e5eeff",
+                      "on-primary-fixed-variant": "#005321",
+                      "surface-variant": "#d3e4fe",
+                      "tertiary-fixed": "#ffdbca",
+                      "on-primary-container": "#004b1e",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#341100",
+                      "surface-container-low": "#eff4ff",
+                      "inverse-primary": "#4ae176",
+                      "on-secondary-fixed": "#001a42",
+                      "on-error": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface-tint": "#006e2f",
+                      "inverse-surface": "#213145",
+                      "on-background": "#0b1c30",
+                      "on-tertiary-fixed-variant": "#783200",
+                      "on-primary-fixed": "#002109",
+                      "on-error-container": "#93000a",
+                      "primary": "#006e2f",
+                      "background": "#f8f9ff",
+                      "secondary": "#0058be",
+                      "surface-container-high": "#dce9ff",
+                      "secondary-container": "#2170e4",
+                      "on-secondary-container": "#fefcff",
+                      "on-surface": "#0b1c30",
+                      "secondary-fixed": "#d8e2ff",
+                      "surface-dim": "#cbdbf5",
+                      "on-surface-variant": "#3d4a3d",
+                      "tertiary-container": "#ff8e4d",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#6d7b6c",
+                      "on-tertiary-container": "#6d2d00",
+                      "on-secondary-fixed-variant": "#004395",
+                      "tertiary": "#9d4300"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "xl": "80px",
+                      "max-width": "1280px",
+                      "base": "8px",
+                      "margin-mobile": "16px",
+                      "md": "24px",
+                      "lg": "48px",
+                      "margin-desktop": "32px",
+                      "sm": "12px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .ambient-shadow-level-1 {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #E2E8F0;
+        }
+        
+        .ambient-shadow-level-2:hover {
+            box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full h-[72px] bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50">
+<div class="flex justify-between items-center h-[72px] px-gutter max-w-max-width mx-auto">
+<div class="flex items-center gap-md">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">
+                    KindWave
+                </a>
+<!-- Search Bar Placeholder -->
+<div class="hidden md:flex items-center bg-surface-container-lowest border border-outline-variant rounded-full px-sm py-xs">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs text-[20px]" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface w-[200px] py-0 h-6 outline-none" placeholder="Search campaigns..." type="text">
+</div>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-semibold border-b-2 border-primary active:scale-95 duration-200" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Campaigns</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Categories</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">About</a>
+</div>
+<div class="flex items-center gap-md">
+
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary/90 transition-colors">Start a Campaign</button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[72px]">
+<!-- Hero Section -->
+<section class="relative bg-surface-container-lowest py-xl overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20">
+<!-- Background pattern placeholder -->
+<div class="bg-cover bg-center w-full h-full" data-alt="A subtle, optimistic light-mode background pattern featuring soft, organic geometric shapes intersecting. The palette is predominantly soft white and pale cream, with very faint, translucent washes of Kindness Green and soft blue. The overall mood is uplifting, airy, and modern Corporate Minimalist." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzP_-8Ms-RNWppHvnxBOWMde4ujuILweDaU7Dh0bkIiWXez87Pg2KDiJ-pvoPQen92uESJ4oWJbtTG2MivGF9xJekIOodMP65l5nB3mVV5xpzZUuwR1e3byzp1BaSRwcHsgbdo5gfpMboT_Bv6d_peX-BzPe6NSTPD1JayyKzj3i_Gg4Qs3uVqiDLwXdxqAw12mjHVjzCydK7k-zOaylKimU6bMNWOHiOjH6yANxU7ri3ZMq92s4vDTYtdirgwycdyH2z4XphgM9c')"></div>
+</div>
+<div class="relative z-10 max-w-max-width mx-auto px-gutter grid grid-cols-1 md:grid-cols-12 gap-lg items-center min-h-[614px]">
+<div class="md:col-span-6 space-y-lg">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-background">
+                        Spread Kindness, <br>
+<span class="text-primary">Build Hope</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        Connect communities through trusted and transparent crowdfunding campaigns.
+                    </p>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-full p-sm max-w-md shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant ml-sm mr-xs" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full outline-none" placeholder="Search for campaigns..." type="text">
+<button class="bg-primary text-on-primary font-label-md px-md py-sm rounded-full ml-sm hover:bg-primary/90 transition-colors">Search</button>
+</div>
+<div class="flex flex-wrap gap-md">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-md rounded-lg hover:bg-primary/90 transition-colors shadow-sm text-lg">
+                            Start a Campaign
+                        </button>
+<button class="bg-surface-container text-on-surface font-label-md text-label-md px-lg py-md rounded-lg hover:bg-surface-variant transition-colors border border-outline-variant">
+                            Explore Campaigns
+                        </button>
+</div>
+<div class="flex items-center gap-sm pt-md border-t border-outline-variant/30">
+<div class="flex -space-x-sm">
+<img class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small, circular avatar portrait of a smiling young woman with dark curly hair in a bright, modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ9TQMo2_3ePKHvgy6iwDjOEiDRuqck0LnEYqvB2LFTGVJ4ncg4lAMJVlI2g2hE-yX2CBb4BAeSoxCQuxpUoEF49PJq8PculcxZZwsODZiKG2TEYSC_lfybmEUbFSZQbiohC3JfYFWxCuCA25caLzde1xrzrilJmqIGLLYYZ48vTy4jz3xEiSv7ggW4NjKFJPDmC0_8nGfVj5G3zzzd-cX3gFDzAIQkHPdTx_Z7DHUveonFUaK6Dw7JpTwymWZB2UnJ_SVfmceWCo">
+<img class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small, circular avatar portrait of an older man with glasses looking thoughtful in a natural light setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNK22-rRXoqHsY-6g6xQI9KRZg9RJfrdKFjfNaiRlwHMhXlvleDfKSLx0zt7jo2slRDVPanMb0kOxEDuQgK2E5UPj5QiS-lrp1c3CfXP8qgYRkjav7hA8_ugUuzpVznLVmPJ5o422Acb49oVkCpJwSLfm28eJbF25jIENBiL31TT0JWWimnnwzvsEqIV71y7l8kg37NupDiIeQ1002gU5IdG-eK4l3yXrAyG3gKv2oXtg8-V2Jlq6WJO5gBkFDE7_ka5D8SLfzn7I">
+<img class="w-10 h-10 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small, circular avatar portrait of a person of color smiling brightly against a soft green background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNZrkVZqeJ9Vq6JaNShAHYDCvbcqb38H9BVsm4wxTCFbawf95ajqia28q_xjv-b8nLEDIXBZgP7P2ohZY0e2sAwMeNoGpf7taj7bsnWeH4S0DN_hU186LT1Sya2lTb0ivRsYb_6T8yxUSR8y50EF3srzlacG8U3ujAOHvQR4T2_7Ewdqx9tnhAZscCoDs1kBQQdalPEfyAUk8uq5LcHDFlvQuAgIqBbkeWM4zyal2KNGB4J0qxDc3_fVprkQJLBM1eI-KzjGvwdng">
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Join 50,000+ active donors this month.</p>
+</div>
+</div>
+<div class="md:col-span-6 relative h-[400px] md:h-[500px] rounded-xl overflow-hidden ambient-shadow-level-1">
+<img class="w-full h-full object-cover" data-alt="A high-quality, professional photograph of a diverse group of community volunteers planting trees in an urban park. The lighting is golden-hour sunshine, casting warm, optimistic light. The mood is collaborative and joyful. The visual style is modern, documentary-style photography with a shallow depth of field focusing on hands in the soil." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOcZzTEexEK6_T3QGauoA4LCAIa5dju0Ic7bRzJPpeNoaZDNJvGdn1RIlOVH1CV8_ACYW-eqaVYiqJShzV4Kgn2EVA84FqsE7CZAkhFxcYMvf7weDpuAfCKpbRiZ2IjGXe-aFVFgp867YXCR_w72vpzRSfHsqHzMfqDE-FSmowCF70-XY2xn42FppZQhm-1LM792cMXnJik58UEX6moOgEQFnto8drw524XF2O_uKzke_SOCcpVYKPF-Kki2cCpnnVFAzsz-Q7VQw">
+<!-- Floating Stat Badge -->
+<div class="absolute bottom-md left-md bg-surface-container-lowest/90 backdrop-blur-md p-md rounded-lg shadow-sm border border-outline-variant flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined icon-fill text-[24px]" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Total Impact</p>
+<p class="font-headline-md text-headline-md text-on-background">$12.4M Raised</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Section -->
+<section class="bg-surface-container-low py-xl border-y border-outline-variant/30">
+<div class="px-gutter max-w-max-width mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-lg text-center text-on-background">Explore Categories</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-sm">
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">❤️</div>
+<div class="font-label-md text-on-surface">Medical Assistance</div>
+</a>
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">📚</div>
+<div class="font-label-md text-on-surface">Education</div>
+</a>
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">🌪️</div>
+<div class="font-label-md text-on-surface">Natural Disaster</div>
+</a>
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">🐶</div>
+<div class="font-label-md text-on-surface">Animal Rescue</div>
+</a>
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">🌳</div>
+<div class="font-label-md text-on-surface">Environment</div>
+</a>
+<a class="bg-surface-container-lowest p-md rounded-xl text-center border border-outline-variant hover:border-primary transition-colors hover:-translate-y-1 block ambient-shadow-level-2" href="#">
+<div class="text-[32px] mb-sm">🤝</div>
+<div class="font-label-md text-on-surface">Community Support</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Featured Campaigns Section -->
+<section class="py-xl px-gutter max-w-max-width mx-auto">
+<div class="flex justify-between items-end mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Featured Campaigns</h2>
+<a class="text-primary font-label-md hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow flex flex-col">
+<img alt="Medical assistance campaign" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEWyap12EmrgQDnOwz5I91mjeCzigcZj1b_qYM48IXQGXYDGuwg1LQDFooGZHBU941JlOpzKd4o1vjnDKbZnUQFxewjvXLrg-o1pEmcGa-b4to2aBQQAsMwdtHAM-mHp9g_sLaRH0S6PSDeVfGYDAQ5xjeO9eeD021g-ln1GltEQkDZ8g6Fj6RUfaEHU61qfjTgiYfHgXJhGna-CmI3uld7n5WLPlwtzUUo3wz6JN1BgORBylHNdaql8qsBrOntpnAQi0WWb8kYFA">
+<div class="p-md flex flex-col flex-grow">
+<span class="text-primary font-label-sm uppercase tracking-wider">Medical Assistance ❤️</span>
+<h3 class="font-headline-md text-on-background mt-sm mb-xs">Life-Saving Surgery for Emma</h3>
+<div class="flex-grow"></div>
+<div class="w-full bg-surface-variant rounded-full h-2 my-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+<div class="flex justify-between text-label-md text-on-surface-variant mb-md">
+<span class=""><strong class="text-on-surface">$42,500</strong> raised of $50,000</span>
+<span class="">5 days left</span>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md py-sm rounded-lg hover:bg-primary-container/90 transition-colors">Donate Now</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow flex flex-col">
+<img alt="Education campaign" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLs9fWdZkVnRKqwEJdmOibHLEQM8Vo12GPFAgXv4EWcpj0VIqsSpblO-_p0kIOPXI1DngKyX1y7sifEwRMR7ZW_YCUvIQChn5Tm-tBIKmrZySnfegYyn3wDgY6s8ZFgu0TTk617-1wVVQbr3Nd0QvzSNsLq88hIyR42rV7Hwq9VDFKzA8-SiLGnx6htxjoq-dwvBKa3Gsoa0l_e-bZPWCsgFGfbhNDe28uoNeSBxyLhvPMlDwewPhCxLYDVATyvkCKt_-HsiTb6yQ">
+<div class="p-md flex flex-col flex-grow">
+<span class="text-primary font-label-sm uppercase tracking-wider">Education 📚</span>
+<h3 class="font-headline-md text-on-background mt-sm mb-xs">Laptops for Rural Students</h3>
+<div class="flex-grow"></div>
+<div class="w-full bg-surface-variant rounded-full h-2 my-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+<div class="flex justify-between text-label-md text-on-surface-variant mb-md">
+<span class=""><strong class="text-on-surface">$4,500</strong> raised of $10,000</span>
+<span class="">21 days left</span>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md py-sm rounded-lg hover:bg-primary-container/90 transition-colors">Donate Now</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant hover:shadow-md transition-shadow flex flex-col">
+<img alt="Environment campaign" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKRvbDZdo2js1YLMBupT4NXdM1kTKFjWWWfWidYpScIT71ZEUnx-1kRMpA_Wa8l_0OhRCYfZNP5jdk51ZnO-WLdAJKvlMsPA93CgFaodWtlLpU2kBCkN8eFqneCka55R3siY9ActoX0YEtG1qCwFt3MhZpjj_GePQulIMi_IatI_C-IuxAqdKgTEcpoWXPwwUul-eXt8mXNZs8JO6Q6CWy4r7L8hc0-dbnwEi7DL9TULmvqvgNXBikyIsTwLlpukHbhZsMi1y95fw">
+<div class="p-md flex flex-col flex-grow">
+<span class="text-primary font-label-sm uppercase tracking-wider">Environment 🌳</span>
+<h3 class="font-headline-md text-on-background mt-sm mb-xs">Restore the Pine Valley Forest</h3>
+<div class="flex-grow"></div>
+<div class="w-full bg-surface-variant rounded-full h-2 my-sm overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+<div class="flex justify-between text-label-md text-on-surface-variant mb-md">
+<span class=""><strong class="text-on-surface">$12,000</strong> raised of $20,000</span>
+<span class="">14 days left</span>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md py-sm rounded-lg hover:bg-primary-container/90 transition-colors">Donate Now</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Section -->
+<section class="bg-primary text-on-primary py-xl my-lg">
+<div class="px-gutter max-w-max-width mx-auto grid grid-cols-1 md:grid-cols-3 gap-lg text-center">
+<div>
+<div class="font-display-lg text-display-lg mb-xs font-bold text-primary-fixed">15,234</div>
+<div class="font-body-lg text-primary-fixed-dim">Total Campaigns</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg mb-xs font-bold text-primary-fixed">$42.8M</div>
+<div class="font-body-lg text-primary-fixed-dim">Total Donations</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg mb-xs font-bold text-primary-fixed">1.2M+</div>
+<div class="font-body-lg text-primary-fixed-dim">People Helped</div>
+</div>
+</div>
+</section>
+<!-- Success Stories Section -->
+<section class="py-xl px-gutter max-w-max-width mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-lg text-on-background text-center">Success Stories</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Story Card 1 -->
+<div class="flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant ambient-shadow-level-2">
+<img alt="Students in a classroom" class="md:w-2/5 h-48 md:h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHSNfeP-sDBbxPwz-BVBxGtjyDQubHu311bZt59WmnnfoDQDzlmD2wy2dHeGqa-9iwKhHUcqiLkE-SuRRRpYFw54HBIOWRXjFgb5aLabhG5fwvkdYhlFgh2GYbXB3VsMjHstwf0cjy2jiACL7D9sYOHJ2dj6lygkrMFMk6GRR06efrFOBGf_nrKyS9nJrDId-bd4TNOVEzoiNWeET7eYrWDL_7j-BDZ1_80XqsiWauoXugV-XFq-YcK0vB4uLsRZqlPkbYnc5Q8Lc">
+<div class="p-md md:w-3/5 flex flex-col justify-center">
+<h3 class="font-headline-md text-on-background mb-sm">A New School for Hope Village</h3>
+<p class="text-body-md text-on-surface-variant mb-md flex-grow">"Thanks to generous donations from across the globe, we were able to build a safe and modern learning environment for over 200 children."</p>
+<a class="text-primary font-label-md hover:underline font-semibold flex items-center gap-xs" href="#">Read Full Story <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+</div>
+<!-- Story Card 2 -->
+<div class="flex flex-col md:flex-row bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant ambient-shadow-level-2">
+<img alt="Community gathering" class="md:w-2/5 h-48 md:h-auto object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4FUQnJix69ojAsk99lEl7vqXsL5sj1hbVch_W6IvcBzMr6Mhi-wuUvnE3qrzJ6zGN61at5Urzyl2FAi1CSao61-vyU7tn-JEeWfNfIbliURms3Ucj7lx974b1v0c2FOrGsYUKtfW1zrCt3W-xc8sYJVHkx4c4GyiswpBf3RPBCL0VmmBKADZTQrxGb-TqhxYpsPEHgA0rTapJ88VCXaESpKLB0cArbWw9m-wWIZgT9foEmj78MF6EhKGm-c1TNQ6R8vRjGgs6LaI">
+<div class="p-md md:w-3/5 flex flex-col justify-center">
+<h3 class="font-headline-md text-on-background mb-sm">Rebuilding After the Storm</h3>
+<p class="text-body-md text-on-surface-variant mb-md flex-grow">"When the hurricane hit, we thought we lost everything. KindWave's community helped us secure funds for temporary housing and essentials within days."</p>
+<a class="text-primary font-label-md hover:underline font-semibold flex items-center gap-xs" href="#">Read Full Story <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low w-full py-lg border-t border-outline-variant flat no shadows mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md px-gutter max-w-max-width mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-sm">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim text-xl">KindWave</span>
+<p class="font-label-md text-label-md text-on-surface-variant mt-sm">© 2024 KindWave. All rights reserved.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex justify-end gap-xl items-center flex-wrap">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">About</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Privacy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80" href="#">Terms</a>
+</div>
+</div>
+</footer>
+
+
+</body></html>

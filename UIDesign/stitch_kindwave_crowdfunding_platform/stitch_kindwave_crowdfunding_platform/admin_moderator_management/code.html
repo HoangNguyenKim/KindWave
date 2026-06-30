@@ -1,0 +1,300 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Admin - Moderator Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#22c55e",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary": "#006e2f",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "secondary": "#505f76",
+                        "outline-variant": "#bccbb9",
+                        "on-primary-fixed": "#002109",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary-container": "#004b1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "inverse-surface": "#283044",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#3d4042",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#a9acae",
+                        "on-background": "#131b2e",
+                        "inverse-on-surface": "#eef0ff",
+                        "tertiary": "#5c5f61",
+                        "inverse-primary": "#4ae176",
+                        "surface-bright": "#faf8ff",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "surface-variant": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface-tint": "#006e2f",
+                        "on-primary-fixed-variant": "#005321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-width": "260px",
+                        "margin-lg": "24px",
+                        "container-padding": "24px",
+                        "gutter-table": "16px",
+                        "margin-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Tonal Layering Utilities */
+        .level-0 { background-color: theme('colors.surface-container-lowest'); }
+        .level-1 { background-color: theme('colors.surface-container-low'); }
+        .level-2 { background-color: theme('colors.surface-container-lowest'); box-shadow: 0px 1px 3px rgba(0,0,0,0.1); border: 1px solid theme('colors.outline-variant'); }
+        
+        .dark .level-0 { background-color: theme('colors.surface-dim'); }
+        .dark .level-1 { background-color: theme('colors.inverse-surface'); }
+        .dark .level-2 { background-color: theme('colors.surface-container-highest'); border-color: theme('colors.outline'); box-shadow: 0px 2px 4px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body class="bg-background dark:bg-on-background text-on-surface dark:text-inverse-on-surface font-body-md text-body-md antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen py-margin-md px-margin-sm fixed left-0 top-0 w-sidebar-width border-r border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface z-50">
+<div class="mb-8 px-4 flex items-center gap-3">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</span>
+</div>
+<div class="flex flex-col gap-unit">
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span>My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>Create Campaign</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Donation History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span>Following Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-DEFAULT bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-container-padding w-full h-16 z-40 bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm sticky top-0">
+<div class="flex-1 hidden md:flex"></div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular profile picture of a professional user in a modern bright setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVP1QjE4M8d408xURkPfjpa-nPWzlQF4UoUQY-JJzSS8a1xjdJbZxTOffTS4Q_cv5e9R9jCIsCS5CtQmwP-8hc37qlcgfmIR4YJbWiSgV9Roz1Goh3UkuHfEg4VL6-8f0BYibZ5U_XTyJ_pwVGbVf_-9-GiYPqA39hiWpzlahGozbxGnHBEpuOVIwzgMNxbxGl_oGOrGiXiCmLri99VJv-Uxy7rcfNE85T5Lmtvbu-gW8N-hytV6dCkA_LK9DbmkTadudr2jX8yc8">
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 p-container-padding overflow-auto">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface dark:text-inverse-on-surface">Moderator Management</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant mt-1">Manage platform moderators and their permissions.</p>
+</div>
+<button class="bg-primary-container text-on-primary border-none rounded-DEFAULT px-4 py-2 font-label-md text-label-md flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add Moderator
+                </button>
+</div>
+<!-- Table Container -->
+<div class="level-2 rounded-lg overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low dark:bg-inverse-surface border-b border-outline-variant dark:border-outline font-label-md text-label-md text-on-surface-variant dark:text-surface-variant uppercase tracking-wider">
+<tr>
+<th class="py-3 px-gutter-table font-medium">Moderator</th>
+<th class="py-3 px-gutter-table font-medium">Assigned Regions / Categories</th>
+<th class="py-3 px-gutter-table font-medium">Permissions</th>
+<th class="py-3 px-gutter-table font-medium text-right">Active Since</th>
+<th class="py-3 px-gutter-table font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="bg-surface-container-lowest dark:bg-surface-dim divide-y divide-outline-variant dark:divide-outline">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A headshot of a friendly professional moderator with glasses in a well-lit modern office environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn_7Pf2pG_i4htv13dutOKdeGQoq69KUBZ3FjlI5do_46QIj915ti3cyv48tCk6tBxXz0qUDraAm-rwzD5Qnsx9Kuh6Vg4mqrVbiVsYlb4BPmAWteCin8PDLMzVkn33PDKSu1aWyhfugUlRrTnitdoo8VFh0_FcRR-HlBpw8XI9g9e1yoRhX1oulCqfRL-YWI_SmshGL4cRrfQjO3EDZzxnslRjiHbbtPy37Ms69wGHQrZo5HVpdkFOIgCIB4y3tLgtw0897m0uDU">
+</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface font-medium">Sarah Jenkins</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">s.jenkins@kindwave.org</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface">
+                                North America, Europe<br>
+<span class="text-on-surface-variant">Education, Disaster Relief</span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm bg-[rgba(59,130,246,0.1)] text-[#1E40AF] dark:bg-[#1E40AF] dark:text-[#E0E7FF]">Super Admin</span>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant text-right tabular-nums">
+                                Oct 12, 2022
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2">
+<button aria-label="Edit" class="text-secondary hover:text-primary dark:text-secondary-fixed-dim dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-secondary hover:text-error dark:text-secondary-fixed-dim dark:hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden flex items-center justify-center text-on-surface-variant font-label-md">
+                                        MR
+                                    </div>
+<div>
+<div class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface font-medium">Marcus Rodriguez</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">m.rodriguez@kindwave.org</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface">
+                                Latin America<br>
+<span class="text-on-surface-variant">Healthcare, Local Community</span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm bg-[rgba(34,197,94,0.1)] text-[#166534] dark:bg-[#166534] dark:text-[#DCFCE7]">Standard</span>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant text-right tabular-nums">
+                                Jan 05, 2023
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2">
+<button aria-label="Edit" class="text-secondary hover:text-primary dark:text-secondary-fixed-dim dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-secondary hover:text-error dark:text-secondary-fixed-dim dark:hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of an experienced platform moderator looking at the camera in a clean, minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyCJEP4ec9UOP6TJuMxP926J0x44cwSeUdwJiPfPMnP8gJ-LZqwpjaQ8bsbq8ekzifik2WjkvdYcPeEWgd_Z5lN5jj3zDSwSj2InPvi6a7gQSg861pilx2tagVQvpkjpj9nY34IjsqiMbBqkoFLqksKLbQTozzxjB178TTnxdPDQ4vX39CRX9aPkjj1AVjqhurttS527ZLFK26ENPrKqY52fZrhp66yqsrHOFPa9BXfyDaHluacwzB_bbt-D7PJeXrIphStOzkXY">
+</div>
+<div>
+<div class="font-body-md text-body-md text-on-surface dark:text-inverse-on-surface font-medium">Elena Rostova</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">e.rostova@kindwave.org</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface">
+                                Global<br>
+<span class="text-on-surface-variant">All Categories</span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-DEFAULT font-label-sm text-label-sm bg-[rgba(34,197,94,0.1)] text-[#166534] dark:bg-[#166534] dark:text-[#DCFCE7]">Standard</span>
+</td>
+<td class="py-3 px-gutter-table font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant text-right tabular-nums">
+                                Mar 22, 2023
+                            </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2">
+<button aria-label="Edit" class="text-secondary hover:text-primary dark:text-secondary-fixed-dim dark:hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-secondary hover:text-error dark:text-secondary-fixed-dim dark:hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

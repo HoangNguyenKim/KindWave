@@ -1,0 +1,419 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Donation History - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "secondary-fixed": "#d3e4fe",
+                            "surface-tint": "#006e2f",
+                            "surface-container-lowest": "#ffffff",
+                            "secondary": "#505f76",
+                            "on-secondary": "#ffffff",
+                            "on-error": "#ffffff",
+                            "inverse-surface": "#283044",
+                            "primary-container": "#22c55e",
+                            "on-tertiary": "#ffffff",
+                            "on-tertiary-fixed-variant": "#444749",
+                            "primary": "#006e2f",
+                            "surface-container-high": "#e2e7ff",
+                            "on-primary-fixed": "#002109",
+                            "tertiary-fixed-dim": "#c4c7c9",
+                            "surface": "#faf8ff",
+                            "error": "#ba1a1a",
+                            "tertiary-fixed": "#e0e3e5",
+                            "on-tertiary-container": "#3d4042",
+                            "surface-bright": "#faf8ff",
+                            "on-tertiary-fixed": "#191c1e",
+                            "on-surface": "#131b2e",
+                            "on-secondary-fixed": "#0b1c30",
+                            "surface-dim": "#d2d9f4",
+                            "on-primary": "#ffffff",
+                            "surface-container-highest": "#dae2fd",
+                            "on-primary-container": "#004b1e",
+                            "outline-variant": "#bccbb9",
+                            "secondary-fixed-dim": "#b7c8e1",
+                            "outline": "#6d7b6c",
+                            "tertiary-container": "#a9acae",
+                            "on-background": "#131b2e",
+                            "inverse-primary": "#4ae176",
+                            "surface-container": "#eaedff",
+                            "inverse-on-surface": "#eef0ff",
+                            "on-error-container": "#93000a",
+                            "primary-fixed-dim": "#4ae176",
+                            "on-primary-fixed-variant": "#005321",
+                            "surface-variant": "#dae2fd",
+                            "on-secondary-fixed-variant": "#38485d",
+                            "on-secondary-container": "#54647a",
+                            "secondary-container": "#d0e1fb",
+                            "tertiary": "#5c5f61",
+                            "background": "#faf8ff",
+                            "primary-fixed": "#6bff8f",
+                            "on-surface-variant": "#3d4a3d",
+                            "error-container": "#ffdad6",
+                            "surface-container-low": "#f2f3ff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "unit": "4px",
+                            "gutter-table": "16px",
+                            "margin-md": "16px",
+                            "sidebar-width": "260px",
+                            "margin-lg": "24px",
+                            "container-padding": "24px",
+                            "margin-sm": "8px"
+                    },
+                    "fontFamily": {
+                            "label-sm": ["Inter"],
+                            "body-md": ["Inter"],
+                            "headline-md": ["Inter"],
+                            "headline-sm": ["Inter"],
+                            "body-lg": ["Inter"],
+                            "label-md": ["Inter"],
+                            "headline-lg": ["Inter"],
+                            "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                            "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                            "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                            "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                            "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                            "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen w-sidebar-width py-margin-md px-margin-sm bg-surface text-primary font-body-md text-body-md border-r border-outline-variant fixed left-0 top-0 z-50">
+<div class="mb-margin-lg px-margin-sm flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary">KindWave</h1>
+<p class="font-label-sm text-label-sm text-secondary">Empower Change</p>
+</div>
+</div>
+<ul class="flex flex-col gap-1 flex-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span>My Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>Create Campaign</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-secondary-container text-on-secondary-container border-l-2 border-primary scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Donation History</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span>Bookmarks</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span>Following Campaigns</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-secondary hover:bg-surface-container-high transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-[260px] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-container-padding w-full h-16 z-40 bg-surface-container-lowest text-primary font-label-md text-label-md border-b border-outline-variant shadow-sm sticky top-0">
+<div class="flex-1 max-w-md">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-full focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 text-body-sm font-body-sm text-on-surface transition-all" placeholder="Search history..." type="text">
+</div>
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">KindWave</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-all cursor-pointer active:opacity-70 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a user in a well-lit office setting. The lighting is soft and bright, creating a clean, corporate aesthetic consistent with a modern web dashboard. The color palette features neutral tones with subtle green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIuB2FF2yvYd7lqI8l7sYAI7tFPYo_sxpEgLcoXpsOMMMH8KbdUgsUZHp7jXZzW_HjD6zcKjPCLtiMRaboDrF0vVnDzcK2Qhhd7s0bCdI4Adn7ZUbEH_wb42HLu6oL4USAxT67kPMcqJN8l2fCG5UEygj7TbciUkx3tkk3vvRkEiy_akhEVb_R2OsnzuE7A88vIG77zvKRdUx857-Qkp-b3NLdSku8230nGSIVeJ_zL0pIgVRJTBF1eZEGtuqDlNmXkbrpZ-b8_pA">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-container-padding">
+<div class="max-w-6xl mx-auto space-y-margin-lg">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Donation History</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Review and manage your past contributions.</p>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-3">
+<div class="relative">
+<select class="appearance-none bg-surface border border-outline-variant rounded-DEFAULT py-2 pl-4 pr-10 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+<option>All Time</option>
+<option>This Month</option>
+<option>Last Month</option>
+<option>This Year</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">calendar_today</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface border border-outline-variant rounded-DEFAULT py-2 pl-4 pr-10 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20">
+<option>All Statuses</option>
+<option>Success</option>
+<option>Pending</option>
+<option>Failed</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">filter_list</span>
+</div>
+<button class="flex items-center gap-2 bg-surface border border-outline-variant text-on-surface px-4 py-2 rounded-DEFAULT font-label-md text-label-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Stats Overview Bento -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined icon-fill text-[24px]">payments</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Donated</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">$4,250.00</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container/50 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined icon-fill text-[24px]">campaign</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Campaigns Supported</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">12</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-margin-md shadow-[0px_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined icon-fill text-[24px]">public</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Impact Region</p>
+<p class="font-headline-md text-headline-md font-bold text-on-surface">Global</p>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Campaign</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Visibility</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Receipt</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-surface-container-highest hover:bg-surface-container transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-DEFAULT object-cover border border-outline-variant" data-alt="A small, square thumbnail image showing a vibrant community garden bathed in bright sunlight. The image is clean, sharp, and fits a modern minimalist dashboard UI. Green and earthy tones dominate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKG9PEP2knAn5wxw3pI4mBV1upQ3wzjJIrwhN--8qEGNQAfUFPCOc6gfDU0cxTKpRZkeejkv25XjibVFCrCOFLktZQ0THpHYb96eZBMQFXCFVbqalxsqEVrNBHHLDrcsgKlLx43sy40VRcSkNYG0LoIhYBDTUFbqG94z3pivMMxxrdG4Y7LQ_6rtCNKhDWNnBeV2LmU3_HArtK1jrV_dNbRCIYBLkZ2ACTDWwlXZ7qu1IR-Jz60e77S6XYHVkFeihnmIh3VajwbjE">
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Urban Oasis Project</p>
+<p class="text-on-surface-variant text-[11px]">Community Garden</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant">Oct 24, 2023</td>
+<td class="py-3 px-gutter-table text-right font-medium text-on-surface">$250.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">public</span> Public
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#22C55E]/10 text-[#166534] font-label-sm text-[10px] uppercase tracking-wider">
+                                            Success
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-highest hover:bg-surface-container transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">school</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Tech for Tots</p>
+<p class="text-on-surface-variant text-[11px]">Education</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant">Oct 15, 2023</td>
+<td class="py-3 px-gutter-table text-right font-medium text-on-surface">$100.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">visibility_off</span> Anonymous
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#F59E0B]/10 text-[#92400E] font-label-sm text-[10px] uppercase tracking-wider">
+                                            Pending
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-highest hover:bg-surface-container transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-DEFAULT object-cover border border-outline-variant" data-alt="A small, square thumbnail image showing a pristine coastline with clear blue water and white sand. The lighting is bright and sunny, reflecting a clean, corporate environmental aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOxA-Fu46JiYkLjxn02W5zeV0VWJ6j-cQp39XqIE-EzqtDE6KlqzV7ztfgc1QPoRtxPoq4x1CjxlLLGkIFwcWeEIaRrdqMAsxPMlTJssQqOPvw7qMhIRLOJYvEL7CZRJzOdtSxy0mEkwqJe6AaK_bC5pquzUUadsLTZUN_zC8_TqxQJ7TrfuDPG7UkmxdagvuH_yBHtU-eNU31YXyyXoMnf63CU8nZYX37JQPH4zBLEQrpcMQc8qXS6fQIXz23T0zWGiQaqliTDSY">
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Ocean Cleanup Initiative</p>
+<p class="text-on-surface-variant text-[11px]">Environment</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant">Sep 02, 2023</td>
+<td class="py-3 px-gutter-table text-right font-medium text-on-surface">$500.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">public</span> Public
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#22C55E]/10 text-[#166534] font-label-sm text-[10px] uppercase tracking-wider">
+                                            Success
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-DEFAULT bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">local_hospital</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Global Health Fund</p>
+<p class="text-on-surface-variant text-[11px]">Healthcare</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant">Aug 18, 2023</td>
+<td class="py-3 px-gutter-table text-right font-medium text-on-surface">$1,000.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">public</span> Public
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-[#22C55E]/10 text-[#166534] font-label-sm text-[10px] uppercase tracking-wider">
+                                            Success
+                                        </span>
+</td>
+<td class="py-3 px-gutter-table text-right">
+<button class="text-secondary hover:text-primary transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-container-low border-t border-outline-variant px-gutter-table py-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 4 of 48 entries</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container-high transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT bg-primary-container text-on-primary-container font-label-sm text-label-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT border border-outline-variant bg-surface text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT border border-outline-variant bg-surface text-on-surface hover:bg-surface-container-high transition-colors font-label-sm text-label-sm">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-DEFAULT border border-outline-variant bg-surface text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

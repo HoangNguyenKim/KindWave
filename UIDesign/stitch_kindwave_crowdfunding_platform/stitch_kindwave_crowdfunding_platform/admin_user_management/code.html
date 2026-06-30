@@ -1,0 +1,428 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>User Management - Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-container": "#d0e1fb",
+                        "primary-container": "#22c55e",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "primary": "#006e2f",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7b6c",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "secondary": "#505f76",
+                        "outline-variant": "#bccbb9",
+                        "on-primary-fixed": "#002109",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-primary-container": "#004b1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "inverse-surface": "#283044",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#3d4042",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#a9acae",
+                        "on-background": "#131b2e",
+                        "inverse-on-surface": "#eef0ff",
+                        "tertiary": "#5c5f61",
+                        "inverse-primary": "#4ae176",
+                        "surface-bright": "#faf8ff",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "background": "#faf8ff",
+                        "surface-variant": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface-tint": "#006e2f",
+                        "on-primary-fixed-variant": "#005321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-sm": "8px",
+                        "unit": "4px",
+                        "sidebar-width": "260px",
+                        "margin-lg": "24px",
+                        "container-padding": "24px",
+                        "gutter-table": "16px",
+                        "margin-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for high-density feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-surface dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface font-body-md antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-screen w-sidebar-width border-r border-outline-variant dark:border-outline bg-surface dark:bg-inverse-surface hidden md:flex flex-col py-margin-md px-margin-sm z-50">
+<div class="px-3 mb-6 flex items-center">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</span>
+</div>
+<div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">campaign</span>
+<span class="font-body-md text-body-md">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+<span class="font-body-md text-body-md">Create Campaign</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span class="font-body-md text-body-md">Donation History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bookmark</span>
+<span class="font-body-md text-body-md">Bookmarks</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+<span class="font-body-md text-body-md">Following Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary border-l-2 border-primary scale-95 duration-150 ease-in-out cursor-pointer active:opacity-70" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-md text-body-md font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen relative">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-260px)] h-16 border-b border-outline-variant dark:border-outline shadow-sm bg-surface-container-lowest dark:bg-surface-dim flex justify-between items-center px-container-padding z-40 transition-all duration-200">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-64 hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-surface-variant text-sm">search</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-surface-container-low dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded text-body-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-colors dark:text-inverse-on-surface" placeholder="Search users..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, professional headshot of a person with short brown hair, wearing a dark blazer over a white shirt, against a soft, light gray background. Corporate aesthetic, well-lit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBf7NClqkswAYdR8zrdu_6tatLt1NvnarXcgLhJPLns9jgOeUuJOvxuVOyyPBg09ZbB98oBntL0CGmAWIWof01d3PiDJLwtqsi7gDmLIe4MAi2IOoqn2N8NSWTsCa-pCQzxnON8hg80FPmg3HPOBa5dICAKRmmOU0CmKqhruBEUKkhOLWKgbRQNXXc_exYG4jPjL3DjcjRgoMQBi1Aw4HXuBQmJMGKI3zYftEbkjSNZcPIf3AW-Om2ndNi0F9K895bxfHFtXeJlr4">
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 pt-16 p-container-padding flex flex-col gap-6 max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">User Management</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant mt-1">Manage platform access, roles, and status for all registered users.</p>
+</div>
+<button class="bg-primary-container text-white px-4 py-2 rounded font-label-md text-label-md hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                    Invite User
+                </button>
+</div>
+<!-- Filters & Actions Bar -->
+<div class="flex flex-col lg:flex-row justify-between gap-4 bg-surface-container-lowest dark:bg-inverse-surface p-4 rounded-lg border border-outline-variant dark:border-outline shadow-[0px_1px_3px_rgba(0,0,0,0.05)]">
+<div class="flex flex-wrap items-center gap-3 flex-1">
+<div class="relative w-full sm:w-auto">
+<select class="appearance-none pl-3 pr-8 py-1.5 bg-surface dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none min-w-[140px]">
+<option value="">All Roles</option>
+<option value="admin">Administrator</option>
+<option value="editor">Editor</option>
+<option value="viewer">Viewer</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm">arrow_drop_down</span>
+</div>
+<div class="relative w-full sm:w-auto">
+<select class="appearance-none pl-3 pr-8 py-1.5 bg-surface dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none min-w-[140px]">
+<option value="">All Statuses</option>
+<option value="active">Active</option>
+<option value="pending">Pending</option>
+<option value="banned">Banned</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm">arrow_drop_down</span>
+</div>
+<div class="relative w-full sm:w-auto hidden md:block">
+<input class="pl-3 pr-3 py-1.5 bg-surface dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" type="date">
+</div>
+<button class="text-secondary dark:text-secondary-fixed-dim hover:text-primary text-sm flex items-center gap-1 px-2 py-1.5 rounded hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]">filter_list_off</span>
+                        Clear
+                    </button>
+</div>
+<div class="flex items-center gap-2 border-t lg:border-t-0 lg:border-l border-outline-variant pt-3 lg:pt-0 lg:pl-4">
+<span class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant">1,204 users</span>
+<button class="p-1.5 border border-outline-variant rounded bg-surface hover:bg-surface-container-low text-on-surface-variant transition-colors" title="Export CSV">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest dark:bg-inverse-surface border border-outline-variant dark:border-outline rounded-lg overflow-hidden shadow-[0px_1px_3px_rgba(0,0,0,0.05)] flex flex-col flex-1">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant w-12">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant font-medium">User</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant font-medium hidden sm:table-cell">Role</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant font-medium hidden md:table-cell">Status</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant font-medium hidden lg:table-cell">Joined</th>
+<th class="py-3 px-gutter-table font-label-sm text-label-sm uppercase text-on-surface-variant dark:text-surface-variant font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high dark:divide-outline font-body-sm text-body-sm text-on-surface dark:text-inverse-on-surface">
+<!-- Row 1: Active Admin -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors group">
+<td class="py-3 px-gutter-table">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<img alt="" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A close-up portrait of a professional woman with glasses, smiling softly, lit by bright natural light, minimalist office background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4ieVlrHhWerLRlV_XaMcakxf6MxfAlTfRau33vjLpbOrlUaeKBee2US14T8cgKQEFI2TrJvy4jooMb-oB1aD0g-Fwf79fvSywr74Z_i1RU_GAQOV1su81nZM4-hW4aioKunaZ26OIXyjwqAslsXcqrzvkdSdOThUcLmgEUZZShVPaZ4GrSchh1N5oIxbyEfmbi5vny-KR-3XdXm_SCvdaxX-hAGpyzWWuBNYihcrOTlNoQ1NSG2fyjrTrLDd6XLQruWwdLx1BzDE">
+<div>
+<div class="font-medium text-on-surface dark:text-inverse-on-surface">Sarah Jenkins</div>
+<div class="text-on-surface-variant dark:text-surface-variant text-[12px]">sarah.j@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table hidden sm:table-cell">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-highest dark:bg-surface-dim text-on-surface dark:text-inverse-on-surface text-[11px] font-medium border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]">admin_panel_settings</span>
+                                        Admin
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table hidden md:table-cell">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#dcfce7] text-[#166534] dark:bg-[rgba(34,197,94,0.1)] dark:text-[#4ade80]">
+                                        Active
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant hidden lg:table-cell">
+                                    Oct 12, 2023
+                                </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-secondary hover:text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-secondary hover:text-primary transition-colors" title="Edit Role">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Active Editor -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors group">
+<td class="py-3 px-gutter-table">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-medium text-sm border border-outline-variant">
+                                            MR
+                                        </div>
+<div>
+<div class="font-medium text-on-surface dark:text-inverse-on-surface">Michael Rodriguez</div>
+<div class="text-on-surface-variant dark:text-surface-variant text-[12px]">m.rodriguez@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table hidden sm:table-cell">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container dark:bg-surface-dim text-on-surface dark:text-inverse-on-surface text-[11px] font-medium border border-outline-variant">
+                                        Editor
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table hidden md:table-cell">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#dcfce7] text-[#166534] dark:bg-[rgba(34,197,94,0.1)] dark:text-[#4ade80]">
+                                        Active
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant hidden lg:table-cell">
+                                    Nov 05, 2023
+                                </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-secondary hover:text-primary transition-colors" title="View Details">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="p-1 text-secondary hover:text-error transition-colors" title="Ban User">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Pending Viewer -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors group">
+<td class="py-3 px-gutter-table">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3">
+<img alt="" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A casual portrait of a young man with curly hair, outdoors against a slightly blurred brick wall, natural overcast lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoxLyuKU1Knc-10eL75WRZOJT8JLG7UJRLTInDL52rhxHNCnO56h7hbe3VUoGQb9_jKmUArn9MomeihwdeMjWqoACcr-YaWsu6fDFZtWv15iVxFj4xURPuVXUoZWJSGNUP06yYrPTLO8PVchC0h6B19BrL-9avp9xSPivqljrtBDVocxG8gCNdfaweyfc_GlmAOw-mo88Z4r9h9k4asq4lN3Y5XjV-OzcNBAPEbltodeXIhi7w_LdbIbbD9BiitDneqR2Ccra6eZk">
+<div>
+<div class="font-medium text-on-surface dark:text-inverse-on-surface">David Chen</div>
+<div class="text-on-surface-variant dark:text-surface-variant text-[12px]">david.c@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table hidden sm:table-cell">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface text-on-surface-variant text-[11px] font-medium border border-outline-variant">
+                                        Viewer
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table hidden md:table-cell">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef3c7] text-[#92400e] dark:bg-[rgba(245,158,11,0.1)] dark:text-[#fbbf24]">
+                                        Pending
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant hidden lg:table-cell">
+                                    Jan 18, 2024
+                                </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-secondary hover:text-primary transition-colors" title="Resend Invite">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Banned User -->
+<tr class="hover:bg-surface-container-low dark:hover:bg-surface-dim transition-colors group bg-surface-container-lowest/50">
+<td class="py-3 px-gutter-table">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox">
+</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center gap-3 opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-medium text-sm border border-outline-variant">
+                                            EW
+                                        </div>
+<div>
+<div class="font-medium text-on-surface dark:text-inverse-on-surface line-through decoration-error">Elena Woods</div>
+<div class="text-on-surface-variant dark:text-surface-variant text-[12px]">elena.w@example.com</div>
+</div>
+</div>
+</td>
+<td class="py-3 px-gutter-table hidden sm:table-cell opacity-60">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface text-on-surface-variant text-[11px] font-medium border border-outline-variant">
+                                        Viewer
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table hidden md:table-cell">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-error-container text-on-error-container">
+                                        Banned
+                                    </span>
+</td>
+<td class="py-3 px-gutter-table text-on-surface-variant hidden lg:table-cell opacity-60">
+                                    Aug 22, 2023
+                                </td>
+<td class="py-3 px-gutter-table text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="px-2 py-1 border border-outline-variant rounded text-[11px] font-medium text-on-surface hover:bg-surface-container-low transition-colors" title="Unban User">
+                                            Unban
+                                        </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="border-t border-outline-variant dark:border-outline p-3 flex items-center justify-between bg-surface-container-lowest dark:bg-inverse-surface mt-auto">
+<div class="font-body-sm text-body-sm text-on-surface-variant hidden sm:block">
+                        Showing 1 to 10 of 1,204 results
+                    </div>
+<div class="flex items-center gap-1">
+<button class="px-2 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container-low transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px] block">chevron_left</span>
+</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-primary-container text-white font-medium text-sm">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface font-medium text-sm transition-colors">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface font-medium text-sm transition-colors">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low text-on-surface font-medium text-sm transition-colors">121</button>
+<button class="px-2 py-1 border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] block">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

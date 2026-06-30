@@ -1,0 +1,346 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Campaign Overview - KindWave</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf8ff",
+                        "secondary-container": "#d0e1fb",
+                        "on-background": "#131b2e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-primary-fixed": "#002109",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#006e2f",
+                        "on-surface": "#131b2e",
+                        "inverse-primary": "#4ae176",
+                        "on-primary-fixed-variant": "#005321",
+                        "primary-fixed": "#6bff8f",
+                        "on-primary-container": "#004b1e",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "primary-fixed-dim": "#4ae176",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-high": "#e2e7ff",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#3d4042",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f2f3ff",
+                        "primary": "#006e2f",
+                        "surface-dim": "#d2d9f4",
+                        "error-container": "#ffdad6",
+                        "outline": "#6d7b6c",
+                        "background": "#faf8ff",
+                        "outline-variant": "#bccbb9",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-highest": "#dae2fd",
+                        "tertiary-container": "#a9acae",
+                        "surface-variant": "#dae2fd",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#22c55e",
+                        "tertiary": "#5c5f61",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eaedff",
+                        "secondary-fixed": "#d3e4fe",
+                        "inverse-surface": "#283044",
+                        "on-surface-variant": "#3d4a3d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar-width": "260px",
+                        "margin-md": "16px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "margin-sm": "8px",
+                        "margin-lg": "24px",
+                        "gutter-table": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #faf8ff; color: #131b2e; }
+        .nav-item-active { background-color: #d0e1fb; color: #54647a; border-left: 2px solid #006e2f; }
+        .nav-item-inactive { color: #505f76; }
+        .nav-item-inactive:hover { background-color: #e2e7ff; }
+        .tab-active { color: #006e2f; border-bottom: 2px solid #006e2f; font-weight: 600; }
+        .tab-inactive { color: #3d4a3d; }
+        .tab-inactive:hover { color: #006e2f; }
+        .card-shadow { box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline w-sidebar-width fixed left-0 top-0 h-screen hidden md:flex flex-col py-margin-md px-margin-sm z-50">
+<div class="px-margin-sm mb-margin-lg">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary dark:text-inverse-primary">KindWave</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Empower Change</p>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-active font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="campaign" style="font-variation-settings: 'FILL' 1;">campaign</span>
+<span>My Campaigns</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="add_circle">add_circle</span>
+<span>Create Campaign</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="history">history</span>
+<span>Donation History</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="bookmark">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="favorite">favorite</span>
+<span>Following Campaigns</span>
+</a>
+<div class="pt-margin-lg pb-margin-sm">
+<p class="px-margin-sm font-label-md text-label-md uppercase text-outline">Account</p>
+</div>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center space-x-3 px-margin-sm py-2 rounded-DEFAULT nav-item-inactive font-body-md text-body-md transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px] stroke-[1.5px]" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar & Main Content Wrapper -->
+<div class="flex-1 ml-0 md:ml-sidebar-width flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-dim fixed top-0 right-0 w-full md:w-[calc(100%-260px)] h-16 shadow-sm flex justify-between items-center px-container-padding z-40 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center">
+<button class="md:hidden mr-4 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden md:flex space-x-6 h-full items-end pb-0">
+<a class="font-label-md text-label-md py-4 tab-active transition-all cursor-pointer" href="#">Overview</a>
+<a class="font-label-md text-label-md py-4 tab-inactive transition-all cursor-pointer" href="#">Managers</a>
+<a class="font-label-md text-label-md py-4 tab-inactive transition-all cursor-pointer" href="#">Updates</a>
+<a class="font-label-md text-label-md py-4 tab-inactive transition-all cursor-pointer" href="#">Files</a>
+<a class="font-label-md text-label-md py-4 tab-inactive transition-all cursor-pointer" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all cursor-pointer active:opacity-70">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a user in a clean, brightly lit modern office setting, facing forward with a subtle smile. High quality, crisp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMRmKKdSA75zqfgiS4B1UzDm6whwx3ACSWkITs__Ufoy6K3jU0ANdB3jIh3h-FFcyrxvFfL8Rsl4sOLsHdbWwKPcGN-S9oof6dLFUBJJLuu2Rms8bqaZISTGW9xsbPRGqw4Kt415-MGWev_7qOUTRTfmjPt3XxhFVA0TprV9on9AxgF_hVAoDCV68YS5vGsE1CJ4mWG0_chJCRRJdTFzsAVptpmbnLA58aaN3mrAhMYqBWdyick2lx5RYC0G8ppmNpFaSVK78qtfA">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 overflow-y-auto p-container-padding bg-surface">
+<div class="max-w-6xl mx-auto space-y-margin-lg">
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Clean Water Initiative - Kenya</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Campaign ID: #KW-8924 • Started Oct 12, 2023</p>
+</div>
+<div class="flex space-x-3">
+<button class="px-4 py-2 bg-surface-container-lowest border border-outline-variant text-on-surface font-label-md text-label-md rounded-DEFAULT hover:bg-surface-container transition-colors">Edit Details</button>
+<button class="px-4 py-2 bg-primary-container text-on-primary font-label-md text-label-md rounded-DEFAULT hover:bg-surface-tint transition-colors">Share Campaign</button>
+</div>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Main Stat Card -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-lg p-margin-lg border border-outline-variant card-shadow flex flex-col justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase mb-2">Total Raised</p>
+<div class="flex items-baseline space-x-2">
+<h3 class="font-headline-lg text-[32px] leading-tight font-bold text-on-surface">$45,250.00</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">USD</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">of $50,000.00 goal</p>
+</div>
+<div class="mt-6">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-2">
+<span>Progress</span>
+<span>90%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary-container h-2 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<!-- Secondary Stats Stack -->
+<div class="space-y-6 flex flex-col">
+<div class="bg-surface-container-lowest rounded-lg p-margin-lg border border-outline-variant card-shadow flex-1 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-2">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Donors</p>
+<span class="material-symbols-outlined text-outline-variant text-[20px]" data-icon="group">group</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">342</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1 flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="trending_up">trending_up</span>
+                                +12 this week
+                            </p>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-margin-lg border border-outline-variant card-shadow flex-1 flex flex-col justify-center">
+<div class="flex items-center justify-between mb-2">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Days Left</p>
+<span class="material-symbols-outlined text-outline-variant text-[20px]" data-icon="calendar_today">calendar_today</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">14</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Ends Nov 30, 2023</p>
+</div>
+</div>
+</div>
+<!-- Chart Area -->
+<div class="bg-surface-container-lowest rounded-lg p-margin-lg border border-outline-variant card-shadow">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Donation Velocity (Last 30 Days)</h3>
+<select class="bg-surface-container border border-outline-variant text-on-surface text-body-sm rounded-DEFAULT px-2 py-1 focus:ring-primary focus:border-primary">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>All Time</option>
+</select>
+</div>
+<div class="h-48 w-full bg-surface-container-low rounded-DEFAULT border border-dashed border-outline-variant flex items-center justify-center relative overflow-hidden">
+<!-- Placeholder for actual chart implementation -->
+<div 0="" 1000="" 2000="" 200\"="" class="absolute inset-0 w-full h-full opacity-50" height="\&quot;100%\&quot;" http:="" preserveaspectratio="\&quot;none\&quot;" style="background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=\" svg\"="" viewbox="\&quot;0" width="\&quot;100%\&quot;" www.w3.org=""><path 200,100="" d="\&quot;M0,180" fill="\&quot;%23d0e1fb\&quot;" l0,200="" l1000,200="" q100,150="" stroke="\&quot;%2322c55e\&quot;" stroke-width="\&quot;2\&quot;/" t1000,40="" t400,120="" t600,60="" t800,90="" z\"="">'); background-size: cover; background-position: bottom;"&gt;</path></div>
+<p class="font-body-sm text-body-sm text-outline z-10 relative bg-surface px-2 py-1 rounded">Chart Visualization Component</p>
+</div>
+</div>
+<!-- Recent Activity Table -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant card-shadow overflow-hidden">
+<div class="px-margin-lg py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Transactions</h3>
+<button class="font-label-md text-label-md text-primary hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-gutter-table font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Donor</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+<th class="py-3 px-gutter-table font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-gutter-table whitespace-nowrap text-on-surface-variant">Nov 16, 14:32</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm mr-2">SJ</div>
+                                            Sarah Jenkins
+                                        </div>
+</td>
+<td class="py-3 px-gutter-table text-right font-medium">$500.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                            Succeeded
+                                        </span>
+</td>
+</tr>
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-gutter-table whitespace-nowrap text-on-surface-variant">Nov 16, 09:15</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center">
+<div class="w-6 h-6 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-label-sm mr-2">MD</div>
+                                            Michael Davies
+                                        </div>
+</td>
+<td class="py-3 px-gutter-table text-right font-medium">$1,250.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                            Succeeded
+                                        </span>
+</td>
+</tr>
+<tr class="border-b border-surface-container hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-gutter-table whitespace-nowrap text-on-surface-variant">Nov 15, 18:45</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center">
+<div class="w-6 h-6 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-label-sm mr-2">A</div>
+                                            Anonymous
+                                        </div>
+</td>
+<td class="py-3 px-gutter-table text-right font-medium">$50.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm bg-primary-container/10 text-primary-container border border-primary-container/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                            Succeeded
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-gutter-table whitespace-nowrap text-on-surface-variant">Nov 15, 11:20</td>
+<td class="py-3 px-gutter-table">
+<div class="flex items-center">
+<div class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm mr-2">RT</div>
+                                            Robert Thompson
+                                        </div>
+</td>
+<td class="py-3 px-gutter-table text-right font-medium text-on-surface-variant">$200.00</td>
+<td class="py-3 px-gutter-table">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm bg-surface-variant/50 text-on-surface-variant border border-outline-variant/30">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant mr-1.5"></span>
+                                            Pending
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

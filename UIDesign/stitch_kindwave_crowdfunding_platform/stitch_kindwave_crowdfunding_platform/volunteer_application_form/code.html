@@ -1,0 +1,405 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave | Volunteer Application</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#283044",
+                    "outline-variant": "#bccbb9",
+                    "tertiary-container": "#a9acae",
+                    "outline": "#6d7b6c",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "secondary-container": "#d0e1fb",
+                    "surface-container": "#eaedff",
+                    "surface-bright": "#faf8ff",
+                    "on-tertiary-fixed": "#191c1e",
+                    "secondary": "#505f76",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-tertiary-container": "#3d4042",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "on-background": "#131b2e",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#4ae176",
+                    "primary-container": "#22c55e",
+                    "on-primary-fixed-variant": "#005321",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#3d4a3d",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#131b2e",
+                    "background": "#faf8ff",
+                    "on-primary-container": "#004b1e",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "surface-container-high": "#e2e7ff",
+                    "on-secondary-container": "#54647a",
+                    "tertiary": "#5c5f61",
+                    "surface-container-highest": "#dae2fd",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#dae2fd",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-dim": "#d2d9f4",
+                    "primary": "#006e2f",
+                    "inverse-primary": "#4ae176",
+                    "surface-tint": "#006e2f",
+                    "surface-container-low": "#f2f3ff",
+                    "primary-fixed": "#6bff8f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sidebar-width": "260px",
+                    "container-padding": "24px",
+                    "gutter-table": "16px",
+                    "margin-sm": "8px",
+                    "margin-lg": "24px",
+                    "margin-md": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "600"}],
+                    "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf8ff;
+            color: #131b2e;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .form-card {
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #E2E8F0;
+        }
+
+        .step-transition {
+            transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .skill-tag.selected {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .progress-bar-fill {
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #22C55E !important;
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-surface">
+<!-- Top Navigation Anchor (Suppressed for focused journey, using simple Brand header) -->
+<header class="w-full h-16 flex items-center justify-center bg-surface-container-lowest border-b border-outline-variant px-container-padding sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-lg">waves</span>
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">KindWave</h1>
+</div>
+</header>
+<main class="flex flex-col items-center py-12 px-container-padding">
+<!-- Application Title & Context -->
+<div class="max-w-2xl w-full text-center mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Volunteer Application</h2>
+<p class="font-body-md text-body-md text-secondary">Join the "Ocean Cleanup 2024" campaign and help us restore marine ecosystems. Your contribution makes a direct impact.</p>
+</div>
+<!-- Progress Indicator -->
+<div class="max-w-2xl w-full mb-10">
+<div class="flex justify-between items-center mb-4 px-2">
+<div class="flex flex-col items-center gap-1 text-primary" id="step-indicator-1">
+<span class="material-symbols-outlined text-headline-md" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Basic Info</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-secondary" id="step-indicator-2">
+<span class="material-symbols-outlined text-headline-md">interests</span>
+<span class="font-label-sm text-label-sm">Skills</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-secondary" id="step-indicator-3">
+<span class="material-symbols-outlined text-headline-md">history_edu</span>
+<span class="font-label-sm text-label-sm">Experience</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-primary-container" id="progress-bar" style="width: 33.33%;"></div>
+</div>
+</div>
+<!-- Multi-Step Form Card -->
+<div class="max-w-2xl w-full bg-white rounded-xl form-card overflow-hidden">
+<form class="relative" id="application-form">
+<!-- Step 1: Basic Info -->
+<section class="step-transition p-margin-lg block" id="step-1">
+<div class="space-y-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-2">Step 1: Basic Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Full Name</label>
+<input class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary transition-all" placeholder="e.g. Alex Rivera" type="text">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
+<input class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md" placeholder="alex@example.com" type="email">
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Availability (Select all that apply)</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<label class="flex items-center gap-2 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-primary" type="checkbox">
+<span class="font-body-sm text-body-sm">Weekdays</span>
+</label>
+<label class="flex items-center gap-2 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-primary" type="checkbox">
+<span class="font-body-sm text-body-sm">Weekends</span>
+</label>
+<label class="flex items-center gap-2 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-primary" type="checkbox">
+<span class="font-body-sm text-body-sm">Mornings</span>
+</label>
+<label class="flex items-center gap-2 p-3 border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="rounded text-primary focus:ring-primary" type="checkbox">
+<span class="font-body-sm text-body-sm">Evenings</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Phone Number</label>
+<input class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+</div>
+</section>
+<!-- Step 2: Skills & Interests -->
+<section class="step-transition p-margin-lg hidden" id="step-2">
+<div class="space-y-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-2">Step 2: Skills &amp; Interests</h3>
+<p class="font-body-sm text-body-sm text-secondary">Help us place you in the best role by sharing what you're good at.</p>
+<div class="flex flex-wrap gap-2">
+<!-- Custom Multi-select Tags -->
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">cleaning_services</span>
+                                Logistics
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">deskphone</span>
+                                Public Relations
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">first_page</span>
+                                First Aid
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">directions_car</span>
+                                Transportation
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">photo_camera</span>
+                                Photography
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">edit_note</span>
+                                Data Entry
+                            </button>
+<button class="skill-tag flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-full font-body-md text-body-md hover:bg-surface-container-low transition-all" onclick="toggleSkill(this)" type="button">
+<span class="material-symbols-outlined text-body-lg">translate</span>
+                                Languages
+                            </button>
+</div>
+<div class="flex flex-col gap-1.5 mt-6">
+<label class="font-label-md text-label-md text-on-surface-variant">Why are you interested in this specific campaign?</label>
+<textarea class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md resize-none" placeholder="I care deeply about ocean health..." rows="3"></textarea>
+</div>
+</div>
+</section>
+<!-- Step 3: Experience & Statement -->
+<section class="step-transition p-margin-lg hidden" id="step-3">
+<div class="space-y-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-2">Step 3: Experience &amp; Final Statement</h3>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Previous Volunteer Experience</label>
+<textarea class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md resize-none" placeholder="Describe any relevant work or volunteer history..." rows="4"></textarea>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant">Is there anything else we should know?</label>
+<textarea class="bg-white border border-outline-variant rounded-lg p-3 font-body-md text-body-md resize-none" placeholder="Dietary restrictions, allergies, or special requirements..." rows="2"></textarea>
+</div>
+<div class="bg-secondary-fixed/30 p-4 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant">verified_user</span>
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-on-secondary-fixed">Commitment Agreement</span>
+<label class="flex items-start gap-2 cursor-pointer">
+<input class="mt-1 rounded text-primary focus:ring-primary" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-secondary-fixed-variant">I agree to the volunteer code of conduct and confirm that I am over 18 years of age or have parental consent.</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Navigation -->
+<div class="flex justify-between items-center p-margin-lg bg-surface-container-lowest border-t border-outline-variant">
+<button class="invisible flex items-center gap-2 px-6 py-2.5 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container-low font-body-md transition-all active:scale-95" id="prev-btn" onclick="prevStep()" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Back
+                    </button>
+<button class="flex items-center gap-2 px-8 py-2.5 rounded-lg bg-primary text-on-primary hover:opacity-90 font-headline-sm transition-all active:scale-95" id="next-btn" onclick="nextStep()" type="button">
+                        Next
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Supportive Info Card -->
+<div class="max-w-2xl w-full grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-primary-container p-2 bg-primary/10 rounded-full">group</span>
+<span class="font-label-md text-label-md text-secondary">Volunteers Needed</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">120 Spots Left</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-primary-container p-2 bg-primary/10 rounded-full">calendar_today</span>
+<span class="font-label-md text-label-md text-secondary">Launch Date</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Oct 12, 2024</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex flex-col items-center text-center gap-2">
+<span class="material-symbols-outlined text-primary-container p-2 bg-primary/10 rounded-full">location_on</span>
+<span class="font-label-md text-label-md text-secondary">Location</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">San Francisco, CA</span>
+</div>
+</div>
+</main>
+<!-- Success Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm hidden" id="success-modal">
+<div class="bg-white p-8 rounded-2xl max-w-sm w-full text-center flex flex-col items-center gap-4 shadow-2xl transform scale-95 transition-transform duration-300">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Application Sent!</h3>
+<p class="font-body-md text-body-md text-secondary">Thank you for your interest in KindWave. Our campaign leads will review your info and get back to you within 3-5 business days.</p>
+</div>
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-headline-sm" onclick="location.reload()">Back to Dashboard</button>
+</div>
+</div>
+<script>
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateUI() {
+            // Update sections
+            for (let i = 1; i <= totalSteps; i++) {
+                const section = document.getElementById(`step-${i}`);
+                const indicator = document.getElementById(`step-indicator-${i}`);
+                const icon = indicator.querySelector('.material-symbols-outlined');
+                
+                if (i === currentStep) {
+                    section.classList.remove('hidden');
+                    indicator.classList.remove('text-secondary');
+                    indicator.classList.add('text-primary');
+                    icon.style.fontVariationSettings = "'FILL' 1";
+                } else {
+                    section.classList.add('hidden');
+                    indicator.classList.add('text-secondary');
+                    indicator.classList.remove('text-primary');
+                    icon.style.fontVariationSettings = "'FILL' 0";
+                }
+            }
+
+            // Update Buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            prevBtn.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+            
+            if (currentStep === totalSteps) {
+                nextBtn.innerHTML = `Submit Application <span class="material-symbols-outlined">send</span>`;
+                nextBtn.classList.add('bg-primary-container');
+            } else {
+                nextBtn.innerHTML = `Next <span class="material-symbols-outlined">arrow_forward</span>`;
+                nextBtn.classList.remove('bg-primary-container');
+            }
+
+            // Update Progress Bar
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            } else {
+                showSuccess();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        function toggleSkill(btn) {
+            btn.classList.toggle('selected');
+        }
+
+        function showSuccess() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.querySelector('div').classList.remove('scale-95');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+        }
+
+        // Initialize UI
+        updateUI();
+    </script>
+</body></html>

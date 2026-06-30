@@ -1,0 +1,383 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave | Final Review &amp; Submit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#22C55E",
+                        "on-primary": "#FFFFFF",
+                        "primary-container": "#DCFCE7",
+                        "on-primary-container": "#14532D",
+                        secondary: "#1E293B",
+                        "on-secondary": "#FFFFFF",
+                        "secondary-container": "#F1F5F9",
+                        "on-secondary-container": "#0F172A",
+                        surface: "#FFFFFF",
+                        "on-surface": "#0F172A",
+                        "surface-container-low": "#F8FAFC",
+                        "surface-container-high": "#F1F5F9",
+                        "surface-container-highest": "#E2E8F0",
+                        "on-surface-variant": "#475569",
+                        outline: "#CBD5E1",
+                        "outline-variant": "#E2E8F0",
+                        error: "#EF4444"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Public Sans", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Public Sans", "sans-serif"],
+                        label: ["Public Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { @apply text-primary font-bold; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="hidden md:flex flex-col p-md space-y-sm bg-surface-container-low border-r border-outline-variant h-screen w-64 sticky top-0">
+<div class="px-4 py-6">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">KindWave Admin</h1>
+<p class="text-xs text-on-surface-variant opacity-70">Campaign Manager</p>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<!-- Active Tab: My Campaigns (Matches creation context) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-label-md">My Campaigns</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="font-label-md">Contributions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-md">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-4">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                New Project
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-w-0 bg-white">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="flex justify-between items-center w-full px-8 max-w-[1280px] mx-auto h-16 border-b border-outline-variant bg-surface sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary">KindWave</span>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Explore</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">How it Works</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-bold shadow-sm active:scale-95 duration-150">Start Campaign</button>
+</div>
+</header>
+<!-- Creation Wizard Header -->
+<div class="w-full max-w-5xl mx-auto px-6 py-8">
+<div class="mb-8">
+<h2 class="text-3xl font-extrabold text-secondary tracking-tight">Final Review &amp; Submit</h2>
+<p class="text-on-surface-variant mt-1">Review your campaign details before launching it to the world.</p>
+</div>
+<!-- Progress Indicator -->
+<div class="flex items-center w-full mb-12 gap-4">
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-xs font-bold text-on-primary-container">Basics</span>
+</div>
+<div class="h-1 flex-1 bg-primary mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-xs font-bold text-on-primary-container">Funding</span>
+</div>
+<div class="h-1 flex-1 bg-primary mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-xs font-bold text-on-primary-container">Media</span>
+</div>
+<div class="h-1 flex-1 bg-primary mb-6"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center mb-2 ring-4 ring-primary-container">
+<span class="font-bold">4</span>
+</div>
+<span class="text-xs font-extrabold text-primary">Review</span>
+</div>
+</div>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Main Identity Card -->
+<div class="md:col-span-2 glass-card rounded-2xl overflow-hidden shadow-sm flex flex-col md:flex-row">
+<div class="w-full md:w-5/12 h-48 md:h-auto">
+<div class="w-full h-full" data-alt="A cinematic, high-resolution wide shot of a community-driven garden project at sunset. Soft, golden hour light bathes lush green vegetables and flowers, while diverse volunteers work together in the background. The aesthetic is clean, professional, and optimistic, using a natural color palette with vibrant green accents." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3y5JVaVJ1MuAZbY2vA6banhCqQZvaK1KqtOSwZpD3AdsSDtuACOoNwxUOyob17ExDCdwIu-W8FP2AjH86TiQdj57uaecwSbPrhiz7lQZSxnknex6qLE8h04lW6XqKbdoRfXG2lAtPxoWcP37QBiX5p6euhrhPNKb1LKrX1O18BX4mgtR4tQSyfRn8VCVLai4sNrZLUu-G0dE4CnLEFLPbcj6Ob0t8y-EZ2GqBOZXWhmKZH_3XMOhpBmSE-fQwPN5F2_KdVvvWWLo')"></div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase rounded tracking-wider">Environment</span>
+<button class="text-primary hover:bg-primary-container p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<h3 class="text-xl font-bold text-secondary mb-2 leading-tight">The Green Canopy: Restoring Urban Micro-Forests</h3>
+<p class="text-sm text-on-surface-variant line-clamp-3">Dedicated to planting 5,000 native trees across abandoned industrial zones to lower city temperatures and improve air quality for residents.</p>
+</div>
+<div class="pt-4 border-t border-outline-variant mt-4 flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-base">location_on</span>
+<span class="text-xs font-medium">Portland, OR</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-base">calendar_today</span>
+<span class="text-xs font-medium">45 Days Left</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Funding Target Card -->
+<div class="glass-card rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-bold text-secondary">Funding Goal</h4>
+<button class="text-primary hover:bg-primary-container p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<div class="text-3xl font-extrabold text-primary mb-1">$25,000.00</div>
+<p class="text-xs text-on-surface-variant">Standard Crowdfunding Model</p>
+</div>
+<div class="space-y-3 mt-6">
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Processing Fees</span>
+<span class="font-medium">2.9% + $0.30</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-on-surface-variant">Platform Fee</span>
+<span class="font-medium">0% (KindWave Free)</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden mt-4">
+<div class="bg-primary w-1/3 h-full"></div>
+</div>
+</div>
+</div>
+<!-- Rewards Preview -->
+<div class="glass-card rounded-2xl p-6 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-bold text-secondary">Incentives</h4>
+<button class="text-primary hover:bg-primary-container p-1 rounded-full transition-colors">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<div class="space-y-3">
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 bg-primary text-on-primary flex items-center justify-center rounded-lg font-bold text-xs">$25</div>
+<div>
+<p class="text-xs font-bold">Seedling Supporter</p>
+<p class="text-[10px] text-on-surface-variant">Digital Certificate + Wall of Fame</p>
+</div>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 bg-primary text-on-primary flex items-center justify-center rounded-lg font-bold text-xs">$100</div>
+<div>
+<p class="text-xs font-bold">Tree Sponsor</p>
+<p class="text-[10px] text-on-surface-variant">Physical Plaque + GPS Location</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Team/Location Card -->
+<div class="glass-card rounded-2xl p-0 shadow-sm overflow-hidden flex flex-col">
+<div class="h-32 bg-secondary-container relative">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="A minimalist map view showing a specific city neighborhood marked with green pins representing tree planting locations. The map has a clean, professional aesthetic with soft grays and muted greens, aligning with the KindWave dashboard theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBK0j5OxKbwo5Uym4s5aw49QlX4wrn9KrpIxlSogaKjB7ZYSc1ne90fcHq-ErvwSuIBx6DFCPhLS-_gMKwgdWvDCsOkXfWlX91tctErEzqbboTR3dgnwcIjClAPec_meMRr8h4aKrF-Ygx11H9tg_-fk1Y-wVxESPnWX9b2Y-vR9KSaLzzKHBG3gfwz6_VVdIbvEGYysFlgqZTvUbn7e07bAjkY4qU9PCiNrg2-lKnMPQ7yyK_3PJpsC8PtNS0RGSNdixrwY_7G7V4')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-white/90 px-3 py-1 rounded-full border border-outline text-xs font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                                Portland, Oregon
+                            </div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-3">
+<h4 class="font-bold text-secondary">Verified Host</h4>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a friendly woman in her late 30s with short hair, wearing a green linen shirt. She is standing in a brightly lit, modern office space with plants in the background. The lighting is soft and natural, emphasizing a trustworthy and professional character." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnwtfmnfLb6v_YQ46qsZFhQM5XpVM98v7f9QWfcmST4WrfmMrYLTEdWG7SD9ZQVzY4TUMiORjGOfj8HSnZbsSXkkRJxQlAkpBV_YY7LT3brbodaJzjPWWpFtWkpiKmaLE34wDsEbTxdoAZ-Q_X108Bg8u4PvISWis8CVPMELRQ_zBLSEt9XPRj5VfqNc01WX6bZgYARoU8MFBam2sxUgIsODFf75jA_4QWk2lYKvD3R3UVSPTR1tAn6jozgFSZvoZNS9i4sBcKI7M">
+</div>
+<div>
+<p class="text-sm font-bold">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Eco-Urban Initiative</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Checklist/Submission Area -->
+<div class="glass-card rounded-2xl p-6 shadow-sm border-primary/20 bg-primary-container/10 flex flex-col justify-between">
+<div class="space-y-4">
+<h4 class="font-bold text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+                            Launch Readiness
+                        </h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-2 text-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Identity Verified
+                            </li>
+<li class="flex items-center gap-2 text-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Bank Account Connected
+                            </li>
+<li class="flex items-center gap-2 text-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Media Guidelines Met
+                            </li>
+</ul>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="terms-check" type="checkbox">
+<span class="text-[11px] text-on-surface-variant leading-relaxed transition-colors group-hover:text-on-surface">
+                                I agree to the <a class="text-primary underline font-medium" href="#">Terms of Service</a> and <a class="text-primary underline font-medium" href="#">Community Guidelines</a>. I certify all information is accurate.
+                            </span>
+</label>
+</div>
+</div>
+</div>
+<!-- Sticky Navigation Bottom -->
+<div class="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-outline-variant">
+<button class="flex items-center gap-2 px-6 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all font-bold group active:scale-95">
+<span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
+                    Back to Media
+                </button>
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-3 border border-outline-variant text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-low transition-all active:scale-95">
+                        Save as Draft
+                    </button>
+<button class="flex-1 sm:flex-none px-10 py-3 bg-primary text-on-primary font-extrabold rounded-xl shadow-xl shadow-primary/30 active:scale-95 transition-all opacity-50 cursor-not-allowed hover:brightness-110 flex items-center justify-center gap-2" disabled="" id="launch-btn">
+                        Launch Campaign
+                        <span class="material-symbols-outlined">rocket</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer (Authority: JSON) -->
+<footer class="w-full py-xl px-gutter max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant mt-auto">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">KindWave</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2 text-center md:text-left">© 2024 KindWave Crowdfunding. Empowering momentum.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface hover:underline transition-all" href="#">Terms of Service</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface hover:underline transition-all" href="#">Cookie Policy</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface hover:underline transition-all" href="#">Contact Us</a>
+<a class="text-body-sm font-body-sm text-on-surface-variant hover:text-on-surface hover:underline transition-all" href="#">Help Center</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile Only - Authority: JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 pb-safe bg-surface border-t border-outline-variant shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 transition-all scale-90 duration-100" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span class="font-label-sm text-label-sm">Impact</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all scale-90 duration-100 active:bg-surface-container-highest" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction Logic
+        const termsCheck = document.getElementById('terms-check');
+        const launchBtn = document.getElementById('launch-btn');
+
+        termsCheck.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                launchBtn.disabled = false;
+                launchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                launchBtn.disabled = true;
+                launchBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+
+        launchBtn.addEventListener('click', () => {
+            if(!launchBtn.disabled) {
+                launchBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Launching...';
+                setTimeout(() => {
+                    alert('Campaign Launched Successfully! Redirecting to Dashboard...');
+                    window.location.reload();
+                }, 2000);
+            }
+        });
+
+        // Hover animations for cards
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-md');
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'all 0.3s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-md');
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+
+</body></html>

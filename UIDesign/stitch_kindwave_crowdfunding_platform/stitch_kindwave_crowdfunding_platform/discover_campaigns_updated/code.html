@@ -1,0 +1,416 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KindWave - Campaign Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#4ae176",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "primary-fixed": "#6bff8f",
+                    "outline-variant": "#bccbb9",
+                    "primary-container": "#22c55e",
+                    "surface-bright": "#f8f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container": "#e5eeff",
+                    "on-primary-fixed-variant": "#005321",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-primary-container": "#004b1e",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-primary": "#4ae176",
+                    "on-secondary-fixed": "#001a42",
+                    "on-error": "#ffffff",
+                    "surface": "#f8f9ff",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-tint": "#006e2f",
+                    "inverse-surface": "#213145",
+                    "on-background": "#0b1c30",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "on-primary-fixed": "#002109",
+                    "on-error-container": "#93000a",
+                    "primary": "#006e2f",
+                    "background": "#f8f9ff",
+                    "secondary": "#0058be",
+                    "surface-container-high": "#dce9ff",
+                    "secondary-container": "#2170e4",
+                    "on-secondary-container": "#fefcff",
+                    "on-surface": "#0b1c30",
+                    "secondary-fixed": "#d8e2ff",
+                    "surface-dim": "#cbdbf5",
+                    "on-surface-variant": "#3d4a3d",
+                    "tertiary-container": "#ff8e4d",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#6d7b6c",
+                    "on-tertiary-container": "#6d2d00",
+                    "on-secondary-fixed-variant": "#004395",
+                    "tertiary": "#9d4300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "xl": "80px",
+                    "max-width": "1280px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "md": "24px",
+                    "lg": "48px",
+                    "margin-desktop": "32px",
+                    "sm": "12px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+        .ambient-shadow-1 {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .ambient-shadow-2 {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+        .progress-glow {
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full h-[72px] bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50">
+<div class="flex justify-between items-center h-[72px] px-gutter max-w-max-width mx-auto">
+<div class="flex items-center gap-md">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim" href="#">KindWave</a>
+<div class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Home</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-semibold border-b-2 border-primary active:scale-95 duration-200" href="#">Campaigns</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">Categories</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant/80 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors active:scale-95 duration-200" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<!-- Search Bar on right as per JSON, but visual representation -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full bg-surface-container border-none focus:ring-2 focus:ring-primary w-64 text-sm outline-none transition-all" placeholder="Search..." type="text">
+</div>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors px-4 py-2">Login</button>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors active:scale-95">Start a Campaign</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[104px] pb-xl px-gutter max-w-max-width mx-auto w-full">
+<!-- Header & Discovery Controls -->
+<section class="mb-lg">
+<h1 class="font-display-lg text-display-lg mb-md text-on-background">Discover Campaigns</h1>
+<!-- Search Bar -->
+<div class="relative w-full mb-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-xl bg-surface-container border-none focus:ring-2 focus:ring-primary text-body-md outline-none transition-all" placeholder="Search campaigns by name, keyword, or location..." type="text">
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<!-- Tabs -->
+<div class="flex gap-sm border-b border-outline-variant w-full md:w-auto">
+<button class="px-4 py-2 font-label-md text-label-md text-primary border-b-2 border-primary">All Campaigns</button>
+<button class="px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Trending</button>
+<button class="px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">Near You</button>
+</div>
+<!-- Filters -->
+<div class="flex flex-wrap gap-sm w-full md:w-auto">
+<select class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md border-none outline-none focus:ring-2 focus:ring-primary cursor-pointer pr-8">
+<option value="">Category</option>
+<option value="medical">Medical</option>
+<option value="emergency">Emergency</option>
+<option value="education">Education</option>
+<option value="memorial">Memorial</option>
+</select>
+<select class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md border-none outline-none focus:ring-2 focus:ring-primary cursor-pointer pr-8">
+<option value="">Province</option>
+<option value="on">Ontario</option>
+<option value="bc">British Columbia</option>
+<option value="ab">Alberta</option>
+</select>
+<select class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md border-none outline-none focus:ring-2 focus:ring-primary cursor-pointer pr-8">
+<option value="">Status</option>
+<option value="active">Active</option>
+<option value="completed">Completed</option>
+</select>
+<select class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md border-none outline-none focus:ring-2 focus:ring-primary cursor-pointer pr-8">
+<option value="">Goal amount</option>
+<option value="under_10k">Under $10k</option>
+<option value="10k_50k">$10k - $50k</option>
+<option value="over_50k">Over $50k</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<article class="glass-card rounded-xl overflow-hidden ambient-shadow-1 hover:ambient-shadow-2 transition-shadow duration-300 group cursor-pointer flex flex-col h-full">
+<div class="relative h-48 w-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A brightly lit hospital room in a modern pediatric ward. Soft natural light streams through a large window, illuminating clean medical equipment and colorful wall decals. The mood is optimistic and healing. Shot with a slight depth of field focusing on a plush teddy bear on the crisp white bedsheets." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5yuiLEFHIqfCU2sG_n4KtV7bcBWgVdOzOadP_cz8NJiqflmnE4D6ij__ySSW4E_zrfft3WHHMqa6kC5O1fSFmU9Tgl9C1mWOef9CC3fVMixmxqkLhOj69Schh0NRJmuV6QcfCDSJTD5URBuK9fkor8RLOlCDNEPX1zQdYitoQIHKbhM8CZVjIeG5GqNx3UgxaJ-k_KNG6ZIVKmkSRQYmkF9WQu34_4gx5aVnaBebvMkZwSTe1RgOZhd6SESEAy_ICZVVedO0ZxH0">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="medical_services">medical_services</span> Medical
+                    </div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h2 class="font-headline-md text-headline-md text-on-background mb-xs line-clamp-2">Help Baby Leo's Heart Surgery Fund</h2>
+<div class="flex items-center gap-2 mb-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="account_circle">account_circle</span>
+                            Sarah Jenkins
+                        </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            Seattle, WA
+                        </span>
+</div>
+<div class="mb-sm mt-auto">
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-primary font-bold">$45,000 raised</span>
+<span class="text-on-surface-variant">of $50,000</span>
+</div>
+<div class="w-full h-3 bg-[#F1F5F9] rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full relative w-[90%]">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-[2px] progress-glow"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm mt-sm pt-sm border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 5 days left
+                        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2.4k donors</span>
+</div>
+<button class="w-full font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors active:scale-95">Donate</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="glass-card rounded-xl overflow-hidden ambient-shadow-1 hover:ambient-shadow-2 transition-shadow duration-300 group cursor-pointer flex flex-col h-full">
+<div class="relative h-48 w-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A destroyed neighborhood post-hurricane with volunteers in high-visibility vests clearing debris. Overcast sky but rays of sunlight breaking through. The mood is resilient and communal. The color palette focuses on earthy tones mixed with bright safety orange and green." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALLz-6dAGXI4aAOqu4sdJZEaaRlswpQtPLXG761V_uhUBXdU5Yd_oeQDM9JbqRp-fVG1f11hWniR9zBoja1PikZSszkTkqgr487zTaoS0GavX82EdZ_WGYALyCMn8W3ZQe1ig5p2kcjcEmNdViqxXbuTa-0SzHDvDncZ-hmtJ7_WEyskqH9ItFqAze3sXnlc6iB6SMET0z8JsqHWU2ZyKSgV8CP_asLMfFcgth12lkyBS80a0S5lbr_UEE_bgWr_E7a5oxssdT9yc">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span> Emergency
+                    </div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h2 class="font-headline-md text-headline-md text-on-background mb-xs line-clamp-2">Rebuild Main Street After the Storm</h2>
+<div class="flex items-center gap-2 mb-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="account_circle">account_circle</span>
+                            Oakville Community Board
+                            <span class="w-4 h-4 bg-secondary rounded-full flex items-center justify-center text-white ml-1">
+<span class="material-symbols-outlined text-[10px]" data-icon="check">check</span>
+</span>
+</span>
+</div>
+<div class="mb-sm mt-auto">
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-primary font-bold">$12,500 raised</span>
+<span class="text-on-surface-variant">of $100,000</span>
+</div>
+<div class="w-full h-3 bg-[#F1F5F9] rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full relative w-[12%]">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-[2px] progress-glow"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm mt-sm pt-sm border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 28 days left
+                        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">142 donors</span>
+</div>
+<button class="w-full font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors active:scale-95">Donate</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="glass-card rounded-xl overflow-hidden ambient-shadow-1 hover:ambient-shadow-2 transition-shadow duration-300 group cursor-pointer flex flex-col h-full">
+<div class="relative h-48 w-full overflow-hidden shrink-0">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A bright modern classroom with diverse children looking excitedly at brand new laptop computers. Soft natural lighting from large windows. The mood is inspiring and educational. Warm tones with pops of vibrant primary colors on the walls and desks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ60tiy4jhPtQcf9fIubxzopIKSaX7H1UWox5biVxIDiC6W1ogp001pGFdYhAe4oyiamWbDY88jsMFfruGeehoXIy5lJdju0u3bCU7pO-1NlyGITUnbjQpdA0YWsCSeSW9dtW9RHL3uqT8QMbTLbPPsZ1EH1qFC_XspqWSAFEtD21V5nSBzoNqv1iNsTWSNGJPUC8fvSnYFs6qdOuJqBakWwRJzPy28Mv4iJ72kzNuBlaaq7IfKTyVumnTIyHvL-IKl-EoqzAySjs">
+<div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="school">school</span> Education
+                    </div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<h2 class="font-headline-md text-headline-md text-on-background mb-xs line-clamp-2">Laptops for Lincoln High Freshmen</h2>
+<div class="flex items-center gap-2 mb-md text-on-surface-variant">
+<span class="font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="account_circle">account_circle</span>
+                            Marcus Thorne
+                        </span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                            Chicago, IL
+                        </span>
+</div>
+<div class="mb-sm mt-auto">
+<div class="flex justify-between font-label-sm text-label-sm mb-xs">
+<span class="text-primary font-bold">$8,200 raised</span>
+<span class="text-on-surface-variant">of $15,000</span>
+</div>
+<div class="w-full h-3 bg-[#F1F5F9] rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full relative w-[54%]">
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/50 blur-[2px] progress-glow"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm mt-sm pt-sm border-t border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 14 days left
+                        </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">89 donors</span>
+</div>
+<button class="w-full font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors active:scale-95">Donate</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Load More -->
+<div class="flex justify-center mt-lg">
+<button class="font-label-md text-label-md border border-outline-variant px-6 py-2 rounded-lg text-on-background hover:bg-surface-container transition-colors">Load More Campaigns</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low w-full py-lg border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md px-gutter max-w-max-width mx-auto">
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim mb-2">KindWave</div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4">Empowering collective action for a better world.</p>
+<div class="font-label-md text-label-md text-on-surface-variant">© 2024 KindWave. All rights reserved.</div>
+</div>
+<div>
+<a class="block font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80 py-1" href="#">About</a>
+</div>
+<div>
+<a class="block font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80 py-1" href="#">Contact</a>
+</div>
+<div>
+<a class="block font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80 py-1" href="#">Privacy</a>
+<a class="block font-label-md text-label-md text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-opacity hover:opacity-80 py-1" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>
