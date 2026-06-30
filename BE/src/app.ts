@@ -8,6 +8,7 @@ import { ENV } from "@/config/env.config";
 import { prisma } from "@/config/prisma.client";
 import { errorHandler } from "@/middlewares/error.middleware";
 import { requestContextMiddleware } from "@/middlewares/request-context";
+import { authRouter } from "@/modules/auth/auth.routes";
 
 const app = express();
 const redis = new Redis(ENV.REDIS_URL);
@@ -72,6 +73,9 @@ app.get("/health", async (req: Request, res: Response) => {
     res.status(500).json({ status: "error", message: "Health check failed" });
   }
 });
+
+// API routes
+app.use("/api/auth", authRouter);
 
 // Global Error Handler mounted at the absolute end
 app.use(errorHandler);
