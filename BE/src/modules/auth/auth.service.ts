@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import { prisma } from "@/config/prisma.client";
-import { ConflictError } from "@/errors/app.error";
-import type { RegisterInput } from "@/modules/auth/auth.schema";
+import { ConflictError, UnauthorizedError } from "@/errors/app.error";
+import type { RegisterInput, LoginInput } from "@/modules/auth/auth.schema";
+import { signTokenPair, type TokenPair } from "@/modules/auth/jwt.util";
 
 const SALT_ROUNDS = 10;
 
@@ -49,4 +50,43 @@ export const registerUser = async (input: RegisterInput): Promise<PublicUser> =>
   });
 
   return toPublicUser(user);
+};
+
+export interface LoginResult extends TokenPair {
+  user: PublicUser;
+}
+
+export const loginUser = async (input: LoginInput): Promise<LoginResult> => {
+  const user = await prisma.user.findUnique({
+    where: { email: input.email },
+    select: {
+      id: true,
+      email: true,
+      fullName: true,
+      role: true,
+      createdAt: true,
+      passwordHash: true,
+      deletedAt: true,
+    },
+  });
+
+  if (!user || user.deletedAt) {
+    throw new UnauthorizedError("Email hoặc mật khẩu không đúng");
+  }
+
+  const passwordMatches = await bcrypt.compare(input.password, user.passwordHash);
+  if (!passwordMatches) {
+    throw new UnauthorizedError("Email hoặc mật khẩu không đúng");
+  }
+
+  const tokens = signTokenPair({
+    sub: user.id.toString(),
+    email: user.email,
+    role: user.role,
+  });
+
+  return {
+    ...tokens,
+    user: toPublicUser(user),
+  };
 };
