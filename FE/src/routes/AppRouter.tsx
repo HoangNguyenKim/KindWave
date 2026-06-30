@@ -17,7 +17,7 @@ export const createAppRouter = (queryClient: QueryClient) =>
           },
         },
         {
-          element: <ProtectedRoute allowedRoles={["User", "Admin"]} />,
+          element: <ProtectedRoute allowedRoles={["USER", "ADMIN"]} />,
           children: [
             {
               path: "dashboard",
