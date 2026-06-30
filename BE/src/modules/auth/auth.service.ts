@@ -1,13 +1,17 @@
 import bcrypt from "bcrypt";
+import crypto from "node:crypto";
 import jwt from "jsonwebtoken";
 import { prisma } from "@/config/prisma.client";
 import { redis } from "@/config/redis.client";
-import { ConflictError, UnauthorizedError } from "@/errors/app.error";
+import { ConflictError, UnauthorizedError, BadRequestError } from "@/errors/app.error";
+import { sendOtpEmail } from "@/lib/mailer";
 import type {
   RegisterInput,
   LoginInput,
   RefreshInput,
   LogoutInput,
+  ForgotPasswordInput,
+  ResetPasswordInput,
 } from "@/modules/auth/auth.schema";
 import {
   signTokenPair,
@@ -143,4 +147,54 @@ export const refreshTokens = async (input: RefreshInput): Promise<TokenPair> => 
     email: payload.email,
     role: payload.role,
   });
+};
+
+const OTP_TTL_SECONDS = 5 * 60;
+const otpKey = (email: string): string => `auth:otp:${email.toLowerCase()}`;
+
+const generateOtp = (): string => crypto.randomInt(0, 1_000_000).toString().padStart(6, "0");
+
+export const requestPasswordReset = async (input: ForgotPasswordInput): Promise<void> => {
+  const user = await prisma.user.findUnique({
+    where: { email: input.email },
+    select: { id: true, deletedAt: true },
+  });
+
+  // Always behave the same way to avoid leaking which emails exist.
+  if (!user || user.deletedAt) {
+    return;
+  }
+
+  const otp = generateOtp();
+  const otpHash = await bcrypt.hash(otp, SALT_ROUNDS);
+  await redis.set(otpKey(input.email), otpHash, "EX", OTP_TTL_SECONDS);
+  await sendOtpEmail(input.email, otp);
+};
+
+export const resetPassword = async (input: ResetPasswordInput): Promise<void> => {
+  const storedHash = await redis.get(otpKey(input.email));
+  if (!storedHash) {
+    throw new BadRequestError("OTP không tồn tại hoặc đã hết hạn");
+  }
+
+  const otpMatches = await bcrypt.compare(input.otp, storedHash);
+  if (!otpMatches) {
+    throw new BadRequestError("OTP không đúng");
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { email: input.email },
+    select: { id: true, deletedAt: true },
+  });
+  if (!user || user.deletedAt) {
+    throw new BadRequestError("Tài khoản không hợp lệ");
+  }
+
+  const passwordHash = await bcrypt.hash(input.newPassword, SALT_ROUNDS);
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { passwordHash },
+  });
+
+  await redis.del(otpKey(input.email));
 };

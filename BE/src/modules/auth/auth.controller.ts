@@ -1,10 +1,19 @@
 import type { Request, Response, NextFunction } from "express";
-import { registerUser, loginUser, logoutUser, refreshTokens } from "@/modules/auth/auth.service";
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshTokens,
+  requestPasswordReset,
+  resetPassword,
+} from "@/modules/auth/auth.service";
 import type {
   RegisterInput,
   LoginInput,
   LogoutInput,
   RefreshInput,
+  ForgotPasswordInput,
+  ResetPasswordInput,
 } from "@/modules/auth/auth.schema";
 
 export const register = async (
@@ -69,6 +78,40 @@ export const refresh = async (
       success: true,
       data: { accessToken, refreshToken },
       message: "Làm mới token thành công",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const forgotPassword = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await requestPasswordReset(req.body as ForgotPasswordInput);
+    res.status(200).json({
+      success: true,
+      data: null,
+      message: "Nếu email tồn tại, mã OTP đã được gửi",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPasswordController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    await resetPassword(req.body as ResetPasswordInput);
+    res.status(200).json({
+      success: true,
+      data: null,
+      message: "Đặt lại mật khẩu thành công",
     });
   } catch (error) {
     next(error);

@@ -39,3 +39,26 @@ export const logoutSchema = z.object({
 });
 
 export type LogoutInput = z.infer<typeof logoutSchema>["body"];
+
+export const forgotPasswordSchema = z.object({
+  body: z.object({
+    email: z.string().email("Email không hợp lệ").max(255),
+  }),
+});
+
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>["body"];
+
+export const resetPasswordSchema = z.object({
+  body: z.object({
+    email: z.string().email("Email không hợp lệ").max(255),
+    otp: z.string().length(6, "OTP gồm 6 chữ số").regex(/^\d{6}$/, "OTP chỉ gồm chữ số"),
+    newPassword: z
+      .string()
+      .min(8, "Mật khẩu tối thiểu 8 ký tự")
+      .max(72, "Mật khẩu tối đa 72 ký tự")
+      .regex(/[A-Za-z]/, "Mật khẩu phải có ít nhất một chữ cái")
+      .regex(/[0-9]/, "Mật khẩu phải có ít nhất một chữ số"),
+  }),
+});
+
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>["body"];
