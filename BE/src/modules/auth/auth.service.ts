@@ -1,8 +1,20 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { prisma } from "@/config/prisma.client";
+import { redis } from "@/config/redis.client";
 import { ConflictError, UnauthorizedError } from "@/errors/app.error";
-import type { RegisterInput, LoginInput } from "@/modules/auth/auth.schema";
-import { signTokenPair, type TokenPair } from "@/modules/auth/jwt.util";
+import type {
+  RegisterInput,
+  LoginInput,
+  RefreshInput,
+  LogoutInput,
+} from "@/modules/auth/auth.schema";
+import {
+  signTokenPair,
+  verifyToken,
+  getRemainingTtlSeconds,
+  type TokenPair,
+} from "@/modules/auth/jwt.util";
 
 const SALT_ROUNDS = 10;
 
@@ -89,4 +101,46 @@ export const loginUser = async (input: LoginInput): Promise<LoginResult> => {
     ...tokens,
     user: toPublicUser(user),
   };
+};
+
+const blacklistKey = (token: string): string => `auth:blacklist:${token}`;
+
+const assertNotBlacklisted = async (refreshToken: string): Promise<void> => {
+  const blacklisted = await redis.get(blacklistKey(refreshToken));
+  if (blacklisted) {
+    throw new UnauthorizedError("Refresh token đã bị thu hồi");
+  }
+};
+
+export const logoutUser = async (input: LogoutInput): Promise<void> => {
+  const ttl = getRemainingTtlSeconds(input.refreshToken);
+  if (ttl > 0) {
+    await redis.set(blacklistKey(input.refreshToken), "1", "EX", ttl);
+  }
+};
+
+export const refreshTokens = async (input: RefreshInput): Promise<TokenPair> => {
+  await assertNotBlacklisted(input.refreshToken);
+
+  let payload;
+  try {
+    payload = verifyToken(input.refreshToken);
+  } catch (error) {
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new UnauthorizedError("Refresh token không hợp lệ hoặc đã hết hạn");
+    }
+    throw error;
+  }
+
+  // Rotation: revoke the used refresh token before issuing a new pair
+  const ttl = getRemainingTtlSeconds(input.refreshToken);
+  if (ttl > 0) {
+    await redis.set(blacklistKey(input.refreshToken), "1", "EX", ttl);
+  }
+
+  return signTokenPair({
+    sub: payload.sub,
+    email: payload.email,
+    role: payload.role,
+  });
 };

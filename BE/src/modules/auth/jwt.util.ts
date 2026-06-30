@@ -37,3 +37,12 @@ export const verifyToken = (token: string): JwtPayload => {
     role: String(decoded.role),
   };
 };
+
+export const getRemainingTtlSeconds = (token: string): number => {
+  const decoded = jwt.decode(token);
+  if (!decoded || typeof decoded === "string" || typeof decoded.exp !== "number") {
+    return 0;
+  }
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  return Math.max(0, decoded.exp - nowSeconds);
+};
