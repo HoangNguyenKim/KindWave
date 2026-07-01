@@ -4,10 +4,12 @@ import { app } from "@/app";
 import { ENV } from "@/config/env.config";
 import { logger } from "@/config/pino.logger";
 import { prisma } from "@/config/prisma.client";
+import { initSocketServer } from "@/lib/socket.server";
 import "@/utils/bigint.serializer"; // Load the serializer
 
 const server = createServer(app);
 const redis = new Redis(ENV.REDIS_URL);
+const io = initSocketServer(server);
 
 server.listen(ENV.PORT, () => {
   logger.info(`🚀 Server running on port ${ENV.PORT} in ${ENV.NODE_ENV} mode`);
@@ -27,6 +29,7 @@ const gracefulShutdown = async (signal: string) => {
     logger.info("HTTP server closed. Waiting for active sockets to finish...");
 
     try {
+      io.close();
       // Close Prisma and Redis safely
       await Promise.all([
         prisma.$disconnect(),
