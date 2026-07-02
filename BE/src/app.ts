@@ -9,6 +9,7 @@ import { prisma } from "@/config/prisma.client";
 import { errorHandler } from "@/middlewares/error.middleware";
 import { requestContextMiddleware } from "@/middlewares/request-context";
 import { authRouter } from "@/modules/auth/auth.routes";
+import { campaignRouter } from "@/modules/campaign/campaign.routes";
 
 const app = express();
 const redis = new Redis(ENV.REDIS_URL);
@@ -76,6 +77,7 @@ app.get("/health", async (req: Request, res: Response) => {
 
 // API routes
 app.use("/api/auth", authRouter);
+app.use("/api/campaigns", campaignRouter);
 
 // Global Error Handler mounted at the absolute end
 app.use(errorHandler);
