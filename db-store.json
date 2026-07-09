@@ -1,0 +1,572 @@
+{
+  "users": [
+    {
+      "id": "user-current",
+      "name": "Nguyễn Kim Hoàng",
+      "email": "ngkimhoang05@gmail.com",
+      "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200",
+      "role": "USER",
+      "bio": "Nhà hảo tâm và là tình nguyện viên tích cực, đam mê các hoạt động bảo vệ môi trường và hỗ trợ trẻ em nghèo vùng cao.",
+      "isBanned": false,
+      "impactPoints": 280,
+      "impactHours": 12,
+      "badges": [
+        "Đại sứ Hy vọng",
+        "Chiến binh Xanh"
+      ]
+    },
+    {
+      "id": "user-admin",
+      "name": "Trần Minh Đức (Admin)",
+      "email": "duc.admin@kindwave.org",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
+      "role": "ADMIN",
+      "bio": "Trưởng ban kiểm duyệt tư pháp KindWave",
+      "isBanned": false,
+      "impactPoints": 500,
+      "impactHours": 0,
+      "badges": [
+        "Hộ vệ Công lý"
+      ]
+    },
+    {
+      "id": "user-2",
+      "name": "Lê Thị Lan Anh",
+      "email": "anhsang@ngo.org",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+      "role": "USER",
+      "bio": "Đại diện Hội Thiện Nguyện Ánh Sáng",
+      "isBanned": false,
+      "impactPoints": 100,
+      "impactHours": 0,
+      "badges": []
+    },
+    {
+      "id": "user-3",
+      "name": "Nguyễn Thế Hải",
+      "email": "bongsen@fund.vn",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+      "role": "USER",
+      "bio": "Sáng lập Quỹ Bông Sen Xanh",
+      "isBanned": false,
+      "impactPoints": 0,
+      "impactHours": 0,
+      "badges": []
+    },
+    {
+      "id": "user-1783440065125",
+      "name": "Nguyen",
+      "email": "hoang05@gmail.com",
+      "avatar": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;q=80&amp;w=200",
+      "role": "ADMIN",
+      "bio": "",
+      "isBanned": false,
+      "impactPoints": 0,
+      "impactHours": 0,
+      "badges": []
+    },
+    {
+      "id": "user-1783489335203",
+      "name": "Hoang",
+      "email": "kevinkimhoang05@gmail.com",
+      "password": "$2b$10$PwTz7CeqDfmMX2Y98AnTUunJGH7NLu9PwmI/shEeHID8UWc1bXwJy",
+      "avatar": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;q=80&amp;w=200",
+      "role": "USER",
+      "bio": "",
+      "isBanned": false,
+      "impactPoints": 1000000180,
+      "impactHours": 0,
+      "badges": []
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "camp-1783489450481",
+      "title": "Xây Trường",
+      "categoryId": "cat-emergency",
+      "goalAmount": 100000000,
+      "raisedAmount": 0,
+      "shortDescription": "Góp Gạch xây trường",
+      "description": "Domixi",
+      "targetBeneficiary": "Cao Bằng",
+      "image": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1488521787991-ed7bbaae773c?auto=format&amp;fit=crop&amp;q=80&amp;w=800",
+      "isAnonymousApproved": true,
+      "status": "PENDING",
+      "organizerId": "user-1783489335203",
+      "creatorName": "Hoang",
+      "dateCreated": "2026-07-08",
+      "dateEnded": "2026-09-06"
+    },
+    {
+      "id": "camp-hagiang",
+      "title": "Xây dựng Trường học Vùng cao Mèo Vạc, Hà Giang",
+      "shortDescription": "Góp gạch xây trường, thắp sáng ước mơ học chữ cho hơn 150 trẻ em nghèo người Mông tại xã Lũng Pù, Hà Giang.",
+      "description": "### Giới thiệu dự án\nXã Lũng Pù là một trong những địa bàn khó khăn nhất của huyện Mèo Vạc, Hà Giang. Hiện tại, hơn 150 trẻ em mầm non và tiểu học đang phải học trong các lớp tạm bợ bằng tranh tre nứa lá, gió lùa buốt giá vào mùa đông và dột nát vào mùa mưa.\n\nKindWave phát động chiến dịch quyên góp nhằm xây dựng **3 phòng học kiên cố**, 1 khu vệ sinh khép kín và trang bị đầy đủ bàn ghế, bảng viết, sách vở cho các em.\n\n### Kế hoạch triển khai\n- **Giai đoạn 1:** Khảo sát, san lấp mặt bằng và chuẩn bị vật liệu xây dựng (Gạch, xi măng, sắt thép).\n- **Giai đoạn 2:** Thi công phần móng, đổ cột và tường bao.\n- **Giai đoạn 3:** Hoàn thiện mái lợp chống nóng, lát gạch, lắp cửa và hệ thống chiếu sáng.\n- **Giai đoạn 4:** Nghiệm thu, bàn giao trường mới và tổ chức lễ khai giảng.\n\nMọi khoản đóng góp và giải ngân sẽ được công khai minh bạch 100% qua sổ cái hệ thống KindWave.",
+      "image": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=800",
+      "categoryId": "cat-education",
+      "goalAmount": 300000000,
+      "raisedAmount": 185000000,
+      "status": "ACTIVE",
+      "organizerId": "user-2",
+      "creatorName": "Hội Thiện Nguyện Ánh Sáng",
+      "dateCreated": "2026-06-01",
+      "dateEnded": "2026-08-30",
+      "isAnonymousApproved": true,
+      "targetBeneficiary": "150 trẻ em nghèo xã Lũng Pù, Mèo Vạc"
+    },
+    {
+      "id": "camp-flood",
+      "title": "Cứu trợ khẩn cấp Lũ lụt miền Trung 2026",
+      "shortDescription": "Hỗ trợ lương thực, nước sạch và túi thuốc khẩn cấp cho hơn 1000 hộ gia đình bị cô lập bởi lũ quét tại Quảng Bình.",
+      "description": "### Tình hình khẩn cấp\nTrận bão số 2 vừa qua đã gây mưa lớn cục bộ, sạt lở đất và lũ quét nghiêm trọng tại nhiều khu vực thuộc tỉnh Quảng Bình. Hàng ngàn ngôi nhà ngập sâu trong nước, người dân mất hoàn toàn tài sản, lương thực và đối mặt với nguy cơ thiếu nước uống sạch, dịch bệnh bùng phát.\n\n### Hoạt động cứu trợ của KindWave\nChúng tôi phối hợp cùng lực lượng cứu hộ địa phương để phân phát trực tiếp:\n1. **1000 thùng mì ăn liền & lương khô.**\n2. **2000 bình nước tinh khiết (20L).**\n3. **1000 túi thuốc gia đình** (thuốc cảm, bông băng, thuốc sát trùng, thuốc trị nước ăn chân).\n4. **Hỗ trợ tiền mặt khẩn cấp** cho các gia đình bị sập nhà hoàn toàn (10,000,000 VNĐ/hộ).\n\nChúng tôi cam kết ghi nhận từng đồng quyên góp, cập nhật trực tiếp hóa đơn nhập lương thực ngay khi mua hàng để người quyên góp tiện theo dõi.",
+      "image": "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&q=80&w=800",
+      "categoryId": "cat-emergency",
+      "goalAmount": 500000000,
+      "raisedAmount": 420000000,
+      "status": "ACTIVE",
+      "organizerId": "user-3",
+      "creatorName": "Quỹ Bông Sen Xanh",
+      "dateCreated": "2026-06-25",
+      "dateEnded": "2026-07-25",
+      "isAnonymousApproved": true,
+      "targetBeneficiary": "1000 hộ dân vùng lũ Quảng Bình"
+    },
+    {
+      "id": "camp-heart",
+      "title": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
+      "shortDescription": "Tài trợ 100% chi phí phẫu thuật tim bẩm sinh cho các em nhỏ có hoàn cảnh đặc biệt khó khăn, mở ra cuộc đời mới.",
+      "description": "### Ý nghĩa chương trình\nBệnh tim bẩm sinh có thể chữa khỏi hoàn toàn nếu được phẫu thuật kịp thời. Tuy nhiên, chi phí một ca mổ tim dao động từ 80 đến 150 triệu VNĐ - một con số không tưởng đối với các gia đình nghèo làm nông, làm thuê ở vùng sâu vùng xa.\n\nKindWave hợp tác cùng Viện Tim TP.HCM để sàng lọc và tài trợ phẫu thuật cho các bé có chỉ định khẩn cấp. Mỗi ca mổ thành công là một cuộc đời của bé và một gia đình được cứu sống.\n\n### Danh sách thụ hưởng đợt này\n- Bé **Nguyễn Gia Bảo** (4 tuổi, Quảng Ngãi) - Suy tim độ 3.\n- Bé **Lê Mai Anh** (6 tuổi, Sóc Trăng) - Thông liên thất lớn.\n- Bé **Trần Quốc Huy** (3 tuổi, Đắk Lắk) - Tứ chứng Fallot.\n\nMọi chứng từ bệnh viện, hóa đơn đóng viện phí sẽ được chụp ảnh và tải lên mục \"Bằng chứng Tác động\" sau khi phẫu thuật thành công.",
+      "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=800",
+      "categoryId": "cat-emergency",
+      "goalAmount": 300000000,
+      "raisedAmount": 10000095200000,
+      "status": "ACTIVE",
+      "organizerId": "user-current",
+      "creatorName": "Trái tim cho Em Foundation",
+      "dateCreated": "2026-06-15",
+      "dateEnded": "2026-09-15",
+      "isAnonymousApproved": false,
+      "targetBeneficiary": "Các bé mắc tim bẩm sinh thuộc hộ nghèo"
+    },
+    {
+      "id": "camp-forest",
+      "title": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "shortDescription": "Khôi phục thảm thực vật tự nhiên, phủ xanh đất trống đồi trọc và kiến tạo sinh cảnh bền vững cho động vật hoang dã.",
+      "description": "### Tại sao cần trồng rừng?\nVườn Quốc gia Nam Cát Tiên là lá phổi xanh cực kỳ quan trọng của vùng Đông Nam Bộ. Tuy nhiên, một số khu vực bìa rừng đã bị suy thoái nghiêm trọng do khai thác trước đây. \n\nChiến dịch **Gieo Mầm Xanh** nhằm gieo trồng các giống cây gỗ lớn bản địa như Gõ đỏ, Giáng hương, Bằng lăng và các loại cây ăn trái rừng nhằm cung cấp thức ăn cho các loài linh trưởng, chim muông hoang dã.\n\n### Mục tiêu dự án\n1. Mua **10,000 cây giống đạt chuẩn** (được ươm dưỡng ít nhất 6 tháng).\n2. Tổ chức đợt ra quân chăm sóc và dọn cỏ trong 2 năm đầu tiên nhằm đảm bảo tỉ lệ sống đạt trên 85%.\n3. Huy động 100+ tình nguyện viên tham gia ngày hội trồng rừng trực tiếp tại địa bàn.",
+      "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+      "categoryId": "cat-environment",
+      "goalAmount": 100000000,
+      "raisedAmount": 46600000,
+      "status": "ACTIVE",
+      "organizerId": "user-admin",
+      "creatorName": "GreenFuture Vietnam",
+      "dateCreated": "2026-05-10",
+      "dateEnded": "2026-08-10",
+      "isAnonymousApproved": true,
+      "targetBeneficiary": "Hệ sinh thái rừng Nam Cát Tiên"
+    }
+  ],
+  "donations": [
+    {
+      "id": "don-1783493894189",
+      "campaignId": "camp-forest",
+      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "userId": "user-1783489335203",
+      "donorName": "Hoang",
+      "amount": 200000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 06:58",
+      "comment": "",
+      "transactionCode": "TX235495127KW"
+    },
+    {
+      "id": "don-1783492095169",
+      "campaignId": "camp-forest",
+      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "userId": "user-1783489335203",
+      "donorName": "Hoang",
+      "amount": 200000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 06:28",
+      "comment": "",
+      "transactionCode": "TX407014712KW"
+    },
+    {
+      "id": "don-1783491332934",
+      "campaignId": "camp-forest",
+      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "userId": "user-1783489335203",
+      "donorName": "Nhà hảo tâm ẩn danh",
+      "amount": 200000,
+      "isAnonymous": true,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 06:15",
+      "comment": "",
+      "transactionCode": "TX393467186KW"
+    },
+    {
+      "id": "don-1783491046036",
+      "campaignId": "camp-forest",
+      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "userId": "user-1783489335203",
+      "donorName": "Hoang",
+      "amount": 1000000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 06:10",
+      "comment": "",
+      "transactionCode": "TX803577770KW"
+    },
+    {
+      "id": "don-1783490231998",
+      "campaignId": "camp-heart",
+      "campaignTitle": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
+      "userId": "user-1783489335203",
+      "donorName": "Hoang",
+      "amount": 10000000000000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 05:57",
+      "comment": "",
+      "transactionCode": "TX270054966KW"
+    },
+    {
+      "id": "don-1783490166074",
+      "campaignId": "camp-heart",
+      "campaignTitle": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
+      "userId": "user-1783489335203",
+      "donorName": "Hoang",
+      "amount": 200000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-08 05:56",
+      "comment": "hí ae",
+      "transactionCode": "TX459618094KW"
+    },
+    {
+      "id": "don-1",
+      "campaignId": "camp-hagiang",
+      "campaignTitle": "Xây dựng Trường học Vùng cao Mèo Vạc, Hà Giang",
+      "userId": "user-other-1",
+      "donorName": "Phạm Hải Đăng",
+      "amount": 50000000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-06-05 10:30",
+      "comment": "Chúc các con sớm có một ngôi trường mới thật khang trang và ấm áp để yên tâm học chữ nhé!",
+      "transactionCode": "TX6051030HD"
+    },
+    {
+      "id": "don-2",
+      "campaignId": "camp-flood",
+      "campaignTitle": "Cứu trợ khẩn cấp Lũ lụt miền Trung 2026",
+      "userId": "user-other-2",
+      "donorName": "Nhà hảo tâm ẩn danh",
+      "amount": 150000000,
+      "isAnonymous": true,
+      "status": "SUCCESS",
+      "dateCreated": "2026-06-26 14:15",
+      "comment": "Gửi chút tấm lòng chia sẻ khó khăn với bà con vùng lũ Quảng Bình. Mong bà con sớm vượt qua thiên tai.",
+      "transactionCode": "TX6261415AN"
+    },
+    {
+      "id": "don-3",
+      "campaignId": "camp-heart",
+      "campaignTitle": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
+      "userId": "user-current",
+      "donorName": "Nguyễn Kim Hoàng",
+      "amount": 15000000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-06-20 09:45",
+      "comment": "Mong ca phẫu thuật của bé Gia Bảo diễn ra thật thành công tốt đẹp!",
+      "transactionCode": "TX6200945KH"
+    },
+    {
+      "id": "don-4",
+      "campaignId": "camp-hagiang",
+      "campaignTitle": "Xây dựng Trường học Vùng cao Mèo Vạc, Hà Giang",
+      "userId": "user-other-3",
+      "donorName": "Lê Minh Tuấn",
+      "amount": 25000000,
+      "isAnonymous": false,
+      "status": "SUCCESS",
+      "dateCreated": "2026-06-12 16:50",
+      "comment": "Một viên gạch nhỏ chung sức dựng xây tương lai cho các em.",
+      "transactionCode": "TX6121650MT"
+    }
+  ],
+  "volunteerJobs": [
+    {
+      "id": "vol-hagiang-teacher",
+      "title": "Dạy toán và tiếng Anh hè cho trẻ em vùng cao Hà Giang",
+      "description": "Hỗ trợ giảng dạy kiến thức cơ bản và tổ chức các trò chơi sinh hoạt hè cho học sinh nghèo tại xã Lũng Pù, Mèo Vạc. Bạn sẽ ăn ở cùng người dân bản địa.",
+      "skillsRequired": [
+        "Giao tiếp tốt",
+        "Có kỹ năng sư phạm cơ bản",
+        "Yêu trẻ em",
+        "Chịu khó"
+      ],
+      "hoursEarned": 40,
+      "pointsReward": 500,
+      "location": "Xã Lũng Pù, Mèo Vạc, Hà Giang",
+      "schedule": "Từ 15/07/2026 đến 30/07/2026 (15 ngày)",
+      "spotsLeft": 5,
+      "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800",
+      "campaignId": "camp-hagiang"
+    },
+    {
+      "id": "vol-flood-distributor",
+      "title": "Hỗ trợ bốc dỡ và phân phát nhu yếu phẩm khẩn cấp",
+      "description": "Tham gia tiếp nhận, đóng gói các thùng mì, bao gạo, nước sạch tại kho trung chuyển Quảng Bình và vận chuyển lên thuyền cứu trợ để phát tận tay bà con.",
+      "skillsRequired": [
+        "Sức khỏe tốt",
+        "Biết bơi",
+        "Nhiệt tình",
+        "Kỷ luật cao"
+      ],
+      "hoursEarned": 16,
+      "pointsReward": 200,
+      "location": "Thành phố Đồng Hới & Huyện Lệ Thủy, Quảng Bình",
+      "schedule": "Các ngày cuối tuần trong tháng 07/2026",
+      "spotsLeft": 12,
+      "image": "https://images.unsplash.com/photo-1469571486117-788ab9745744?auto=format&fit=crop&q=80&w=800",
+      "campaignId": "camp-flood"
+    },
+    {
+      "id": "vol-tree-planter",
+      "title": "Tình nguyện viên Trồng rừng cuối tuần tại Nam Cát Tiên",
+      "description": "Tham gia dọn dẹp thực bì, đào hố và xuống giống 1000 cây gõ đỏ đầu tiên trong chiến dịch. Ban tổ chức hỗ trợ xe di chuyển từ TP.HCM.",
+      "skillsRequired": [
+        "Không ngại lấm bẩn",
+        "Sức khỏe thể chất ổn định",
+        "Yêu thiên nhiên"
+      ],
+      "hoursEarned": 8,
+      "pointsReward": 100,
+      "location": "Vườn Quốc gia Nam Cát Tiên, Đồng Nai",
+      "schedule": "Chủ Nhật, ngày 19/07/2026",
+      "spotsLeft": 30,
+      "image": "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=800",
+      "campaignId": "camp-forest"
+    }
+  ],
+  "applications": [],
+  "verifications": [
+    {
+      "id": "ver-1",
+      "orgName": "Hội Thiện Nguyện Ánh Sáng",
+      "repName": "Lê Thị Lan Anh",
+      "email": "anhsang@ngo.org",
+      "licenseUrl": "https://example.com/license-ngo.pdf",
+      "status": "PENDING",
+      "dateCreated": "2026-07-01"
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep-1",
+      "campaignId": "camp-forest",
+      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
+      "reporterName": "Trần Thế Khoa",
+      "reason": "Sai lệch thông tin",
+      "description": "Hình ảnh cập nhật đợt gieo hạt giống này dường như là ảnh cũ từ năm ngoái. Yêu cầu ban quản trị làm rõ.",
+      "status": "PENDING",
+      "dateCreated": "2026-07-05"
+    }
+  ],
+  "disbursements": [
+    {
+      "id": "disb-1",
+      "campaignId": "camp-hagiang",
+      "scheduledDate": "2026-06-15",
+      "totalAmount": 50000000,
+      "bankingProofUrl": "https://img.vietqr.io/image/970415-113366688-compact2.png",
+      "status": "APPROVED",
+      "description": "Rút đợt 1 mua 20 tấn xi măng san lấp mặt bằng móng mầm non Hà Giang."
+    }
+  ],
+  "impactProofs": [
+    {
+      "id": "proof-1",
+      "campaignId": "camp-hagiang",
+      "title": "Hóa đơn mua xi măng đợt 1 - Hà Giang",
+      "content": "Báo cáo hóa đơn đỏ VAT mua xi măng từ Công ty Vật Liệu Hà Giang để san lấp móng phòng học mới.",
+      "proofImages": [
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800"
+      ],
+      "spentAmount": 48500000,
+      "status": "APPROVED",
+      "dateCreated": "2026-06-22"
+    }
+  ],
+  "ledgers": [
+    {
+      "id": "led-1783493894189",
+      "campaignId": "camp-forest",
+      "amount": 200000,
+      "type": "CREDIT",
+      "referenceId": "don-1783493894189",
+      "balanceAfter": 46600000,
+      "dateCreated": "2026-07-08 06:58",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
+    },
+    {
+      "id": "led-1783492095169",
+      "campaignId": "camp-forest",
+      "amount": 200000,
+      "type": "CREDIT",
+      "referenceId": "don-1783492095169",
+      "balanceAfter": 46400000,
+      "dateCreated": "2026-07-08 06:28",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
+    },
+    {
+      "id": "led-1783491332934",
+      "campaignId": "camp-forest",
+      "amount": 200000,
+      "type": "CREDIT",
+      "referenceId": "don-1783491332934",
+      "balanceAfter": 46200000,
+      "dateCreated": "2026-07-08 06:15",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm ẩn danh"
+    },
+    {
+      "id": "led-1783491046037",
+      "campaignId": "camp-forest",
+      "amount": 1000000,
+      "type": "CREDIT",
+      "referenceId": "don-1783491046036",
+      "balanceAfter": 46000000,
+      "dateCreated": "2026-07-08 06:10",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
+    },
+    {
+      "id": "led-1783490231998",
+      "campaignId": "camp-heart",
+      "amount": 10000000000000,
+      "type": "CREDIT",
+      "referenceId": "don-1783490231998",
+      "balanceAfter": 10000095200000,
+      "dateCreated": "2026-07-08 05:57",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
+    },
+    {
+      "id": "led-1783490166074",
+      "campaignId": "camp-heart",
+      "amount": 200000,
+      "type": "CREDIT",
+      "referenceId": "don-1783490166074",
+      "balanceAfter": 95200000,
+      "dateCreated": "2026-07-08 05:56",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
+    },
+    {
+      "id": "led-1",
+      "campaignId": "camp-hagiang",
+      "amount": 50000000,
+      "type": "CREDIT",
+      "referenceId": "don-1",
+      "balanceAfter": 50000000,
+      "dateCreated": "2026-06-05 10:30",
+      "description": "Nhận tiền quyên góp từ nhà tài trợ Phạm Hải Đăng"
+    },
+    {
+      "id": "led-2",
+      "campaignId": "camp-hagiang",
+      "amount": 25000000,
+      "type": "CREDIT",
+      "referenceId": "don-4",
+      "balanceAfter": 75000000,
+      "dateCreated": "2026-06-12 16:50",
+      "description": "Nhận tiền quyên góp từ nhà tài trợ Lê Minh Tuấn"
+    },
+    {
+      "id": "led-3",
+      "campaignId": "camp-flood",
+      "amount": 150000000,
+      "type": "CREDIT",
+      "referenceId": "don-2",
+      "balanceAfter": 150000000,
+      "dateCreated": "2026-06-26 14:15",
+      "description": "Nhận tiền quyên góp ẩn danh"
+    },
+    {
+      "id": "led-4",
+      "campaignId": "camp-heart",
+      "amount": 15000000,
+      "type": "CREDIT",
+      "referenceId": "don-3",
+      "balanceAfter": 15000000,
+      "dateCreated": "2026-06-20 09:45",
+      "description": "Nhận tiền quyên góp từ nhà tài trợ Nguyễn Kim Hoàng"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "log-1783493894190",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783493894189",
+      "details": "Quyên góp thành công 200.000 VNĐ vào chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\". Mã giao dịch: TX235495127KW.",
+      "timestamp": "2026-07-08T06:58:14.250Z"
+    },
+    {
+      "id": "log-1783492095169",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783492095169",
+      "details": "Quyên góp thành công 200.000 VNĐ vào chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\". Mã giao dịch: TX407014712KW.",
+      "timestamp": "2026-07-08T06:28:15.169Z"
+    },
+    {
+      "id": "log-1783491332934",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783491332934",
+      "details": "Quyên góp thành công 200.000 VNĐ vào chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\". Mã giao dịch: TX393467186KW.",
+      "timestamp": "2026-07-08T06:15:32.934Z"
+    },
+    {
+      "id": "log-1783491046037",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783491046036",
+      "details": "Quyên góp thành công 1.000.000 VNĐ vào chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\". Mã giao dịch: TX803577770KW.",
+      "timestamp": "2026-07-08T06:10:46.037Z"
+    },
+    {
+      "id": "log-1783490231999",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783490231998",
+      "details": "Quyên góp thành công 10.000.000.000.000 VNĐ vào chiến dịch \"Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học\". Mã giao dịch: TX270054966KW.",
+      "timestamp": "2026-07-08T05:57:12.001Z"
+    },
+    {
+      "id": "log-1783490166075",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1783490166074",
+      "details": "Quyên góp thành công 200.000 VNĐ vào chiến dịch \"Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học\". Mã giao dịch: TX459618094KW.",
+      "timestamp": "2026-07-08T05:56:06.075Z"
+    },
+    {
+      "id": "log-1783489450481",
+      "actorId": "user-1783489335203",
+      "actorName": "Hoang",
+      "action": "CREATE_CAMPAIGN",
+      "targetId": "camp-1783489450481",
+      "details": "Tạo chiến dịch mới: \"Xây Trường\" với số tiền mục tiêu: 100.000.000 VNĐ. Trạng thái: Chờ duyệt.",
+      "timestamp": "2026-07-08T05:44:10.527Z"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "KindWave",
+  "description": "A transparent, high-trust crowdfunding and volunteering platform connecting donors, organizations, and volunteers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
