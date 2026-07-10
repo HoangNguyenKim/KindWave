@@ -140,3 +140,11 @@ export interface AuditLog {
   details: string;
   timestamp: string;
 }
+
+export interface ImageRecord {
+  id: string;
+  fileName: string;
+  mimeType: string;
+  fileSize: number;
+  createdAt: string;
+}
