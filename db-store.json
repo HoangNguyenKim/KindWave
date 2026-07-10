@@ -4,6 +4,7 @@
       "id": "user-current",
       "name": "Nguyễn Kim Hoàng",
       "email": "ngkimhoang05@gmail.com",
+      "password": "$2b$10$Kgpebrxk9jb1WzfsebANBeRYSvWbqgPlhjnMhhqdw74redAxpXgqS",
       "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200",
       "role": "USER",
       "bio": "Nhà hảo tâm và là tình nguyện viên tích cực, đam mê các hoạt động bảo vệ môi trường và hỗ trợ trẻ em nghèo vùng cao.",
@@ -20,6 +21,7 @@
       "name": "Trần Minh Đức (Admin)",
       "email": "duc.admin@kindwave.org",
       "password": "$2b$10$PvUbpzcC1UXDgqeaDytwlO9hpaAQXDKP/ORvVeotYnJH6LM3jq5GO",
+
       "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
       "role": "ADMIN",
       "bio": "Trưởng ban kiểm duyệt tư pháp KindWave",
@@ -51,31 +53,6 @@
       "bio": "Sáng lập Quỹ Bông Sen Xanh",
       "isBanned": false,
       "impactPoints": 0,
-      "impactHours": 0,
-      "badges": []
-    },
-    {
-      "id": "user-1783440065125",
-      "name": "Nguyen",
-      "email": "hoang05@gmail.com",
-      "avatar": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;q=80&amp;w=200",
-      "role": "ADMIN",
-      "bio": "",
-      "isBanned": false,
-      "impactPoints": 0,
-      "impactHours": 0,
-      "badges": []
-    },
-    {
-      "id": "user-1783489335203",
-      "name": "Hoang",
-      "email": "kevinkimhoang05@gmail.com",
-      "password": "$2b$10$PwTz7CeqDfmMX2Y98AnTUunJGH7NLu9PwmI/shEeHID8UWc1bXwJy",
-      "avatar": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;q=80&amp;w=200",
-      "role": "USER",
-      "bio": "",
-      "isBanned": false,
-      "impactPoints": 1000000180,
       "impactHours": 0,
       "badges": []
     }
@@ -140,7 +117,7 @@
       "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=800",
       "categoryId": "cat-emergency",
       "goalAmount": 300000000,
-      "raisedAmount": 10000095200000,
+      "raisedAmount": 95000000,
       "status": "ACTIVE",
       "organizerId": "user-current",
       "creatorName": "Trái tim cho Em Foundation",
@@ -157,7 +134,7 @@
       "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
       "categoryId": "cat-environment",
       "goalAmount": 100000000,
-      "raisedAmount": 46600000,
+      "raisedAmount": 45000000,
       "status": "ACTIVE",
       "organizerId": "user-admin",
       "creatorName": "GreenFuture Vietnam",
@@ -168,84 +145,6 @@
     }
   ],
   "donations": [
-    {
-      "id": "don-1783493894189",
-      "campaignId": "camp-forest",
-      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
-      "userId": "user-1783489335203",
-      "donorName": "Hoang",
-      "amount": 200000,
-      "isAnonymous": false,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 06:58",
-      "comment": "",
-      "transactionCode": "TX235495127KW"
-    },
-    {
-      "id": "don-1783492095169",
-      "campaignId": "camp-forest",
-      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
-      "userId": "user-1783489335203",
-      "donorName": "Hoang",
-      "amount": 200000,
-      "isAnonymous": false,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 06:28",
-      "comment": "",
-      "transactionCode": "TX407014712KW"
-    },
-    {
-      "id": "don-1783491332934",
-      "campaignId": "camp-forest",
-      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
-      "userId": "user-1783489335203",
-      "donorName": "Nhà hảo tâm ẩn danh",
-      "amount": 200000,
-      "isAnonymous": true,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 06:15",
-      "comment": "",
-      "transactionCode": "TX393467186KW"
-    },
-    {
-      "id": "don-1783491046036",
-      "campaignId": "camp-forest",
-      "campaignTitle": "Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên",
-      "userId": "user-1783489335203",
-      "donorName": "Hoang",
-      "amount": 1000000,
-      "isAnonymous": false,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 06:10",
-      "comment": "",
-      "transactionCode": "TX803577770KW"
-    },
-    {
-      "id": "don-1783490231998",
-      "campaignId": "camp-heart",
-      "campaignTitle": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
-      "userId": "user-1783489335203",
-      "donorName": "Hoang",
-      "amount": 10000000000000,
-      "isAnonymous": false,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 05:57",
-      "comment": "",
-      "transactionCode": "TX270054966KW"
-    },
-    {
-      "id": "don-1783490166074",
-      "campaignId": "camp-heart",
-      "campaignTitle": "Mổ tim nhân đạo cứu sống Trẻ em Nghèo hiếu học",
-      "userId": "user-1783489335203",
-      "donorName": "Hoang",
-      "amount": 200000,
-      "isAnonymous": false,
-      "status": "SUCCESS",
-      "dateCreated": "2026-07-08 05:56",
-      "comment": "hí ae",
-      "transactionCode": "TX459618094KW"
-    },
     {
       "id": "don-1",
       "campaignId": "camp-hagiang",
@@ -404,66 +303,6 @@
     }
   ],
   "ledgers": [
-    {
-      "id": "led-1783493894189",
-      "campaignId": "camp-forest",
-      "amount": 200000,
-      "type": "CREDIT",
-      "referenceId": "don-1783493894189",
-      "balanceAfter": 46600000,
-      "dateCreated": "2026-07-08 06:58",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
-    },
-    {
-      "id": "led-1783492095169",
-      "campaignId": "camp-forest",
-      "amount": 200000,
-      "type": "CREDIT",
-      "referenceId": "don-1783492095169",
-      "balanceAfter": 46400000,
-      "dateCreated": "2026-07-08 06:28",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
-    },
-    {
-      "id": "led-1783491332934",
-      "campaignId": "camp-forest",
-      "amount": 200000,
-      "type": "CREDIT",
-      "referenceId": "don-1783491332934",
-      "balanceAfter": 46200000,
-      "dateCreated": "2026-07-08 06:15",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm ẩn danh"
-    },
-    {
-      "id": "led-1783491046037",
-      "campaignId": "camp-forest",
-      "amount": 1000000,
-      "type": "CREDIT",
-      "referenceId": "don-1783491046036",
-      "balanceAfter": 46000000,
-      "dateCreated": "2026-07-08 06:10",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
-    },
-    {
-      "id": "led-1783490231998",
-      "campaignId": "camp-heart",
-      "amount": 10000000000000,
-      "type": "CREDIT",
-      "referenceId": "don-1783490231998",
-      "balanceAfter": 10000095200000,
-      "dateCreated": "2026-07-08 05:57",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
-    },
-    {
-      "id": "led-1783490166074",
-      "campaignId": "camp-heart",
-      "amount": 200000,
-      "type": "CREDIT",
-      "referenceId": "don-1783490166074",
-      "balanceAfter": 95200000,
-      "dateCreated": "2026-07-08 05:56",
-      "description": "Nhận tiền quyên góp từ nhà hảo tâm Hoang"
-    },
     {
       "id": "led-1",
       "campaignId": "camp-hagiang",
