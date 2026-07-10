@@ -27,15 +27,31 @@ export default function LoginView({ onLoginSuccess }: LoginViewProps) {
   const [isRegistering, setIsRegistering] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showRegPassword, setShowRegPassword] = useState(false);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
-  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setRegAvatar(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      setIsUploadingAvatar(true);
+      const formData = new FormData();
+      formData.append("image", file);
+      try {
+        const res = await fetch("/api/images/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setRegAvatar(data.url);
+        } else {
+          const errorData = await res.json();
+          setRegError(errorData.error || "Tải ảnh thất bại");
+        }
+      } catch (error) {
+        setRegError("Lỗi kết nối khi tải ảnh");
+      } finally {
+        setIsUploadingAvatar(false);
+      }
     }
   };
 
@@ -374,8 +390,10 @@ export default function LoginView({ onLoginSuccess }: LoginViewProps) {
                           type="file"
                           accept="image/*"
                           onChange={handleAvatarUpload}
-                          className="w-full text-xs text-slate-500 file:mr-4 file:py-1.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer"
+                          disabled={isUploadingAvatar}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-1.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer disabled:opacity-50"
                         />
+                        {isUploadingAvatar && <p className="text-[10px] text-emerald-500 mt-1 flex items-center gap-1"><Upload className="w-3 h-3 animate-bounce" /> Đang tải ảnh lên...</p>}
                       </div>
                     </div>
                   </div>

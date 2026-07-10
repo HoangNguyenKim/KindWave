@@ -31,7 +31,33 @@ export default function OrganizerDashboard({
   const [isSubmittingProof, setIsSubmittingProof] = useState(false);
   const [proofTitle, setProofTitle] = useState("");
   const [proofContent, setProofContent] = useState("");
-  const [proofImage, setProofImage] = useState("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800");
+  const [proofImage, setProofImage] = useState("");
+  const [isUploadingProofImage, setIsUploadingProofImage] = useState(false);
+
+  const handleProofImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setIsUploadingProofImage(true);
+      const formData = new FormData();
+      formData.append("image", file);
+      try {
+        const res = await fetch("/api/images/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setProofImage(data.url);
+        } else {
+          alert("Tải ảnh thất bại");
+        }
+      } catch (error) {
+        alert("Lỗi kết nối khi tải ảnh");
+      } finally {
+        setIsUploadingProofImage(false);
+      }
+    }
+  };
   const [spentAmount, setSpentAmount] = useState(50000000);
 
   const formatCurrency = (val: number) => {
@@ -460,19 +486,22 @@ export default function OrganizerDashboard({
                 </div>
 
                 <div className="space-y-1">
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Hình ảnh chứng từ đính kèm (URL)</label>
-                  <div className="flex gap-2">
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Hình ảnh chứng từ đính kèm</label>
+                  <div className="flex gap-2 items-center">
                     <input
-                      type="text"
-                      required
-                      value={proofImage}
-                      onChange={(e) => setProofImage(e.target.value)}
-                      className="flex-1 px-3 py-2 text-xs border border-slate-200 rounded-xl focus:outline-none"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProofImageUpload}
+                      disabled={isUploadingProofImage}
+                      className="flex-1 text-xs text-slate-500 file:mr-4 file:py-1.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer disabled:opacity-50"
                     />
-                    <div className="w-10 h-10 rounded-xl border border-slate-200 overflow-hidden shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
-                      <ImageIcon className="w-5 h-5" />
-                    </div>
+                    {proofImage && (
+                      <div className="w-10 h-10 rounded-xl border border-slate-200 overflow-hidden shrink-0 bg-slate-100 flex items-center justify-center text-slate-400">
+                        <img src={proofImage} alt="Proof" className="w-full h-full object-cover" />
+                      </div>
+                    )}
                   </div>
+                  {isUploadingProofImage && <p className="text-[10px] text-emerald-500 mt-1 flex items-center gap-1">Đang tải ảnh lên...</p>}
                 </div>
 
                 <button

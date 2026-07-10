@@ -504,6 +504,14 @@ async function ensureTablesExist(p: mysql.Pool) {
       targetId VARCHAR(255) NOT NULL,
       details TEXT,
       timestamp VARCHAR(100) NOT NULL
+    )`,
+    `CREATE TABLE IF NOT EXISTS images (
+      id VARCHAR(255) PRIMARY KEY,
+      file_name VARCHAR(255) NOT NULL,
+      mime_type VARCHAR(255) NOT NULL,
+      file_size INT NOT NULL,
+      image_data LONGBLOB NOT NULL,
+      created_at VARCHAR(100) NOT NULL
     )`
   ];
 
@@ -787,4 +795,58 @@ export async function saveDB(data: DatabaseSchema): Promise<void> {
     await fsPromises.rename(tempPath, DB_FILE_PATH);
   });
   return savePromise;
+}
+
+const IMAGES_FILE_PATH = path.join(process.cwd(), "db-images.json");
+
+export async function saveImage(id: string, fileName: string, mimeType: string, fileSize: number, buffer: Buffer): Promise<void> {
+  const createdAt = new Date().toISOString();
+  if (isMySQLEnabled && pool) {
+    await pool.query(
+      `INSERT INTO images (id, file_name, mime_type, file_size, image_data, created_at) VALUES (?, ?, ?, ?, ?, ?)`,
+      [id, fileName, mimeType, fileSize, buffer, createdAt]
+    );
+  } else {
+    let images: any = {};
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      images = JSON.parse(data);
+    } catch(e) {}
+    images[id] = { id, fileName, mimeType, fileSize, createdAt, data: buffer.toString('base64') };
+    await fsPromises.writeFile(IMAGES_FILE_PATH, JSON.stringify(images));
+  }
+}
+
+export async function getImage(id: string): Promise<{ mimeType: string, buffer: Buffer } | null> {
+  if (isMySQLEnabled && pool) {
+    const [rows] = await pool.query("SELECT mime_type, image_data FROM images WHERE id = ?", [id]) as any[];
+    if (rows && rows.length > 0) {
+      return { mimeType: rows[0].mime_type, buffer: rows[0].image_data };
+    }
+    return null;
+  } else {
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      const images = JSON.parse(data);
+      if (images[id]) {
+        return { mimeType: images[id].mimeType, buffer: Buffer.from(images[id].data, 'base64') };
+      }
+    } catch(e) {}
+    return null;
+  }
+}
+
+export async function deleteImage(id: string): Promise<void> {
+  if (isMySQLEnabled && pool) {
+    await pool.query("DELETE FROM images WHERE id = ?", [id]);
+  } else {
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      const images = JSON.parse(data);
+      if (images[id]) {
+        delete images[id];
+        await fsPromises.writeFile(IMAGES_FILE_PATH, JSON.stringify(images));
+      }
+    } catch(e) {}
+  }
 }
