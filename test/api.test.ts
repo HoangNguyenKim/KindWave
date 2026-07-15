@@ -86,6 +86,14 @@ describe("Image API (Multer)", () => {
     uploadedId = j.id;
   });
 
+  it("từ chối upload file KHÔNG phải ảnh -> 400", async () => {
+    if (!online) return;
+    const fd = new FormData();
+    fd.append("image", new Blob([Buffer.from("hello world")], { type: "text/plain" }), "bomb.txt");
+    const r = await fetch(`${BASE}/api/images/upload`, { method: "POST", body: fd });
+    expect(r.status).toBe(400);
+  });
+
   it("tải lại ảnh vừa upload -> 200 image/*", async () => {
     if (!online || !uploadedId) return;
     const r = await fetch(`${BASE}/api/images/${uploadedId}`);
@@ -105,13 +113,22 @@ describe("Image API (Multer)", () => {
     expect(r.status).toBe(401);
   });
 
-  it("xoá ảnh với token hợp lệ -> thành công", async () => {
+  it("xoá ảnh với quyền admin -> thành công", async () => {
     if (!online || !uploadedId || !adminToken) return;
     const r = await fetch(`${BASE}/api/images/${uploadedId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${adminToken}` },
     });
     expect([200, 204]).toContain(r.status);
+  });
+
+  it("xoá ảnh KHÔNG tồn tại -> 404", async () => {
+    if (!online || !adminToken) return;
+    const r = await fetch(`${BASE}/api/images/khong-co-that-xyz`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${adminToken}` },
+    });
+    expect(r.status).toBe(404);
   });
 });
 
