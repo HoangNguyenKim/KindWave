@@ -162,3 +162,70 @@ describe("Admin API + Audit Logs", () => {
     expect(r.status).toBe(401);
   });
 });
+
+describe("Treasury & Volunteer — IDOR / phân quyền", () => {
+  // Đăng ký 1 user thường mới (chắc chắn KHÔNG sở hữu chiến dịch nào)
+  // để chứng minh không thể rút quỹ / duyệt đơn của người khác.
+  let outsiderToken = "";
+  let someCampaignId = "";
+
+  beforeAll(async () => {
+    if (!online) return;
+    const email = `outsider_${Date.now()}@test.local`;
+    const r = await fetch(`${BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Outsider Test", email, password: "test12345" }),
+    });
+    if (r.ok) {
+      const j = await r.json();
+      outsiderToken = j.token || "";
+    }
+    const cr = await fetch(`${BASE}/api/campaigns`);
+    if (cr.ok) {
+      const camps = await cr.json();
+      if (Array.isArray(camps) && camps.length > 0) someCampaignId = camps[0].id;
+    }
+  });
+
+  it("tạo yêu cầu giải ngân thiếu token -> 401", async () => {
+    if (!online) return;
+    const r = await fetch(`${BASE}/api/disbursements`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ campaignId: someCampaignId, totalAmount: 1000 }),
+    });
+    expect(r.status).toBe(401);
+  });
+
+  it("user thường KHÔNG sở hữu chiến dịch -> không được rút quỹ (IDOR)", async () => {
+    if (!online || !outsiderToken || !someCampaignId) return;
+    const r = await fetch(`${BASE}/api/disbursements`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${outsiderToken}`,
+      },
+      body: JSON.stringify({
+        campaignId: someCampaignId,
+        totalAmount: 1000,
+        description: "thử rút quỹ chiến dịch người khác",
+      }),
+    });
+    // Bị chặn: 400 (FORBIDDEN trong transaction) — không phải 201 tạo thành công
+    expect(r.status).not.toBe(201);
+    expect(r.status).toBeGreaterThanOrEqual(400);
+    const j = await r.json();
+    expect(String(j.error || "")).toContain("FORBIDDEN");
+  });
+
+  it("duyệt đơn tình nguyện thiếu token -> 401", async () => {
+    if (!online) return;
+    const r = await fetch(`${BASE}/api/applications/app-khong-co/status`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "APPROVED" }),
+    });
+    expect(r.status).toBe(401);
+  });
+});
