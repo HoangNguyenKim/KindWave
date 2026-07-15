@@ -590,6 +590,19 @@ async function startServer() {
         }
         
         const application = db.applications[appIndex];
+
+        // Authorization: chỉ ADMIN hoặc người tổ chức chiến dịch sở hữu công việc
+        // mới được duyệt/từ chối đơn. Chặn người dùng tự duyệt đơn của chính mình
+        // để farm impactHours/impactPoints/badge (privilege escalation / IDOR).
+        if (actor.role !== "ADMIN") {
+          const relJob = db.volunteerJobs.find((j) => j.id === application.jobId);
+          const relCamp = relJob ? db.campaigns.find((c) => c.id === relJob.campaignId) : undefined;
+          const isOwner = !!relCamp && relCamp.organizerId === actor.id;
+          if (!isOwner) {
+            throw new Error("FORBIDDEN: Bạn không có quyền duyệt đơn ứng tuyển này");
+          }
+        }
+
         if (application.status !== "PENDING") {
           throw new Error("Đơn ứng tuyển đã được xử lý trước đó");
         }
@@ -821,6 +834,13 @@ async function startServer() {
         const camp = db.campaigns.find((c) => c.id === disbData.campaignId);
         if (!camp) {
           throw new Error("Chiến dịch giải ngân không tồn tại");
+        }
+
+        // Authorization: chỉ ADMIN hoặc người tổ chức (organizerId) sở hữu chiến dịch
+        // mới được tạo yêu cầu rút quỹ. Chặn người dùng bất kỳ tạo yêu cầu giải ngân
+        // từ chiến dịch của người khác chỉ bằng cách đoán campaignId (IDOR quỹ tiền).
+        if (requester.role !== "ADMIN" && camp.organizerId !== requester.id) {
+          throw new Error("FORBIDDEN: Bạn không có quyền yêu cầu giải ngân cho chiến dịch này");
         }
         
         const campLedgers = db.ledgers.filter((l) => l.campaignId === camp.id);
