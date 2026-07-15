@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { User, Campaign, Donation, CampaignLedger, Disbursement, ImpactProof, CampaignReport, OrgVerification } from "../types";
+import {
+  User,
+  Campaign,
+  Donation,
+  CampaignLedger,
+  Disbursement,
+  ImpactProof,
+  CampaignReport,
+  OrgVerification,
+  AuditLog,
+} from "../types";
+
 import DataTable, { Column } from "../components/DataTable";
 import {
   Landmark,
@@ -29,6 +40,7 @@ interface AdminDashboardProps {
   impactProofs: ImpactProof[];
   reports: CampaignReport[];
   verifications: OrgVerification[];
+  auditLogs: AuditLog[];
   onToggleBanUser: (userId: string) => void;
   onApproveDisbursement: (disbId: string, bankingProofUrl: string) => void;
   onApproveImpactProof: (proofId: string) => void;
@@ -46,6 +58,7 @@ export default function AdminDashboard({
   impactProofs,
   reports,
   verifications,
+  auditLogs,
   onToggleBanUser,
   onApproveDisbursement,
   onApproveImpactProof,
@@ -54,7 +67,7 @@ export default function AdminDashboard({
   onApproveOrg
 }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<
-    "analytics" | "campaigns" | "reports" | "organizations" | "treasury" | "proofs" | "users"
+    "analytics" | "campaigns" | "reports" | "organizations" | "treasury" | "proofs" | "users" | "audit"
   >("analytics");
   const [unclinkUrl, setUnclinkUrl] = useState("https://img.vietqr.io/image/970415-113366688-compact2.png");
   const [activeDisbId, setActiveDisbId] = useState<string | null>(null);
@@ -172,6 +185,15 @@ export default function AdminDashboard({
         >
           Người dùng ({users.length})
           {activeTab === "users" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500" />}
+        </button>
+        <button
+          onClick={() => setActiveTab("audit")}
+          className={`pb-3 px-4 text-xs font-bold transition-all relative cursor-pointer ${
+            activeTab === "audit" ? "text-emerald-600" : "text-slate-400 hover:text-slate-600"
+          }`}
+        >
+          Nhật ký ({auditLogs.length})
+          {activeTab === "audit" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500" />}
         </button>
       </div>
 
@@ -669,6 +691,55 @@ export default function AdminDashboard({
               },
             ] as Column<User>[]}
           />
+        )}
+
+        {/* Audit Logs — Nhật ký hệ thống */}
+        {activeTab === "audit" && (
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+            <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-slate-800 text-sm">Nhật ký hoạt động (Audit Logs)</h3>
+                <p className="text-xs text-slate-400 mt-0.5">Toàn bộ thao tác quản trị được ghi lại để minh bạch và truy vết.</p>
+              </div>
+              <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                {auditLogs.length} bản ghi
+              </span>
+            </div>
+            <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
+              {auditLogs.length === 0 ? (
+                <div className="py-16 text-center text-slate-400 text-sm">Chưa có nhật ký nào được ghi lại.</div>
+              ) : (
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead className="sticky top-0 bg-slate-50 z-10">
+                    <tr className="text-slate-500">
+                      <th className="px-4 py-3 font-semibold">Thời gian</th>
+                      <th className="px-4 py-3 font-semibold">Người thực hiện</th>
+                      <th className="px-4 py-3 font-semibold">Hành động</th>
+                      <th className="px-4 py-3 font-semibold">Chi tiết</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[...auditLogs]
+                      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+                      .map((log) => (
+                        <tr key={log.id} className="border-t border-slate-100 hover:bg-slate-50">
+                          <td className="px-4 py-3 text-slate-500 whitespace-nowrap">
+                            {new Date(log.timestamp).toLocaleString("vi-VN")}
+                          </td>
+                          <td className="px-4 py-3 font-medium text-slate-700 whitespace-nowrap">{log.actorName}</td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold">
+                              {log.action}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-slate-600">{log.details}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </div>
         )}
       </div>
     </div>

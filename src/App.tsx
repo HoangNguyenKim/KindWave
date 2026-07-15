@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { User, Campaign, Donation, VolunteerJob, VolunteerApplication, OrgVerification, CampaignReport, CampaignLedger, Disbursement, ImpactProof } from "./types";
+import { User, Campaign, Donation, VolunteerJob, VolunteerApplication, OrgVerification, CampaignReport, CampaignLedger, Disbursement, ImpactProof, AuditLog } from "./types";
 import {
   INITIAL_CATEGORIES,
   DEFAULT_USER
@@ -44,6 +44,7 @@ export default function App() {
   const [disbursements, setDisbursements] = useState<Disbursement[]>([]);
   const [impactProofs, setImpactProofs] = useState<ImpactProof[]>([]);
   const [usersList, setUsersList] = useState<User[]>([]);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
 
   // Page States
   const [isLoading, setIsLoading] = useState(true);
@@ -122,7 +123,8 @@ export default function App() {
         resReps,
         resDisb,
         resProo,
-        resUsrs
+        resUsrs,
+        resAudit
       ] = await Promise.all([
         authFetch("/api/campaigns").then((r) => r.json()),
         authFetch("/api/donations").then((r) => r.json()),
@@ -133,7 +135,8 @@ export default function App() {
         authFetch("/api/reports").then((r) => r.json()),
         authFetch("/api/disbursements").then((r) => r.json()),
         authFetch("/api/impact-proofs").then((r) => r.json()),
-        authFetch("/api/users").then((r) => r.json())
+        authFetch("/api/users").then((r) => r.json()),
+        authFetch("/api/audit-logs").then((r) => r.ok ? r.json() : [])
       ]);
 
       setCampaigns(resCamp);
@@ -146,6 +149,7 @@ export default function App() {
       setDisbursements(resDisb);
       setImpactProofs(resProo);
       setUsersList(resUsrs);
+      setAuditLogs(Array.isArray(resAudit) ? resAudit : []);
 
       // Extract current user if available in DB
       const currentToken = localStorage.getItem("kindwave_token");
@@ -625,6 +629,7 @@ export default function App() {
             impactProofs={impactProofs}
             reports={reports}
             verifications={verifications}
+            auditLogs={auditLogs}
             onToggleBanUser={handleToggleBanUser}
             onApproveDisbursement={handleApproveDisbursement}
             onApproveImpactProof={handleApproveImpactProof}
