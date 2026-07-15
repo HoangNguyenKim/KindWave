@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { User, Campaign, Donation, CampaignLedger, Disbursement, ImpactProof, CampaignReport, OrgVerification } from "../types";
+import DataTable, { Column } from "../components/DataTable";
 import {
   Landmark,
   Users,
@@ -571,79 +572,103 @@ export default function AdminDashboard({
 
         {/* 7. User Governance */}
         {activeTab === "users" && (
-          <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-xs">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-100 text-slate-500 font-bold uppercase tracking-wider">
-                    <th className="p-4">Họ và tên</th>
-                    <th className="p-4">Email</th>
-                    <th className="p-4">Nhóm quyền</th>
-                    <th className="p-4">Giờ đóng góp</th>
-                    <th className="p-4">Điểm tích lũy</th>
-                    <th className="p-4">Trạng thái</th>
-                    <th className="p-4 text-right">Thao tác</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50 text-slate-700">
-                  {users.map((u) => (
-                    <tr key={u.id} className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-4">
-                        <div className="flex items-center gap-2.5">
-                          <img src={u.avatar} alt={u.name} className="w-8 h-8 rounded-full object-cover" referrerPolicy="no-referrer" />
-                          <span className="font-bold text-slate-800">{u.name}</span>
-                        </div>
-                      </td>
-                      <td className="p-4 text-slate-500">{u.email}</td>
-                      <td className="p-4">
-                        <span
-                          className={`px-2 py-0.5 text-[10px] font-bold rounded-sm tracking-wide ${
-                            u.role === "ADMIN" ? "bg-rose-100 text-rose-800" : "bg-slate-100 text-slate-700"
-                          }`}
-                        >
-                          {u.role}
-                        </span>
-                      </td>
-                      <td className="p-4 font-semibold text-slate-800">{u.impactHours} giờ</td>
-                      <td className="p-4 font-semibold text-slate-800">{u.impactPoints} điểm</td>
-                      <td className="p-4">
-                        {u.isBanned ? (
-                          <span className="px-2 py-0.5 text-[9px] font-bold bg-rose-100 text-rose-800 rounded-sm">BỊ KHÓA</span>
-                        ) : (
-                          <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-100 text-emerald-800 rounded-sm">HOẠT ĐỘNG</span>
-                        )}
-                      </td>
-                      <td className="p-4 text-right">
-                        {u.id === "user-admin" ? (
-                          <span className="text-slate-400 font-bold italic text-[10px]">Tài khoản Root</span>
-                        ) : u.isBanned ? (
-                          <button
-                            onClick={() => {
-                              onToggleBanUser(u.id);
-                              alert(`Đã mở khóa hoạt động cho thành viên "${u.name}"!`);
-                            }}
-                            className="text-emerald-600 font-bold hover:underline flex items-center gap-1 ml-auto text-[10px] cursor-pointer"
-                          >
-                            <Unlock className="w-3.5 h-3.5" /> Mở khóa
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              onToggleBanUser(u.id);
-                              alert(`Đã khóa tài khoản thành viên "${u.name}" thành công!`);
-                            }}
-                            className="text-rose-600 font-bold hover:underline flex items-center gap-1 ml-auto text-[10px] cursor-pointer"
-                          >
-                            <Ban className="w-3.5 h-3.5" /> Khóa tài khoản
-                          </button>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <DataTable<User>
+            data={users}
+            rowKey={(u) => u.id}
+            searchPlaceholder="Tìm theo tên hoặc email..."
+            emptyMessage="Chưa có người dùng nào."
+            columns={[
+              {
+                key: "name",
+                header: "Họ và tên",
+                sortable: true,
+                accessor: (u) => u.name,
+                render: (u) => (
+                  <div className="flex items-center gap-2.5">
+                    <img src={u.avatar} alt={u.name} className="w-8 h-8 rounded-full object-cover" referrerPolicy="no-referrer" />
+                    <span className="font-bold text-slate-800">{u.name}</span>
+                  </div>
+                ),
+              },
+              {
+                key: "email",
+                header: "Email",
+                sortable: true,
+                accessor: (u) => u.email,
+                render: (u) => <span className="text-slate-500">{u.email}</span>,
+              },
+              {
+                key: "role",
+                header: "Nhóm quyền",
+                sortable: true,
+                accessor: (u) => u.role,
+                render: (u) => (
+                  <span
+                    className={`px-2 py-0.5 text-[10px] font-bold rounded-sm tracking-wide ${
+                      u.role === "ADMIN" ? "bg-rose-100 text-rose-800" : "bg-slate-100 text-slate-700"
+                    }`}
+                  >
+                    {u.role}
+                  </span>
+                ),
+              },
+              {
+                key: "impactHours",
+                header: "Giờ đóng góp",
+                sortable: true,
+                accessor: (u) => u.impactHours,
+                render: (u) => <span className="font-semibold text-slate-800">{u.impactHours} giờ</span>,
+              },
+              {
+                key: "impactPoints",
+                header: "Điểm tích lũy",
+                sortable: true,
+                accessor: (u) => u.impactPoints,
+                render: (u) => <span className="font-semibold text-slate-800">{u.impactPoints} điểm</span>,
+              },
+              {
+                key: "status",
+                header: "Trạng thái",
+                sortable: true,
+                accessor: (u) => (u.isBanned ? "BỊ KHÓA" : "HOẠT ĐỘNG"),
+                render: (u) =>
+                  u.isBanned ? (
+                    <span className="px-2 py-0.5 text-[9px] font-bold bg-rose-100 text-rose-800 rounded-sm">BỊ KHÓA</span>
+                  ) : (
+                    <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-100 text-emerald-800 rounded-sm">HOẠT ĐỘNG</span>
+                  ),
+              },
+              {
+                key: "actions",
+                header: "Thao tác",
+                align: "right",
+                render: (u) =>
+                  u.id === "user-admin" ? (
+                    <span className="text-slate-400 font-bold italic text-[10px]">Tài khoản Root</span>
+                  ) : u.isBanned ? (
+                    <button
+                      onClick={() => {
+                        onToggleBanUser(u.id);
+                        alert(`Đã mở khóa hoạt động cho thành viên "${u.name}"!`);
+                      }}
+                      className="text-emerald-600 font-bold hover:underline flex items-center gap-1 ml-auto text-[10px] cursor-pointer"
+                    >
+                      <Unlock className="w-3.5 h-3.5" /> Mở khóa
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        onToggleBanUser(u.id);
+                        alert(`Đã khóa tài khoản thành viên "${u.name}" thành công!`);
+                      }}
+                      className="text-rose-600 font-bold hover:underline flex items-center gap-1 ml-auto text-[10px] cursor-pointer"
+                    >
+                      <Ban className="w-3.5 h-3.5" /> Khóa tài khoản
+                    </button>
+                  ),
+              },
+            ] as Column<User>[]}
+          />
         )}
       </div>
     </div>
