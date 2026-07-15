@@ -836,9 +836,10 @@ export async function getImage(id: string): Promise<{ mimeType: string, buffer: 
   }
 }
 
-export async function deleteImage(id: string): Promise<void> {
+export async function deleteImage(id: string): Promise<boolean> {
   if (isMySQLEnabled && pool) {
-    await pool.query("DELETE FROM images WHERE id = ?", [id]);
+    const [result] = await pool.query("DELETE FROM images WHERE id = ?", [id]) as any[];
+    return !!(result && result.affectedRows > 0);
   } else {
     try {
       const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
@@ -846,7 +847,9 @@ export async function deleteImage(id: string): Promise<void> {
       if (images[id]) {
         delete images[id];
         await fsPromises.writeFile(IMAGES_FILE_PATH, JSON.stringify(images));
+        return true;
       }
     } catch(e) {}
+    return false;
   }
 }
