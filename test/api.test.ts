@@ -145,3 +145,58 @@ describe("Admin API + Audit Logs", () => {
     expect(r.status).toBe(401);
   });
 });
+
+describe("Validate status + ID không trùng", () => {
+  let adminTok = "";
+  let campId = "";
+
+  beforeAll(async () => {
+    if (!online) return;
+    adminTok = await login(ADMIN.email, ADMIN.password);
+    const cr = await fetch(`${BASE}/api/campaigns`);
+    if (cr.ok) {
+      const camps = await cr.json();
+      if (Array.isArray(camps) && camps.length > 0) campId = camps[0].id;
+    }
+  });
+
+  it("cập nhật campaign với status rác -> 400", async () => {
+    if (!online || !adminTok || !campId) return;
+    const r = await fetch(`${BASE}/api/campaigns/${campId}/status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${adminTok}`,
+      },
+      body: JSON.stringify({ status: "HACKED_RAC_XYZ" }),
+    });
+    expect(r.status).toBe(400);
+  });
+
+  it("cập nhật disbursement với status rác -> 400", async () => {
+    if (!online || !adminTok) return;
+    const r = await fetch(`${BASE}/api/disbursements/disb-khong-co/status`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${adminTok}`,
+      },
+      body: JSON.stringify({ status: "GARBAGE" }),
+    });
+    // Validate status chạy TRƯỚC khi tìm bản ghi -> 400 (không phải 404)
+    expect(r.status).toBe(400);
+  });
+
+  it("audit log ID phải duy nhất (genId chống trùng millisecond)", async () => {
+    if (!online || !adminTok) return;
+    const r = await fetch(`${BASE}/api/audit-logs`, {
+      headers: { Authorization: `Bearer ${adminTok}` },
+    });
+    if (r.status !== 200) return;
+    const logs = await r.json();
+    if (!Array.isArray(logs) || logs.length < 2) return;
+    const ids = logs.map((l: any) => l.id);
+    const unique = new Set(ids);
+    expect(unique.size).toBe(ids.length);
+  });
+});

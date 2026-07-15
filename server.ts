@@ -28,6 +28,20 @@ function sanitizeInput(text: any): any {
     .replace(/\//g, "&#x2F;");
 }
 
+// ID generator chống trùng: Date.now() đơn thuần sẽ đụng nhau nếu 2 request
+// rơi vào cùng một millisecond. Thêm counter tăng dần đảm bảo ID luôn duy nhất.
+let __idCounter = 0;
+function genId(prefix: string): string {
+  __idCounter = (__idCounter + 1) % 1000000;
+  return `${prefix}-${Date.now()}-${__idCounter}`;
+}
+
+// Validate giá trị status gửi lên nằm trong danh sách hợp lệ cho từng entity.
+// Chặn admin (hoặc client) lỡ gửi status rác làm hỏng dữ liệu.
+function isValidStatus(status: any, allowed: readonly string[]): boolean {
+  return typeof status === "string" && allowed.includes(status);
+}
+
 // ==================== AUTHENTICATION & AUTHORIZATION MIDDLEWARES ====================
 
 // Verify JWT token from Authorization header
@@ -223,7 +237,7 @@ async function startServer() {
         
         // Audit Log entry for accountability
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: targetUser.isBanned ? "BAN_USER" : "UNBAN_USER",
@@ -265,7 +279,7 @@ async function startServer() {
         
         if (badge) {
           const log: AuditLog = {
-            id: "log-" + Date.now(),
+            id: genId("log"),
             actorId: requester.id,
             actorName: requester.name,
             action: "EARNED_BADGE",
@@ -309,7 +323,7 @@ async function startServer() {
     try {
       const newCamp = await runTransaction((db) => {
         const camp: Campaign = {
-          id: "camp-" + Date.now(),
+          id: genId("camp"),
           title: sanitizedTitle,
           categoryId: campaignData.categoryId || "",
           goalAmount: campaignData.goalAmount || 100000000,
@@ -329,7 +343,7 @@ async function startServer() {
         db.campaigns.unshift(camp);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "CREATE_CAMPAIGN",
@@ -350,7 +364,11 @@ async function startServer() {
     const { id } = req.params;
     const { status, rejectsReason } = req.body;
     const admin = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "ACTIVE", "REJECTED", "CLOSED", "DISBURSING", "COMPLETED"])) {
+      return res.status(400).json({ error: "Trạng thái chiến dịch không hợp lệ" });
+    }
+
     const sanitizedReason = sanitizeInput(rejectsReason);
     
     try {
@@ -367,7 +385,7 @@ async function startServer() {
         }
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: `CAMPAIGN_STATUS_${status}`,
@@ -413,7 +431,7 @@ async function startServer() {
           throw new Error("Chiến dịch hiện tại không mở nhận quyên góp");
         }
 
-        const donationId = "don-" + Date.now();
+        const donationId = genId("don");
         const newDon: Donation = {
           id: donationId,
           campaignId: camp.id,
@@ -436,7 +454,7 @@ async function startServer() {
         const balanceNow = camp.raisedAmount;
 
         // Record credit ledger entry
-        const ledgerId = "led-" + Date.now();
+        const ledgerId = genId("led");
         const newLedger: CampaignLedger = {
           id: ledgerId,
           campaignId: camp.id,
@@ -457,7 +475,7 @@ async function startServer() {
 
         // Audit Log
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "SUBMIT_DONATION",
@@ -493,7 +511,7 @@ async function startServer() {
     try {
       const newJob = await runTransaction((db) => {
         const job: VolunteerJob = {
-          id: "vol-" + Date.now(),
+          id: genId("vol"),
           title: sanitizedTitle || "",
           description: sanitizedDesc || "",
           skillsRequired: Array.isArray(jobData.skillsRequired) ? jobData.skillsRequired.map(sanitizeInput) : [],
@@ -508,7 +526,7 @@ async function startServer() {
         db.volunteerJobs.unshift(job);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "CREATE_VOLUNTEER_JOB",
@@ -546,7 +564,7 @@ async function startServer() {
         }
         
         const application: VolunteerApplication = {
-          id: "app-" + Date.now(),
+          id: genId("app"),
           jobId: relatedJob.id,
           jobTitle: relatedJob.title,
           userId: requester.id,
@@ -560,7 +578,7 @@ async function startServer() {
         db.applications.unshift(application);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "SUBMIT_VOLUNTEER_APP",
@@ -581,7 +599,11 @@ async function startServer() {
     const { id } = req.params;
     const { status } = req.body;
     const actor = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "APPROVED", "REJECTED"])) {
+      return res.status(400).json({ error: "Trạng thái đơn ứng tuyển không hợp lệ" });
+    }
+
     try {
       const updatedApp = await runTransaction((db) => {
         const appIndex = db.applications.findIndex((a) => a.id === id);
@@ -621,7 +643,7 @@ async function startServer() {
         }
 
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: actor.id,
           actorName: actor.name,
           action: `VOLUNTEER_APP_${status}`,
@@ -656,7 +678,7 @@ async function startServer() {
     try {
       const newVer = await runTransaction((db) => {
         const verification: OrgVerification = {
-          id: "ver-" + Date.now(),
+          id: genId("ver"),
           orgName: sanitizedOrgName || "",
           repName: sanitizedRepName || "",
           email: sanitizedEmail || "",
@@ -667,7 +689,7 @@ async function startServer() {
         db.verifications.unshift(verification);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "SUBMIT_ORG_VERIFICATION",
@@ -688,7 +710,11 @@ async function startServer() {
     const { id } = req.params;
     const { status } = req.body;
     const admin = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "APPROVED", "REJECTED"])) {
+      return res.status(400).json({ error: "Trạng thái hồ sơ không hợp lệ" });
+    }
+
     try {
       const updatedVer = await runTransaction((db) => {
         const verIndex = db.verifications.findIndex((v) => v.id === id);
@@ -700,7 +726,7 @@ async function startServer() {
         ver.status = status;
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: `ORG_VERIFICATION_${status}`,
@@ -738,7 +764,7 @@ async function startServer() {
         }
         
         const report: CampaignReport = {
-          id: "rep-" + Date.now(),
+          id: genId("rep"),
           campaignId: campaign.id,
           campaignTitle: campaign.title,
           reporterName: requester.name,
@@ -750,7 +776,7 @@ async function startServer() {
         db.reports.unshift(report);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "SUBMIT_CAMPAIGN_REPORT",
@@ -771,7 +797,11 @@ async function startServer() {
     const { id } = req.params;
     const { status } = req.body;
     const admin = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "RESOLVED"])) {
+      return res.status(400).json({ error: "Trạng thái báo cáo không hợp lệ" });
+    }
+
     try {
       const updatedRep = await runTransaction((db) => {
         const repIndex = db.reports.findIndex((r) => r.id === id);
@@ -782,7 +812,7 @@ async function startServer() {
         rep.status = status;
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: `CAMPAIGN_REPORT_${status}`,
@@ -830,7 +860,7 @@ async function startServer() {
         }
         
         const disbursement: Disbursement = {
-          id: "disb-" + Date.now(),
+          id: genId("disb"),
           campaignId: camp.id,
           scheduledDate: disbData.scheduledDate || new Date().toISOString().substring(0, 10),
           totalAmount: totalAmount,
@@ -841,7 +871,7 @@ async function startServer() {
         db.disbursements.unshift(disbursement);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "REQUEST_DISBURSEMENT",
@@ -862,7 +892,11 @@ async function startServer() {
     const { id } = req.params;
     const { status, bankingProofUrl } = req.body;
     const admin = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "APPROVED", "REJECTED"])) {
+      return res.status(400).json({ error: "Trạng thái giải ngân không hợp lệ" });
+    }
+
     const sanitizedProofUrl = sanitizeInput(bankingProofUrl);
     
     try {
@@ -902,7 +936,7 @@ async function startServer() {
 
           // Record Debit Ledger entry
           const newLedger: CampaignLedger = {
-            id: "led-" + Date.now(),
+            id: genId("led"),
             campaignId: disb.campaignId,
             amount: disb.totalAmount,
             type: "DEBIT",
@@ -915,7 +949,7 @@ async function startServer() {
         }
 
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: `DISBURSEMENT_STATUS_${status}`,
@@ -959,7 +993,7 @@ async function startServer() {
         }
         
         const proof: ImpactProof = {
-          id: "proof-" + Date.now(),
+          id: genId("proof"),
           campaignId: camp.id,
           title: sanitizedTitle || "",
           content: sanitizedContent || "",
@@ -971,7 +1005,7 @@ async function startServer() {
         db.impactProofs.unshift(proof);
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: requester.id,
           actorName: requester.name,
           action: "SUBMIT_IMPACT_PROOF",
@@ -992,7 +1026,11 @@ async function startServer() {
     const { id } = req.params;
     const { status } = req.body;
     const admin = (req as any).user as User;
-    
+
+    if (!isValidStatus(status, ["PENDING", "APPROVED", "REJECTED"])) {
+      return res.status(400).json({ error: "Trạng thái chứng từ không hợp lệ" });
+    }
+
     try {
       const updatedProof = await runTransaction((db) => {
         const proofIndex = db.impactProofs.findIndex((p) => p.id === id);
@@ -1004,7 +1042,7 @@ async function startServer() {
         proof.status = status;
         
         const log: AuditLog = {
-          id: "log-" + Date.now(),
+          id: genId("log"),
           actorId: admin.id,
           actorName: admin.name,
           action: `IMPACT_PROOF_STATUS_${status}`,
