@@ -124,9 +124,12 @@ async function startServer() {
     }
   });
 
-  app.delete("/api/images/:id", requireUser, async (req, res) => {
+  app.delete("/api/images/:id", requireAdmin, async (req, res) => {
     try {
-      await deleteImage(req.params.id);
+      const deleted = await deleteImage(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Không tìm thấy ảnh cần xóa" });
+      }
       res.json({ message: "Xóa ảnh thành công" });
     } catch (error) {
       console.error(error);
