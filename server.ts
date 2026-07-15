@@ -153,7 +153,11 @@ async function startServer() {
           email: sanitizeInput(email),
           password: hashedPassword,
           avatar: sanitizeInput(avatar) || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200",
-          role: role === "ADMIN" ? "ADMIN" : "USER",
+          // BẢO MẬT: LUÔN tạo tài khoản mới với quyền USER. KHÔNG tin field "role"
+          // từ body — trước đây role:"ADMIN" trong request tự cấp quyền admin
+          // (privilege escalation nghiêm trọng). Nâng quyền admin phải do admin
+          // khác thao tác riêng hoặc qua seed dữ liệu.
+          role: "USER",
           bio: sanitizeInput(bio) || "",
           isBanned: false,
           impactPoints: 0,
@@ -179,8 +183,11 @@ async function startServer() {
     try {
       const db = await getDB();
       const user = db.users.find(u => u.email.toLowerCase() === email.toLowerCase());
+      // BẢO MẬT: trả cùng 401 + message giống nhau cho cả "email không tồn tại"
+      // và "sai mật khẩu" để tránh user enumeration (attacker dò email nào đã
+      // đăng ký dựa vào chênh lệch status 404 vs 401).
       if (!user) {
-        return res.status(404).json({ error: "Email không tồn tại hoặc sai mật khẩu" });
+        return res.status(401).json({ error: "Email không tồn tại hoặc sai mật khẩu" });
       }
       if (user.isBanned) {
         return res.status(403).json({ error: "Tài khoản của bạn đã bị vô hiệu hóa" });

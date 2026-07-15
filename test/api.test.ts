@@ -145,3 +145,60 @@ describe("Admin API + Audit Logs", () => {
     expect(r.status).toBe(401);
   });
 });
+
+describe("Auth — chặn leo thang quyền & user enumeration", () => {
+  it("đăng ký với role=ADMIN -> vẫn chỉ là USER (chặn privilege escalation)", async () => {
+    if (!online) return;
+    const email = `evil_${Date.now()}@test.local`;
+    const r = await fetch(`${BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Evil Admin",
+        email,
+        password: "test12345",
+        role: "ADMIN", // cố tình tự cấp quyền admin
+      }),
+    });
+    expect([200, 201]).toContain(r.status);
+    const j = await r.json();
+    // Server PHẢI ép role về USER bất chấp body gửi ADMIN
+    expect(j.user.role).toBe("USER");
+  });
+
+  it("token cấp cho user đăng ký KHÔNG mở được audit-logs (admin-only)", async () => {
+    if (!online) return;
+    const email = `evil2_${Date.now()}@test.local`;
+    const reg = await fetch(`${BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Evil2", email, password: "test12345", role: "ADMIN" }),
+    });
+    const rj = await reg.json();
+    const tok = rj.token || "";
+    if (!tok) return;
+    const r = await fetch(`${BASE}/api/audit-logs`, {
+      headers: { Authorization: `Bearer ${tok}` },
+    });
+    // role bị ép về USER -> requireAdmin chặn 403
+    expect(r.status).toBe(403);
+  });
+
+  it("login sai mật khẩu và email không tồn tại đều trả 401 (chống enumeration)", async () => {
+    if (!online) return;
+    const rWrongPass = await fetch(`${BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: ADMIN.email, password: "sai-mat-khau-123" }),
+    });
+    const rNoUser = await fetch(`${BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: `khong-ton-tai-${Date.now()}@x.local`, password: "bat-ky" }),
+    });
+    // Cả 2 cùng 401 -> không lộ email nào đã đăng ký
+    expect(rWrongPass.status).toBe(401);
+    expect(rNoUser.status).toBe(401);
+    expect(rWrongPass.status).toBe(rNoUser.status);
+  });
+});
