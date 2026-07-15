@@ -1,7 +1,7 @@
 import express from "express";
 import path from "node:path";
 import { createServer as createViteServer } from "vite";
-import { getDB, saveDB, runTransaction, saveImage, getImage, deleteImage } from "./server/db";
+import { getDB, saveDB, runTransaction, saveImage, getImage, deleteImage, deleteCampaign } from "./server/db";
 import { User, Campaign, Donation, VolunteerJob, VolunteerApplication, OrgVerification, CampaignReport, CampaignLedger, Disbursement, ImpactProof, AuditLog } from "./src/types";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -381,6 +381,37 @@ async function startServer() {
       res.json(updatedCamp);
     } catch (err: any) {
       res.status(err.message === "Campaign not found" ? 404 : 400).json({ error: err.message });
+    }
+  });
+
+  app.delete("/api/campaigns/:id", requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    const admin = (req as any).user as User;
+
+    try {
+      const deletedCamp = await deleteCampaign(id);
+      if (!deletedCamp) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      // Record audit log
+      await runTransaction((db) => {
+        const log: AuditLog = {
+          id: "log-" + Date.now(),
+          actorId: admin.id,
+          actorName: admin.name,
+          action: "DELETE_CAMPAIGN",
+          targetId: id,
+          details: `Xoá chiến dịch "${deletedCamp.title}".`,
+          timestamp: new Date().toISOString()
+        };
+        db.auditLogs.unshift(log);
+        return null;
+      });
+
+      res.json({ message: "Campaign deleted successfully", campaign: deletedCamp });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
     }
   });
 

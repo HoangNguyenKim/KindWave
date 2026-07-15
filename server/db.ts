@@ -850,3 +850,27 @@ export async function deleteImage(id: string): Promise<void> {
     } catch(e) {}
   }
 }
+
+export async function deleteCampaign(id: string): Promise<Campaign | null> {
+  const release = await dbMutex.acquire();
+  try {
+    const db = await getDB();
+    const index = db.campaigns.findIndex((c) => c.id === id);
+    if (index !== -1) {
+      const [camp] = db.campaigns.splice(index, 1);
+      
+      // Delete from MySQL
+      if (isMySQLEnabled && pool) {
+        await pool.query("DELETE FROM campaigns WHERE id = ?", [id]);
+      }
+      
+      // Save JSON
+      await saveDB(db);
+      return camp;
+    }
+    return null;
+  } finally {
+    release();
+  }
+}
+
