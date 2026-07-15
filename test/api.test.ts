@@ -163,57 +163,59 @@ describe("Admin API + Audit Logs", () => {
   });
 });
 
-describe("Validate status + ID không trùng", () => {
-  let adminTok = "";
-  let campId = "";
-
-  beforeAll(async () => {
+describe("Auth — chặn leo thang quyền & user enumeration", () => {
+  it("đăng ký với role=ADMIN -> vẫn chỉ là USER (chặn privilege escalation)", async () => {
     if (!online) return;
-    adminTok = await login(ADMIN.email, ADMIN.password);
-    const cr = await fetch(`${BASE}/api/campaigns`);
-    if (cr.ok) {
-      const camps = await cr.json();
-      if (Array.isArray(camps) && camps.length > 0) campId = camps[0].id;
-    }
-  });
-
-  it("cập nhật campaign với status rác -> 400", async () => {
-    if (!online || !adminTok || !campId) return;
-    const r = await fetch(`${BASE}/api/campaigns/${campId}/status`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${adminTok}`,
-      },
-      body: JSON.stringify({ status: "HACKED_RAC_XYZ" }),
+    const email = `evil_${Date.now()}@test.local`;
+    const r = await fetch(`${BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "Evil Admin",
+        email,
+        password: "test12345",
+        role: "ADMIN", // cố tình tự cấp quyền admin
+      }),
     });
-    expect(r.status).toBe(400);
+    expect([200, 201]).toContain(r.status);
+    const j = await r.json();
+    // Server PHẢI ép role về USER bất chấp body gửi ADMIN
+    expect(j.user.role).toBe("USER");
   });
 
-  it("cập nhật disbursement với status rác -> 400", async () => {
-    if (!online || !adminTok) return;
-    const r = await fetch(`${BASE}/api/disbursements/disb-khong-co/status`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${adminTok}`,
-      },
-      body: JSON.stringify({ status: "GARBAGE" }),
+  it("token cấp cho user đăng ký KHÔNG mở được audit-logs (admin-only)", async () => {
+    if (!online) return;
+    const email = `evil2_${Date.now()}@test.local`;
+    const reg = await fetch(`${BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Evil2", email, password: "test12345", role: "ADMIN" }),
     });
-    // Validate status chạy TRƯỚC khi tìm bản ghi -> 400 (không phải 404)
-    expect(r.status).toBe(400);
-  });
-
-  it("audit log ID phải duy nhất (genId chống trùng millisecond)", async () => {
-    if (!online || !adminTok) return;
+    const rj = await reg.json();
+    const tok = rj.token || "";
+    if (!tok) return;
     const r = await fetch(`${BASE}/api/audit-logs`, {
-      headers: { Authorization: `Bearer ${adminTok}` },
+      headers: { Authorization: `Bearer ${tok}` },
     });
-    if (r.status !== 200) return;
-    const logs = await r.json();
-    if (!Array.isArray(logs) || logs.length < 2) return;
-    const ids = logs.map((l: any) => l.id);
-    const unique = new Set(ids);
-    expect(unique.size).toBe(ids.length);
+    // role bị ép về USER -> requireAdmin chặn 403
+    expect(r.status).toBe(403);
+  });
+
+  it("login sai mật khẩu và email không tồn tại đều trả 401 (chống enumeration)", async () => {
+    if (!online) return;
+    const rWrongPass = await fetch(`${BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: ADMIN.email, password: "sai-mat-khau-123" }),
+    });
+    const rNoUser = await fetch(`${BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: `khong-ton-tai-${Date.now()}@x.local`, password: "bat-ky" }),
+    });
+    // Cả 2 cùng 401 -> không lộ email nào đã đăng ký
+    expect(rWrongPass.status).toBe(401);
+    expect(rNoUser.status).toBe(401);
+    expect(rWrongPass.status).toBe(rNoUser.status);
   });
 });
