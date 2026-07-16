@@ -21,7 +21,6 @@
       "name": "Trần Minh Đức (Admin)",
       "email": "duc.admin@kindwave.org",
       "password": "$2b$10$PvUbpzcC1UXDgqeaDytwlO9hpaAQXDKP/ORvVeotYnJH6LM3jq5GO",
-
       "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
       "role": "ADMIN",
       "bio": "Trưởng ban kiểm duyệt tư pháp KindWave",
@@ -55,26 +54,22 @@
       "impactPoints": 0,
       "impactHours": 0,
       "badges": []
+    },
+    {
+      "id": "user-1784137106998",
+      "name": "Hoang",
+      "email": "hoang123@gmail.com",
+      "password": "$2b$10$0dLNg5DKoWL5WcAIVd8Bzeoed.tvafTcv8awZOxav1wD6FcQ.fVcm",
+      "avatar": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1535713875002-d1d0cf377fde?auto=format&amp;fit=crop&amp;q=80&amp;w=200",
+      "role": "USER",
+      "bio": "Hoàng Kim Code",
+      "isBanned": false,
+      "impactPoints": 100000000200,
+      "impactHours": 16,
+      "badges": []
     }
   ],
   "campaigns": [
-    {
-      "id": "camp-1783489450481",
-      "title": "Xây Trường",
-      "categoryId": "cat-emergency",
-      "goalAmount": 100000000,
-      "raisedAmount": 0,
-      "shortDescription": "Góp Gạch xây trường",
-      "description": "Domixi",
-      "targetBeneficiary": "Cao Bằng",
-      "image": "https:&#x2F;&#x2F;images.unsplash.com&#x2F;photo-1488521787991-ed7bbaae773c?auto=format&amp;fit=crop&amp;q=80&amp;w=800",
-      "isAnonymousApproved": true,
-      "status": "ACTIVE",
-      "organizerId": "user-1783489335203",
-      "creatorName": "Hoang",
-      "dateCreated": "2026-07-08",
-      "dateEnded": "2026-09-06"
-    },
     {
       "id": "camp-hagiang",
       "title": "Xây dựng Trường học Vùng cao Mèo Vạc, Hà Giang",
@@ -100,7 +95,7 @@
       "image": "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&q=80&w=800",
       "categoryId": "cat-emergency",
       "goalAmount": 500000000,
-      "raisedAmount": 420000000,
+      "raisedAmount": 1000000420000000,
       "status": "ACTIVE",
       "organizerId": "user-3",
       "creatorName": "Quỹ Bông Sen Xanh",
@@ -135,16 +130,30 @@
       "categoryId": "cat-environment",
       "goalAmount": 100000000,
       "raisedAmount": 45000000,
-      "status": "ACTIVE",
+      "status": "REJECTED",
       "organizerId": "user-admin",
       "creatorName": "GreenFuture Vietnam",
       "dateCreated": "2026-05-10",
       "dateEnded": "2026-08-10",
       "isAnonymousApproved": true,
-      "targetBeneficiary": "Hệ sinh thái rừng Nam Cát Tiên"
+      "targetBeneficiary": "Hệ sinh thái rừng Nam Cát Tiên",
+      "rejectsReason": "Dự án bị đóng băng khẩn cấp do vi phạm tố cáo: Sai lệch thông tin"
     }
   ],
   "donations": [
+    {
+      "id": "don-1784138314691",
+      "campaignId": "camp-flood",
+      "campaignTitle": "Cứu trợ khẩn cấp Lũ lụt miền Trung 2026",
+      "userId": "user-1784137106998",
+      "donorName": "Nhà hảo tâm ẩn danh",
+      "amount": 1000000000000000,
+      "isAnonymous": true,
+      "status": "SUCCESS",
+      "dateCreated": "2026-07-15 17:58",
+      "comment": "Chúc các e chơi vui",
+      "transactionCode": "TX631965329KW"
+    },
     {
       "id": "don-1",
       "campaignId": "camp-hagiang",
@@ -231,7 +240,7 @@
       "pointsReward": 200,
       "location": "Thành phố Đồng Hới & Huyện Lệ Thủy, Quảng Bình",
       "schedule": "Các ngày cuối tuần trong tháng 07/2026",
-      "spotsLeft": 12,
+      "spotsLeft": 11,
       "image": "https://images.unsplash.com/photo-1469571486117-788ab9745744?auto=format&fit=crop&q=80&w=800",
       "campaignId": "camp-flood"
     },
@@ -253,7 +262,20 @@
       "campaignId": "camp-forest"
     }
   ],
-  "applications": [],
+  "applications": [
+    {
+      "id": "app-1784137144438",
+      "jobId": "vol-flood-distributor",
+      "jobTitle": "Hỗ trợ bốc dỡ và phân phát nhu yếu phẩm khẩn cấp",
+      "userId": "user-1784137106998",
+      "userName": "Hoang",
+      "userEmail": "hoang123@gmail.com",
+      "skills": "Nhiệt  tình + ngu dốt",
+      "availability": "thứ 7",
+      "status": "APPROVED",
+      "dateCreated": "2026-07-15"
+    }
+  ],
   "verifications": [
     {
       "id": "ver-1",
@@ -273,7 +295,7 @@
       "reporterName": "Trần Thế Khoa",
       "reason": "Sai lệch thông tin",
       "description": "Hình ảnh cập nhật đợt gieo hạt giống này dường như là ảnh cũ từ năm ngoái. Yêu cầu ban quản trị làm rõ.",
-      "status": "PENDING",
+      "status": "RESOLVED",
       "dateCreated": "2026-07-05"
     }
   ],
@@ -303,6 +325,16 @@
     }
   ],
   "ledgers": [
+    {
+      "id": "led-1784138314691",
+      "campaignId": "camp-flood",
+      "amount": 1000000000000000,
+      "type": "CREDIT",
+      "referenceId": "don-1784138314691",
+      "balanceAfter": 1000000420000000,
+      "dateCreated": "2026-07-15 17:58",
+      "description": "Nhận tiền quyên góp từ nhà hảo tâm ẩn danh"
+    },
     {
       "id": "led-1",
       "campaignId": "camp-hagiang",
@@ -345,6 +377,87 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "log-1784138314691",
+      "actorId": "user-1784137106998",
+      "actorName": "Hoang",
+      "action": "SUBMIT_DONATION",
+      "targetId": "don-1784138314691",
+      "details": "Quyên góp thành công 1.000.000.000.000.000 VNĐ vào chiến dịch \"Cứu trợ khẩn cấp Lũ lụt miền Trung 2026\". Mã giao dịch: TX631965329KW.",
+      "timestamp": "2026-07-15T17:58:34.718Z"
+    },
+    {
+      "id": "log-1784138099493",
+      "actorId": "user-admin",
+      "actorName": "Trần Minh Đức (Admin)",
+      "action": "CAMPAIGN_REPORT_RESOLVED",
+      "targetId": "rep-1",
+      "details": "Xử lý đơn báo cáo số ID: rep-1 của chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\". Trạng thái: RESOLVED.",
+      "timestamp": "2026-07-15T17:54:59.493Z"
+    },
+    {
+      "id": "log-1784138099480",
+      "actorId": "user-admin",
+      "actorName": "Trần Minh Đức (Admin)",
+      "action": "CAMPAIGN_STATUS_REJECTED",
+      "targetId": "camp-forest",
+      "details": "Duyệt trạng thái chiến dịch \"Gieo Mầm Xanh - Trồng 10,000 cây tại Vườn Quốc gia Nam Cát Tiên\" thành: REJECTED. Lý do từ chối: \"Dự án bị đóng băng khẩn cấp do vi phạm tố cáo: Sai lệch thông tin\"",
+      "timestamp": "2026-07-15T17:54:59.480Z"
+    },
+    {
+      "id": "log-1784138089372",
+      "actorId": "user-admin",
+      "actorName": "Trần Minh Đức (Admin)",
+      "action": "DELETE_CAMPAIGN",
+      "targetId": "camp-1783489450481",
+      "details": "Xoá chiến dịch \"Xây Trường\".",
+      "timestamp": "2026-07-15T17:54:49.372Z"
+    },
+    {
+      "id": "log-1784138086881",
+      "actorId": "user-admin",
+      "actorName": "Trần Minh Đức (Admin)",
+      "action": "DELETE_CAMPAIGN",
+      "targetId": "camp-1784137607711",
+      "details": "Xoá chiến dịch \"Xây trường\".",
+      "timestamp": "2026-07-15T17:54:46.881Z"
+    },
+    {
+      "id": "log-1784137623178",
+      "actorId": "user-admin",
+      "actorName": "Trần Minh Đức (Admin)",
+      "action": "CAMPAIGN_STATUS_ACTIVE",
+      "targetId": "camp-1784137607711",
+      "details": "Duyệt trạng thái chiến dịch \"Xây trường\" thành: ACTIVE. ",
+      "timestamp": "2026-07-15T17:47:03.178Z"
+    },
+    {
+      "id": "log-1784137607711",
+      "actorId": "user-1784137106998",
+      "actorName": "Hoang",
+      "action": "CREATE_CAMPAIGN",
+      "targetId": "camp-1784137607711",
+      "details": "Tạo chiến dịch mới: \"Xây trường\" với số tiền mục tiêu: 100.000.000 VNĐ. Trạng thái: Chờ duyệt.",
+      "timestamp": "2026-07-15T17:46:47.729Z"
+    },
+    {
+      "id": "log-1784137146491",
+      "actorId": "user-1784137106998",
+      "actorName": "Hoang",
+      "action": "VOLUNTEER_APP_APPROVED",
+      "targetId": "app-1784137144438",
+      "details": "Duyệt đơn đăng ký của \"Hoang\" cho công việc \"Hỗ trợ bốc dỡ và phân phát nhu yếu phẩm khẩn cấp\" thành: APPROVED.",
+      "timestamp": "2026-07-15T17:39:06.491Z"
+    },
+    {
+      "id": "log-1784137144438",
+      "actorId": "user-1784137106998",
+      "actorName": "Hoang",
+      "action": "SUBMIT_VOLUNTEER_APP",
+      "targetId": "app-1784137144438",
+      "details": "Nộp đơn đăng ký làm tình nguyện viên cho công việc \"Hỗ trợ bốc dỡ và phân phát nhu yếu phẩm khẩn cấp\".",
+      "timestamp": "2026-07-15T17:39:04.438Z"
+    },
     {
       "id": "log-1783656493356",
       "actorId": "user-admin",

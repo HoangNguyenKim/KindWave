@@ -29,6 +29,7 @@ export default function CampaignWizard({ categories, isOpen, onClose, onSubmit, 
   const [targetBeneficiary, setTargetBeneficiary] = useState("");
   const [image, setImage] = useState(SAMPLE_COVERS[0]);
   const [isAnonymousApproved, setIsAnonymousApproved] = useState(true);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   if (!isOpen) return null;
 
@@ -74,8 +75,6 @@ export default function CampaignWizard({ categories, isOpen, onClose, onSubmit, 
       setIsAnonymousApproved(true);
     }
   };
-
-  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
