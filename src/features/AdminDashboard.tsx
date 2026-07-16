@@ -34,6 +34,7 @@ interface AdminDashboardProps {
   onModerateCampaign: (campaignId: string, status: "ACTIVE" | "REJECTED", reason?: string) => void;
   onResolveReport: (reportId: string) => void;
   onApproveOrg: (orgId: string, status: "APPROVED" | "REJECTED") => void;
+  onDeleteCampaign: (id: string) => void;
 }
 
 export default function AdminDashboard({
@@ -50,10 +51,11 @@ export default function AdminDashboard({
   onApproveImpactProof,
   onModerateCampaign,
   onResolveReport,
-  onApproveOrg
+  onApproveOrg,
+  onDeleteCampaign
 }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<
-    "analytics" | "campaigns" | "reports" | "organizations" | "treasury" | "proofs" | "users"
+    "analytics" | "campaigns" | "all_campaigns" | "reports" | "organizations" | "treasury" | "proofs" | "users"
   >("analytics");
   const [unclinkUrl, setUnclinkUrl] = useState("https://img.vietqr.io/image/970415-113366688-compact2.png");
   const [activeDisbId, setActiveDisbId] = useState<string | null>(null);
@@ -126,6 +128,15 @@ export default function AdminDashboard({
         >
           Duyệt chiến dịch ({pendingCampaigns.length})
           {activeTab === "campaigns" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500" />}
+        </button>
+        <button
+          onClick={() => setActiveTab("all_campaigns")}
+          className={`pb-3 px-4 text-xs font-bold transition-all relative cursor-pointer ${
+            activeTab === "all_campaigns" ? "text-emerald-600" : "text-slate-400 hover:text-slate-600"
+          }`}
+        >
+          Tất cả dự án ({campaigns.length})
+          {activeTab === "all_campaigns" && <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500" />}
         </button>
         <button
           onClick={() => setActiveTab("reports")}
@@ -326,6 +337,60 @@ export default function AdminDashboard({
                 <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
                 <p className="text-xs font-semibold text-slate-600">Hàng chờ duyệt trống</p>
                 <p className="text-[10px] text-slate-400">Không có dự án gây quỹ nào đang chờ phê duyệt.</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* All Campaigns */}
+        {activeTab === "all_campaigns" && (
+          <div className="space-y-4">
+            {campaigns.map((camp) => (
+              <div key={camp.id} className="p-5 bg-white border border-slate-100 rounded-2xl shadow-2xs space-y-4">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
+                  <div className="space-y-1">
+                    <span className={`text-[9px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider ${
+                      camp.status === 'PENDING' ? 'text-amber-600 bg-amber-50' : 
+                      camp.status === 'ACTIVE' ? 'text-emerald-600 bg-emerald-50' : 
+                      'text-rose-600 bg-rose-50'
+                    }`}>
+                      TRẠNG THÁI: {camp.status}
+                    </span>
+                    <h3 className="font-bold text-slate-900 text-sm">{camp.title}</h3>
+                    <p className="text-xs text-slate-500">Chủ sáng lập: <span className="font-semibold text-slate-700">{camp.creatorName}</span> | Đăng ngày: {camp.dateCreated}</p>
+                  </div>
+                  <div className="text-left sm:text-right shrink-0">
+                    <span className="text-xs text-slate-400 block uppercase">Mục tiêu gây quỹ</span>
+                    <span className="text-sm font-black text-slate-800 font-mono">{formatCurrency(camp.goalAmount)}</span>
+                  </div>
+                </div>
+
+                <div className="p-3.5 bg-slate-50 border border-slate-150 rounded-xl text-xs text-slate-600 space-y-2">
+                  <p><span className="font-semibold text-slate-700">Mục tiêu thụ hưởng:</span> {camp.targetBeneficiary}</p>
+                  <p className="line-clamp-2"><span className="font-semibold text-slate-700">Tóm tắt:</span> {camp.shortDescription}</p>
+                  <p className="text-[10px] text-slate-400 font-mono italic">Mã tham chiếu: {camp.id}</p>
+                </div>
+
+                {/* Actions */}
+                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
+                  <button
+                    onClick={() => {
+                      if (window.confirm(`Bạn có chắc chắn muốn xóa vĩnh viễn dự án "${camp.title}" không? Hành động này không thể hoàn tác.`)) {
+                        onDeleteCampaign(camp.id);
+                      }
+                    }}
+                    className="py-2 px-3.5 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-xl flex items-center gap-1 cursor-pointer transition-all"
+                  >
+                    <XCircle className="w-4 h-4" /> Xóa dự án
+                  </button>
+                </div>
+              </div>
+            ))}
+            {campaigns.length === 0 && (
+              <div className="text-center py-12 bg-white rounded-2xl border border-slate-100 space-y-1.5">
+                <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
+                <p className="text-xs font-semibold text-slate-600">Không có dự án nào</p>
+                <p className="text-[10px] text-slate-400">Hiện tại hệ thống chưa có dự án nào.</p>
               </div>
             )}
           </div>

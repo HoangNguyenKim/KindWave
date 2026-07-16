@@ -1,10 +1,16 @@
 import express from "express";
 import path from "node:path";
 import { createServer as createViteServer } from "vite";
-import { getDB, saveDB, runTransaction } from "./server/db";
+import { getDB, saveDB, runTransaction, saveImage, getImage, deleteImage, deleteCampaign } from "./server/db";
 import { User, Campaign, Donation, VolunteerJob, VolunteerApplication, OrgVerification, CampaignReport, CampaignLedger, Disbursement, ImpactProof, AuditLog } from "./src/types";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import multer from "multer";
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+});
 
 const JWT_SECRET = process.env.JWT_SECRET || "kindwave_super_secret_key_2026";
 
@@ -85,7 +91,50 @@ async function startServer() {
     res.json({ status: "ok" });
   });
 
-  // Auth Routes
+  // ==================== IMAGE APIs ====================
+  app.post("/api/images/upload", upload.single("image"), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "Không tìm thấy file ảnh" });
+      }
+      const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+      if (!allowedTypes.includes(req.file.mimetype)) {
+        return res.status(400).json({ error: "Định dạng ảnh không hợp lệ (Chỉ hỗ trợ JPG, PNG, WEBP, GIF)" });
+      }
+      const id = `img-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      await saveImage(id, req.file.originalname, req.file.mimetype, req.file.size, req.file.buffer);
+      res.status(201).json({ id, url: `/api/images/${id}` });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Lỗi máy chủ khi tải ảnh lên" });
+    }
+  });
+
+  app.get("/api/images/:id", async (req, res) => {
+    try {
+      const image = await getImage(req.params.id);
+      if (!image) {
+        return res.status(404).send("Image not found");
+      }
+      res.set("Content-Type", image.mimeType);
+      res.send(image.buffer);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server Error");
+    }
+  });
+
+  app.delete("/api/images/:id", requireUser, async (req, res) => {
+    try {
+      await deleteImage(req.params.id);
+      res.json({ message: "Xóa ảnh thành công" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Lỗi máy chủ khi xóa ảnh" });
+    }
+  });
+
+  // ==================== AUTH APIs ====================
   app.post("/api/auth/register", async (req, res) => {
     const { name, email, password, role, bio, avatar } = req.body;
     if (!name || !email || !password) {
@@ -332,6 +381,37 @@ async function startServer() {
       res.json(updatedCamp);
     } catch (err: any) {
       res.status(err.message === "Campaign not found" ? 404 : 400).json({ error: err.message });
+    }
+  });
+
+  app.delete("/api/campaigns/:id", requireAdmin, async (req, res) => {
+    const { id } = req.params;
+    const admin = (req as any).user as User;
+
+    try {
+      const deletedCamp = await deleteCampaign(id);
+      if (!deletedCamp) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      // Record audit log
+      await runTransaction((db) => {
+        const log: AuditLog = {
+          id: "log-" + Date.now(),
+          actorId: admin.id,
+          actorName: admin.name,
+          action: "DELETE_CAMPAIGN",
+          targetId: id,
+          details: `Xoá chiến dịch "${deletedCamp.title}".`,
+          timestamp: new Date().toISOString()
+        };
+        db.auditLogs.unshift(log);
+        return null;
+      });
+
+      res.json({ message: "Campaign deleted successfully", campaign: deletedCamp });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
     }
   });
 

@@ -29,6 +29,7 @@ export default function CampaignWizard({ categories, isOpen, onClose, onSubmit, 
   const [targetBeneficiary, setTargetBeneficiary] = useState("");
   const [image, setImage] = useState(SAMPLE_COVERS[0]);
   const [isAnonymousApproved, setIsAnonymousApproved] = useState(true);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
 
   if (!isOpen) return null;
 
@@ -75,14 +76,28 @@ export default function CampaignWizard({ categories, isOpen, onClose, onSubmit, 
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      setIsUploadingImage(true);
+      const formData = new FormData();
+      formData.append("image", file);
+      try {
+        const res = await fetch("/api/images/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setImage(data.url);
+        } else {
+          alert("Tải ảnh thất bại");
+        }
+      } catch (error) {
+        alert("Lỗi kết nối khi tải ảnh");
+      } finally {
+        setIsUploadingImage(false);
+      }
     }
   };
 
@@ -355,8 +370,10 @@ export default function CampaignWizard({ categories, isOpen, onClose, onSubmit, 
                     type="file"
                     accept="image/*"
                     onChange={handleImageUpload}
-                    className="w-full text-xs text-slate-500 file:mr-4 file:py-1.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer"
+                    disabled={isUploadingImage}
+                    className="w-full text-xs text-slate-500 file:mr-4 file:py-1.5 file:px-4 file:rounded-xl file:border-0 file:text-[10px] file:font-bold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 transition-all cursor-pointer disabled:opacity-50"
                   />
+                  {isUploadingImage && <p className="text-[10px] text-emerald-500 mt-1 flex items-center gap-1">Đang tải ảnh lên...</p>}
                 </div>
               </motion.div>
             )}

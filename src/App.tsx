@@ -332,6 +332,26 @@ export default function App() {
     }
   };
 
+  // Admin: Delete campaign
+  const handleDeleteCampaign = async (id: string) => {
+    try {
+      setIsLoading(true);
+      const res = await authFetch(`/api/campaigns/${id}`, {
+        method: "DELETE"
+      });
+      if (!res.ok) {
+        const errJson = await res.json();
+        throw new Error(errJson.error || "Failed to delete campaign");
+      }
+      await refreshData();
+      alert("Đã xóa dự án thành công!");
+    } catch (err: any) {
+      alert("Lỗi xóa dự án: " + err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Admin: Resolve abuse reports
   const handleResolveReport = async (reportId: string) => {
     try {
@@ -631,6 +651,7 @@ export default function App() {
             onModerateCampaign={handleModerateCampaign}
             onResolveReport={handleResolveReport}
             onApproveOrg={handleApproveOrg}
+            onDeleteCampaign={handleDeleteCampaign}
           />
         )}
       </main>

@@ -25,6 +25,7 @@ const INITIAL_DB: DatabaseSchema = {
       id: "user-current",
       name: "Nguyễn Kim Hoàng",
       email: "ngkimhoang05@gmail.com",
+      password: "$2b$10$Kgpebrxk9jb1WzfsebANBeRYSvWbqgPlhjnMhhqdw74redAxpXgqS",
       avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200",
       role: "USER",
       bio: "Nhà hảo tâm và là tình nguyện viên tích cực, đam mê các hoạt động bảo vệ môi trường và hỗ trợ trẻ em nghèo vùng cao.",
@@ -37,6 +38,7 @@ const INITIAL_DB: DatabaseSchema = {
       id: "user-admin",
       name: "Trần Minh Đức (Admin)",
       email: "duc.admin@kindwave.org",
+      password: "$2b$10$WP2NUGeFS1FkoKmWTmHHwOZqtTCdBGAfzdsP6k.g3vPRL54XaWI3q",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
       role: "ADMIN",
       bio: "Trưởng ban kiểm duyệt tư pháp KindWave",
@@ -502,6 +504,14 @@ async function ensureTablesExist(p: mysql.Pool) {
       targetId VARCHAR(255) NOT NULL,
       details TEXT,
       timestamp VARCHAR(100) NOT NULL
+    )`,
+    `CREATE TABLE IF NOT EXISTS images (
+      id VARCHAR(255) PRIMARY KEY,
+      file_name VARCHAR(255) NOT NULL,
+      mime_type VARCHAR(255) NOT NULL,
+      file_size INT NOT NULL,
+      image_data LONGBLOB NOT NULL,
+      created_at VARCHAR(100) NOT NULL
     )`
   ];
 
@@ -786,3 +796,81 @@ export async function saveDB(data: DatabaseSchema): Promise<void> {
   });
   return savePromise;
 }
+
+const IMAGES_FILE_PATH = path.join(process.cwd(), "db-images.json");
+
+export async function saveImage(id: string, fileName: string, mimeType: string, fileSize: number, buffer: Buffer): Promise<void> {
+  const createdAt = new Date().toISOString();
+  if (isMySQLEnabled && pool) {
+    await pool.query(
+      `INSERT INTO images (id, file_name, mime_type, file_size, image_data, created_at) VALUES (?, ?, ?, ?, ?, ?)`,
+      [id, fileName, mimeType, fileSize, buffer, createdAt]
+    );
+  } else {
+    let images: any = {};
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      images = JSON.parse(data);
+    } catch(e) {}
+    images[id] = { id, fileName, mimeType, fileSize, createdAt, data: buffer.toString('base64') };
+    await fsPromises.writeFile(IMAGES_FILE_PATH, JSON.stringify(images));
+  }
+}
+
+export async function getImage(id: string): Promise<{ mimeType: string, buffer: Buffer } | null> {
+  if (isMySQLEnabled && pool) {
+    const [rows] = await pool.query("SELECT mime_type, image_data FROM images WHERE id = ?", [id]) as any[];
+    if (rows && rows.length > 0) {
+      return { mimeType: rows[0].mime_type, buffer: rows[0].image_data };
+    }
+    return null;
+  } else {
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      const images = JSON.parse(data);
+      if (images[id]) {
+        return { mimeType: images[id].mimeType, buffer: Buffer.from(images[id].data, 'base64') };
+      }
+    } catch(e) {}
+    return null;
+  }
+}
+
+export async function deleteImage(id: string): Promise<void> {
+  if (isMySQLEnabled && pool) {
+    await pool.query("DELETE FROM images WHERE id = ?", [id]);
+  } else {
+    try {
+      const data = await fsPromises.readFile(IMAGES_FILE_PATH, "utf-8");
+      const images = JSON.parse(data);
+      if (images[id]) {
+        delete images[id];
+        await fsPromises.writeFile(IMAGES_FILE_PATH, JSON.stringify(images));
+      }
+    } catch(e) {}
+  }
+}
+
+export async function deleteCampaign(id: string): Promise<Campaign | null> {
+  const release = await dbMutex.acquire();
+  try {
+    const db = await getDB();
+    const index = db.campaigns.findIndex((c) => c.id === id);
+    if (index !== -1) {
+      const [camp] = db.campaigns.splice(index, 1);
+      
+      // Delete from MySQL
+      if (isMySQLEnabled && pool) {
+        await pool.query("DELETE FROM campaigns WHERE id = ?", [id]);
+      }
+      
+      // Save JSON
+      await saveDB(db);
+      return camp;
+    }
+    return null;
+  } finally {
+    release();
+  }
+}
+
